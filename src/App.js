@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { devlogPosts } from './devlog';
 
 // =============================================================================
 // MAIN APP COMPONENT
@@ -173,6 +174,9 @@ function App() {
               <a href="#gallery" className="menu-item">
                 <span>Gallery</span>
               </a>
+              <a href="#devlog" className="menu-item">
+                <span>Devlog</span>
+              </a>
               <a href="#contact" className="menu-item">
                 <span>Contact</span>
               </a>
@@ -284,6 +288,49 @@ function App() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================================================================
+          DEVLOG SECTION - Unity Game Development Progress
+          ===================================================================
+          A running log of daily game-dev progress. Entries live in
+          src/devlog.js and are rendered newest-first here.
+      */}
+      <section id="devlog" className="devlog">
+        <div className="container">
+          <h2>Devlog</h2>
+          <p className="devlog-intro">
+            Daily notes on the games I'm building in Unity.
+          </p>
+
+          <div className="devlog-timeline">
+            {/* Sort a copy newest-first so entries can be added in any order */}
+            {[...devlogPosts]
+              .sort((a, b) => b.date.localeCompare(a.date))
+              .map((post, index) => (
+                <article className="devlog-entry" key={`${post.date}-${index}`}>
+                  <div className="devlog-meta">
+                    <time className="devlog-date">{post.date}</time>
+                    {post.game && <span className="devlog-game">{post.game}</span>}
+                  </div>
+                  <h3 className="devlog-title">{post.title}</h3>
+                  {post.image && (
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="devlog-image"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="devlog-body">
+                    {post.body.map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                </article>
+              ))}
           </div>
         </div>
       </section>

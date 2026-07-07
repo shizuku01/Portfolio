@@ -588,6 +588,143 @@ section h2 {
 
 
 
+/* =============================================================================
+   DEVLOG SECTION - Unity game development timeline
+   ============================================================================= */
+
+.devlog {
+  background: #0f0f0f;
+  padding: 80px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.devlog-intro {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #d1d5db;
+  margin-bottom: 3.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Timeline column with a vertical gold line down the left edge */
+.devlog-timeline {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.devlog-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, #d4af37 0%, rgba(212, 175, 55, 0.15) 100%);
+}
+
+/* Individual log entry card */
+.devlog-entry {
+  position: relative;
+  background: #1a1a1a;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.devlog-entry:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+/* Timeline dot aligned to the vertical line */
+.devlog-entry::before {
+  content: '';
+  position: absolute;
+  left: -2.55rem;
+  top: 2rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d4af37;
+  border: 3px solid #0f0f0f;
+  box-shadow: 0 0 0 1px #d4af37;
+}
+
+.devlog-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.devlog-date {
+  color: #d4af37;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.devlog-game {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #e5e7eb;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+}
+
+.devlog-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.devlog-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: block;
+  border: 1px solid #262626;
+}
+
+.devlog-body p {
+  color: #d1d5db;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.85rem;
+}
+
+.devlog-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .devlog-timeline {
+    padding-left: 1.25rem;
+  }
+
+  .devlog-entry {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .devlog-entry::before {
+    left: -1.8rem;
+  }
+}
+
 /* Footer */
 .footer {
   background: #0f0f0f;
