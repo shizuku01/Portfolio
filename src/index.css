@@ -1,0 +1,802 @@
+/* =============================================================================
+   LATTE'S PORTFOLIO - MAIN STYLESHEET
+   =============================================================================
+   This file contains all the CSS styles for the portfolio website
+   It includes styles for layout, typography, colors, animations, and responsive design
+*/
+
+/* =============================================================================
+   RESET AND BASE STYLES
+   =============================================================================
+   These styles reset default browser styling and set up the foundation
+*/
+
+/* Universal Reset - removes default margins, padding, and border box model */
+* {
+  margin: 0;           /* Remove default margins from all elements */
+  padding: 0;          /* Remove default padding from all elements */
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
+}
+
+/* HTML Element Styling */
+html {
+  scroll-behavior: smooth; /* Smooth scrolling when clicking anchor links */
+}
+
+/* Body Element Styling - Main typography and color foundation */
+body {
+  /* Font Stack - Fallback fonts for cross-browser compatibility */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  
+  /* Font Rendering - Makes text look smoother on different displays */
+  -webkit-font-smoothing: antialiased;  /* For WebKit browsers (Chrome, Safari) */
+  -moz-osx-font-smoothing: grayscale;   /* For Firefox on macOS */
+  
+  /* Typography */
+  line-height: 1.6;        /* Line spacing for better readability */
+  color: #e5e7eb;          /* Light gray text color */
+  background-color: #0f0f0f; /* Dark background color */
+}
+
+
+/* =============================================================================
+   LAYOUT UTILITIES
+   =============================================================================
+   Reusable layout classes for consistent spacing and alignment
+*/
+
+/* Container Class - Centers content and provides consistent max-width */
+.container {
+  max-width: 1200px;    /* Maximum width of content */
+  margin: 0 auto;       /* Centers the container horizontally */
+  padding: 0 20px;      /* Horizontal padding for mobile spacing */
+}
+
+/* =============================================================================
+   HERO SECTION
+   =============================================================================
+   The main landing section with profile picture, name, and introduction
+*/
+
+/* Hero Section Container */
+.hero {
+  min-height: 100vh;    /* Full viewport height */
+  display: flex;        /* Flexbox for centering content */
+  align-items: center;  /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  text-align: center;   /* Center text alignment */
+  
+  /* Dark gradient background for visual depth */
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #0a0a0a 100%);
+  
+  padding: 60px 20px 80px; /* Top, horizontal, bottom padding */
+  position: relative;   /* Allows absolute positioning of child elements */
+}
+
+
+/* Scrolling Artwork Background */
+.hero-artwork-scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.artwork-scroll-track {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  animation: scroll-artwork 30s linear infinite;
+}
+
+.artwork-scroll-item {
+  width: 25%;
+  height: 100%;
+  position: relative;
+}
+
+.artwork-scroll-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%) brightness(0.7);
+}
+
+@keyframes scroll-artwork {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-content {
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-profile {
+  margin-bottom: 2rem;
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.profile-picture:hover {
+  transform: scale(1.05);
+}
+
+.hero-social {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin: 2rem 0;
+}
+
+.social-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4af37;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-logo:hover {
+  color: #f4d03f;
+  transform: translateY(-2px);
+}
+
+.social-logo svg {
+  width: 20px;
+  height: 20px;
+}
+
+.social-logo.twitter:hover {
+  color: #1da1f2;
+}
+
+.social-logo.pixiv:hover {
+  color: #007aff;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #f9fafb;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 50%, #8b7355 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: #d4af37;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: #9ca3af;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Single Scroll Arrow */
+.hero-arrow {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+}
+
+.scroll-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #f9fafb;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: bounce 2s infinite;
+}
+
+.scroll-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(2px);
+  animation: none;
+}
+
+.scroll-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Section Styles */
+section {
+  padding: 80px 0;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #f9fafb;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+
+
+/* Gallery Section */
+.gallery {
+  background: #0f0f0f;
+  padding: 80px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.gallery-layout {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 3rem;
+}
+
+/* Gallery Menu */
+.gallery-menu {
+  width: 200px;
+  flex-shrink: 0;
+  padding-top: 2rem;
+}
+
+.menu-logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #d4af37;
+  margin: 0 0 3rem 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-item {
+  color: #e5e7eb;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  font-weight: 500;
+}
+
+.menu-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-left-color: #d4af37;
+  color: #d4af37;
+}
+
+.menu-item span {
+  display: block;
+}
+
+/* Gallery Content */
+.gallery-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+  justify-content: center;
+  /* Square tiles, 2 per row, no gaps */
+}
+
+.gallery-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.artwork-card {
+  background: #1a1a1a;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  transform: scale(1);
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
+
+.artwork-card.horizontal {
+  aspect-ratio: 1 / 1;
+  grid-column: span 1;
+}
+
+.artwork-card:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+.artwork-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+}
+
+.artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.artwork-card:hover .artwork-img {
+  transform: scale(1.05);
+}
+
+/* Portrait image positioning - focus on upper half */
+.artwork-img.dorothy,
+.artwork-img.shorekeeper,
+.artwork-img.roccia,
+.artwork-img.ciaccona {
+  object-position: center top;
+}
+
+/* Phrolova specific positioning - focus on right side */
+.artwork-img.phrolova {
+  object-position: right center;
+}
+
+/* Default positioning for landscape images */
+.artwork-img {
+  object-position: center center;
+}
+
+/* Dusk and Camellya - focus even higher */
+.artwork-img.dusk,
+.artwork-img.camellya {
+  object-position: center top;
+}
+
+/* New portrait images - focus on top */
+.artwork-img.corrin,
+.artwork-img.youhu {
+  object-position: center top;
+}
+
+/* New landscape image - higher focus */
+.artwork-img.texas {
+  object-position: center top;
+}
+
+
+.artwork-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.5rem 0.5rem;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0) 0%, 
+    rgba(0, 0, 0, 0.4) 50%, 
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.artwork-card:hover .artwork-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.artwork-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.artwork-content p {
+  color: #e5e7eb;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.artwork-content p:first-of-type {
+  color: #d4af37;
+  font-weight: 500;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Artwork details removed for cleaner look */
+
+/* Contact Section */
+.contact {
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  position: relative;
+  z-index: 10;
+}
+
+.contact-intro {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #d1d5db;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-item h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-bottom: 0.5rem;
+}
+
+.contact-item p {
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #b8860b;
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 1rem;
+  border: 1px solid #404040;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+  background: #2d2d2d;
+  color: #f9fafb;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #d4af37;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-success {
+  color: #059669;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.form-error {
+  color: #dc2626;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+.footer {
+  background: #0f0f0f;
+  color: #9ca3af;
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid #404040;
+  position: relative;
+  z-index: 10;
+}
+
+.footer p {
+  font-size: 0.9rem;
+}
+
+/* =============================================================================
+   ARTWORK MODAL - Full Image Popup
+   ============================================================================= */
+
+.artwork-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 20px;
+}
+
+.artwork-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.artwork-modal.open .modal-content {
+  transform: scale(1);
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #d4af37;
+  font-size: 3rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.modal-close:hover {
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.modal-info {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #e5e7eb;
+}
+
+.modal-info h3 {
+  font-size: 1.5rem;
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+.modal-info p {
+  font-size: 1rem;
+  color: #9ca3af;
+}
+
+/* Add cursor pointer to artwork cards */
+.artwork-card {
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .gallery-layout {
+    gap: 2rem;
+  }
+  
+  .gallery-menu {
+    width: 160px;
+  }
+  
+  .menu-logo h1 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-layout {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 20px;
+  }
+  
+  .gallery-menu {
+    width: 100%;
+    padding-top: 0;
+    order: -1;
+  }
+  
+  .menu-items {
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .menu-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .menu-logo h1 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  
+  section {
+    padding: 60px 0;
+  }
+  
+  section h2 {
+    font-size: 2rem;
+  }
+  
+  
+  .gallery-grid {
+    grid-template-columns: repeat(2, 0.375fr);
+    gap: 2rem;
+    padding: 0 15px;
+    justify-content: center;
+  }
+  
+  .artwork-card.horizontal {
+    grid-column: span 2;
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .hero {
+    padding: 80px 15px 60px;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .artwork-content {
+    padding: 0.75rem 1rem 0.25rem;
+  }
+}

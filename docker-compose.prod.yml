@@ -1,0 +1,16 @@
+# =============================================================================
+# LATTE'S PORTFOLIO - PRODUCTION OVERRIDE (Aliyun ECS)
+# =============================================================================
+# Use this override on the server to publish the site on port 80 (public HTTP).
+# Run with:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+#
+# The base docker-compose.yml still handles the build, secrets (.env) and
+# healthcheck. This file only changes what's needed for production.
+
+services:
+  portfolio:
+    # Publish on the standard HTTP port so the site is reachable at
+    # http://<your-server-ip>  (make sure the Aliyun security group allows 80)
+    ports:
+      - "80:3000"

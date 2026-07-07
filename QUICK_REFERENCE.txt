@@ -1,0 +1,190 @@
+================================================================================
+FIGMA FILE "P2 Final" - QUICK REFERENCE GUIDE
+================================================================================
+
+FILE INFORMATION
+================================================================================
+File ID: mNAqkYLMzRKSDJNJXSimyV
+File Name: P2 Final
+Total Pages: 1
+Total Frames: 67
+Interactive Frames: 53
+Total Interactions: 279
+Unique Colors: 33
+
+KEY DIMENSIONS
+================================================================================
+Main Screens: 393 × 852px (Mobile portrait)
+Component Screens: 58-1920 × 37-1080px (Various sizes)
+
+SCREEN CATEGORIES (67 FRAMES TOTAL)
+================================================================================
+
+1. ONBOARDING (3 frames)
+   - Intro 1, Intro 2, Intro 3
+   - All use AFTER_TIMEOUT for auto-advance
+   - Flow: Intro 1 → Intro 2 → Intro 3 → Creator Home
+
+2. PORTFOLIO FEATURE (7 frames)
+   - Portfolio Entry, Portfolios Page (3 variants), Add Image
+   - Gallery, Gallery Selection
+   - Interactions: ON_CLICK, ON_PRESS on image items
+
+3. DASHBOARD (6 frames)
+   - Dashboard Entry, Dashboard Main, Dashboard Options
+   - Requests, User Request, User Info
+   - 79 total elements in Dashboard Main
+
+4. AI CLOAK (10 frames)
+   - AI Cloak Entry, Cloak Main, File Select
+   - Parameters, AI Parameter
+   - Loading 1/2/3 (with duplicates), Loading Complete
+   - Cloaking Complete, Cloak Complete
+   - Auto-advance on loading screens
+
+5. FORM SCREENS (6 frames)
+   - Insert Title, Insert Title Complete
+   - Theme Selection, Theme Description
+   - Finishing Up, Return
+   - Multiple ON_CLICK interactions per screen
+
+6. IMAGE MANAGEMENT (7 frames)
+   - Add Images (3 variations)
+   - Add Images - Title (2 variants)
+   - Add Images - Description (2 variants)
+   - Add Images - Tags (2 variants)
+   - Add Images Complete
+   - Total: ~5 versions of each screen
+
+7. REQUEST MANAGEMENT (3 frames)
+   - Request Confirm, Request Deny, Request Return
+   - Multiple action buttons with ON_CLICK
+
+8. TITLE/DISPLAY (2 frames)
+   - Title Page (2 variants)
+   - 66 elements each
+
+9. SETTINGS COMPONENTS (7 frames)
+   - Model, Publicity, Enable Notifications
+   - Enable Download, Image Quality, Render Quality
+   - Intensity
+   - Reusable component instances
+
+10. UI COMPONENTS (13 frames)
+    - Rectangle 55, Rectangle 56, Rectangle 43
+    - Component 3, 4, 5, 6
+    - Group (with ON_CLICK)
+    - Kevin (large 1920×1080 component)
+    - Property variants (Default, Variant2, Variant3, Variant4)
+
+INTERACTION TYPES
+================================================================================
+ON_CLICK (most common)
+  - Used for: Buttons, Navigation, Text selection
+  - Examples: Gallery day selection, Parameter toggles, Form submission
+
+ON_PRESS
+  - Used for: Component instances, Buttons
+  - Examples: Rectangle instances, Model component, Property components
+
+AFTER_TIMEOUT
+  - Used for: Auto-advancing screens, Loading animations
+  - Timeout durations: ~1ms on intro screens
+  - Examples: Loading screens, Intro animations
+
+COLOR PALETTE (33 COLORS)
+================================================================================
+Primary:      White (255,255,255), Black (0,0,0), Light Gray (249,249,249)
+Darks:        48,48,48 | 37,37,37 | 59,59,59 | 66,66,66 | 76,76,76
+Accents:      Orange/Coral (227,145,101) | Red (244,66,81) | Teal (110,241,213)
+              Cyan (62,194,209)
+Grays:        18 variations from 62 to 228 gray values
+
+TYPICAL INTERACTIVE FLOWS
+================================================================================
+
+ONBOARDING FLOW:
+  Intro 1 (AFTER_TIMEOUT) → Intro 2 (AFTER_TIMEOUT) → Intro 3 (AFTER_TIMEOUT)
+  → Creator Home
+
+PORTFOLIO CREATION:
+  Portfolio Entry → Portfolios Page → Add Image (select from gallery)
+  → Add Images (multiple steps) → Finishing Up
+
+AI CLOAKING:
+  AI Cloak Entry → Cloak Main → File Select → Parameters
+  → Loading 1 → Loading 2 → Loading 3 → Loading Complete
+  → Cloaking Complete → Cloak Complete
+
+DASHBOARD FLOW:
+  Dashboard Entry → Dashboard Main → Requests
+  → User Request → Request Confirm/Deny/Return
+
+SETTINGS:
+  Most screens have ON_CLICK toggles for:
+  - Yes/No, On/Off options
+  - Quality levels: Low/Medium/High
+  - Speed: Fast/Default/Slow
+  - Publicity: Yes/No/Request
+
+ELEMENT HIERARCHY EXAMPLE (Portfolio Entry Frame)
+================================================================================
+Portfolio Entry (393×852px)
+├── Ellipse 2 (813×813px) [AFTER_TIMEOUT trigger]
+│   └── Gradient: Yellow to Orange
+├── Group (442×287px)
+│   ├── P (TEXT: "P" - Afacad 36px, White)
+│   ├── o (TEXT: "o" - Afacad 36px, White)
+│   ├── r (TEXT: "r" - Afacad 36px, White)
+│   ├── t (TEXT: "t" - Afacad 36px, White)
+│   ├── f (TEXT: "f" - Afacad 36px, White)
+│   ├── o (TEXT: "o" - Afacad 36px, White)
+│   ├── l (TEXT: "l" - Afacad 36px, White)
+│   ├── i (TEXT: "i" - Afacad 36px, White)
+│   ├── o (TEXT: "o" - Afacad 36px, White)
+│   └── s (TEXT: "s" - Afacad 36px, White)
+└── [Additional child elements...]
+
+GENERATED ANALYSIS FILES
+================================================================================
+1. figma_data.json (1.8MB)
+   - Raw Figma API response with complete frame hierarchy
+
+2. figma_summary.json
+   - High-level overview with frame counts and dimensions
+   - Color palette listing
+
+3. figma_detailed.json
+   - Complete element tree with styling (colors, typography, effects)
+   - All frame information with complete child element details
+
+4. figma_interactions.json
+   - Interaction mapping showing trigger→action relationships
+   - Organized by frame with all interaction details
+
+5. FIGMA_ANALYSIS_REPORT.md (comprehensive)
+   - Full documentation of all 67 frames
+   - Detailed descriptions of each frame
+   - Design observations and recommendations
+
+6. QUICK_REFERENCE.txt (this file)
+   - Quick lookup guide for frame categories
+   - Interaction types and patterns
+   - Element hierarchy examples
+
+RECOMMENDATIONS FOR REPLICATION
+================================================================================
+✓ Mobile-first approach (393×852px primary)
+✓ Implement transition delays for AFTER_TIMEOUT
+✓ Create component system for reusable elements
+✓ Use CSS variables for 33-color palette
+✓ Implement toggle/state management for property variants
+✓ Build navigation routing based on interaction map
+✓ Add micro-interactions for visual feedback
+✓ Ensure responsive scaling for larger viewports
+
+================================================================================
+Analysis Date: 2025-11-19
+Figma API: v1
+Location: c:\Users\likai\Downloads\Portfolio\
+================================================================================

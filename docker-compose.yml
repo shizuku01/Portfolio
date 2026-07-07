@@ -1,0 +1,56 @@
+# =============================================================================
+# LATTE'S PORTFOLIO - SIMPLIFIED DOCKER COMPOSE
+# =============================================================================
+# This file defines how to run the portfolio website using Docker
+# It creates a single service that combines frontend and backend
+
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # PORTFOLIO WEBSITE SERVICE
+  # ==========================================================================
+  # Single service that combines React frontend and Express backend
+  portfolio:
+    # Build the container from the Dockerfile in the current directory
+    build: .
+    
+    # Container name for easy identification
+    container_name: latte-portfolio
+    
+    # Port mapping: host:container
+    # Access the website at http://localhost:3000
+    ports:
+      - "1025:3000"
+    
+    # Environment variables
+    # EMAIL_PASSWORD is read from a local .env file (see .env.example) so the
+    # secret is never committed to git. Compose loads .env automatically.
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+    
+    # Restart policy: restart the container if it crashes
+    restart: unless-stopped
+    
+    # Health check to monitor container status
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Volume mounts for development (uncomment if you want live reloading)
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
+    
+    # Resource limits (optional - helps prevent containers from using too much memory)
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M

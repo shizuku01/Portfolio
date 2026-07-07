@@ -1,0 +1,86 @@
+# =============================================================================
+# LATTE'S PORTFOLIO - GIT IGNORE FILE
+# =============================================================================
+# This file tells Git which files and folders to ignore when tracking changes
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production builds
+build/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# =============================================================================
+# Large generated / analysis artifacts (do NOT commit — keeps the repo small
+# and fast to clone on the server)
+# =============================================================================
+# Packaged tarball of the app (65 MB) - not needed when deploying via git
+portfolio.tar.gz
+*.tar.gz
+
+# Figma export / analysis dumps (~2 MB each, generated locally, not runtime)
+figma_data.json
+figma_detailed.json
+figma_interactions.json
+figma_structure.txt
+figma_summary.json
+c:UserslikaiDownloadsDesAppfigma-data.json
+
+# Stray Figma data dump with special-char name
+*figma-data.json
+
+# Local Claude Code settings (machine-specific, may contain tokens)
+.claude/settings.local.json
