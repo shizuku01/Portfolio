@@ -1,16 +1,41 @@
 # =============================================================================
-# LATTE'S PORTFOLIO - PRODUCTION OVERRIDE (Aliyun ECS)
+# LATTE'S PORTFOLIO - PRODUCTION OVERRIDE (Aliyun SWAS)
 # =============================================================================
-# Use this override on the server to publish the site on port 80 (public HTTP).
-# Run with:
+# Puts a Caddy reverse proxy in front of the app. Caddy automatically obtains
+# and renews a free Let's Encrypt HTTPS certificate for your domain and proxies
+# traffic to the portfolio container over Docker's internal network.
+#
+# Run on the server with:
 #   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 #
-# The base docker-compose.yml still handles the build, secrets (.env) and
-# healthcheck. This file only changes what's needed for production.
+# Requirements before this works:
+#   1. Your domain's DNS A record points to the server's public IP (47.88.100.87)
+#   2. Ports 80 AND 443 are open in the SWAS firewall
+#   3. Caddyfile has your real domain (not the placeholder)
 
 services:
   portfolio:
-    # Publish on the standard HTTP port so the site is reachable at
-    # http://<your-server-ip>  (make sure the Aliyun security group allows 80)
+    # The app is no longer published to the host directly. Only Caddy reaches it,
+    # over the internal compose network at http://portfolio:3000.
+    # (!reset clears the port mapping inherited from docker-compose.yml)
+    ports: !reset []
+    expose:
+      - "3000"
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: portfolio-caddy
+    restart: unless-stopped
     ports:
-      - "80:3000"
+      - "80:80"     # HTTP (also used for the Let's Encrypt challenge + HTTPS redirect)
+      - "443:443"   # HTTPS
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro   # our proxy config
+      - caddy_data:/data                       # persists issued certificates
+      - caddy_config:/config
+    depends_on:
+      - portfolio
+
+volumes:
+  caddy_data:
+  caddy_config:
