@@ -56,15 +56,33 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // EMAIL CONFIGURATION
 // =============================================================================
 
+// Email addresses are configurable via environment variables so they aren't
+// hardcoded. They fall back to the original values if not provided.
+//   EMAIL_USER     - the Gmail account that sends the mail (must match the App Password)
+//   EMAIL_TO       - where contact-form messages are delivered (defaults to EMAIL_USER)
+//   EMAIL_PASSWORD - 16-char Gmail App Password (set in .env, never committed)
+const EMAIL_USER = process.env.EMAIL_USER || 'likaiwen2014@gmail.com';
+const EMAIL_TO = process.env.EMAIL_TO || EMAIL_USER;
+
 // Configure nodemailer transporter using Gmail
 // This creates an email transport that will send emails through Gmail's SMTP server
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'likaiwen2014@gmail.com',
+    user: EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD || '' // App password from Gmail (not regular password)
   }
 });
+
+// Verify the email configuration at startup so problems are obvious in the logs
+// instead of only surfacing when someone submits the contact form.
+if (process.env.EMAIL_PASSWORD) {
+  transporter.verify()
+    .then(() => console.log(`📧 Email ready — sending as ${EMAIL_USER}, delivering to ${EMAIL_TO}`))
+    .catch((err) => console.error('📧 Email configuration FAILED:', err.message));
+} else {
+  console.warn('📧 EMAIL_PASSWORD is not set — the contact form will NOT send email until you add it to .env');
+}
 
 // =============================================================================
 // STATIC FILE SERVING
@@ -127,8 +145,8 @@ app.post('/api/contact', async (req, res) => {
     
     // Configure the email to be sent
     const mailOptions = {
-      from: `"${name}" <likaiwen2014@gmail.com>`, // Sender's name with Gmail address
-      to: 'likaiwen2014@gmail.com', // Your email address
+      from: `"${name}" <${EMAIL_USER}>`, // Sender's name with the authenticated Gmail address
+      to: EMAIL_TO, // Where the message is delivered
       replyTo: email, // Reply will go to the person who submitted the form
       subject: `Portfolio Contact: Message from ${name}`,
       text: `
@@ -166,7 +184,7 @@ ${message}
         submissionId: Date.now()
       });
       
-      console.log(`✅ Email sent successfully to likaiwen2014@gmail.com from ${email}`);
+      console.log(`✅ Email sent successfully to ${EMAIL_TO} from ${email}`);
     } catch (emailError) {
       // If email sending fails, log the error and send error response
       console.error('❌ Error sending email:', emailError);

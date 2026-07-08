@@ -183,9 +183,6 @@ function App() {
               <a href="https://x.com/huihualaji" target="_blank" rel="noopener noreferrer" className="menu-item">
                 <span>Twitter</span>
               </a>
-              <a href="https://www.pixiv.net/en/users/86953982" target="_blank" rel="noopener noreferrer" className="menu-item">
-                <span>Pixiv</span>
-              </a>
             </div>
           </nav>
 
