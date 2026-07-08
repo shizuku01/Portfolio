@@ -84,3 +84,6 @@ c:UserslikaiDownloadsDesAppfigma-data.json
 
 # Local Claude Code settings (machine-specific, may contain tokens)
 .claude/settings.local.json
+
+# Full-resolution image originals (backup kept locally, not deployed)
+image-originals/
