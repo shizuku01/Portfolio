@@ -151,13 +151,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #d4af37;
+  color: #d7ec13;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .social-logo:hover {
-  color: #f4d03f;
+  color: #e6ff2b;
   transform: translateY(-2px);
 }
 
@@ -183,7 +183,7 @@ body {
 }
 
 .highlight {
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 50%, #8b7355 100%);
+  background: linear-gradient(135deg, #d7ec13 0%, #a9bd0f 50%, #6f7d0a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -191,7 +191,7 @@ body {
 
 .hero-subtitle {
   font-size: 1.5rem;
-  color: #d4af37;
+  color: #d7ec13;
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
@@ -292,7 +292,7 @@ section h2 {
 .menu-logo h1 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #d4af37;
+  color: #d7ec13;
   margin: 0 0 3rem 0;
   text-align: center;
   letter-spacing: 2px;
@@ -315,9 +315,9 @@ section h2 {
 }
 
 .menu-item:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-left-color: #d4af37;
-  color: #d4af37;
+  background: rgba(215, 236, 19, 0.1);
+  border-left-color: #d7ec13;
+  color: #d7ec13;
 }
 
 .menu-item span {
@@ -335,7 +335,7 @@ section h2 {
   flex-direction: column;
   margin: 0.25rem 0 0 1rem;
   padding-left: 0.75rem;
-  border-left: 1px solid rgba(212, 175, 55, 0.25);
+  border-left: 1px solid rgba(215, 236, 19, 0.25);
 }
 
 .menu-subitem {
@@ -349,12 +349,45 @@ section h2 {
 }
 
 .menu-subitem:hover {
-  color: #d4af37;
-  background: rgba(212, 175, 55, 0.08);
+  color: #d7ec13;
+  background: rgba(215, 236, 19, 0.08);
 }
 
 .menu-subitem span {
   display: block;
+}
+
+/* Dropdown toggle button (styled to match .menu-item, with a caret) */
+.menu-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-caret {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate the caret when the dropdown is open */
+.menu-group.open .menu-caret {
+  transform: rotate(180deg);
+}
+
+/* Keep the toggle highlighted while the dropdown is open */
+.menu-group.open .menu-dropdown-toggle {
+  color: #d7ec13;
+  border-left-color: #d7ec13;
+  background: rgba(215, 236, 19, 0.1);
 }
 
 /* Gallery Content */
@@ -402,7 +435,7 @@ section h2 {
 
 .artwork-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 20px 40px rgba(215, 236, 19, 0.15);
 }
 
 .artwork-img {
@@ -495,7 +528,7 @@ section h2 {
 }
 
 .artwork-content p:first-of-type {
-  color: #d4af37;
+  color: #d7ec13;
   font-weight: 500;
   font-size: 0.85rem;
   margin-bottom: 0.75rem;
@@ -553,14 +586,14 @@ section h2 {
 }
 
 .social-links a {
-  color: #d4af37;
+  color: #d7ec13;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-  color: #b8860b;
+  color: #a9bd0f;
 }
 
 /* Contact Form */
@@ -590,7 +623,7 @@ section h2 {
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: #d4af37;
+  border-color: #d7ec13;
 }
 
 .contact-form textarea {
@@ -665,14 +698,14 @@ section h2 {
 }
 
 .blog-tab:hover {
-  border-color: rgba(212, 175, 55, 0.5);
-  color: #d4af37;
+  border-color: rgba(215, 236, 19, 0.5);
+  color: #d7ec13;
 }
 
 .blog-tab.active {
   color: #0f0f0f;
-  background: #d4af37;
-  border-color: #d4af37;
+  background: #d7ec13;
+  border-color: #d7ec13;
   font-weight: 600;
 }
 
@@ -728,7 +761,7 @@ section h2 {
 .page-brand {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #d4af37;
+  color: #d7ec13;
   letter-spacing: 2px;
   text-decoration: none;
 }
@@ -748,12 +781,103 @@ section h2 {
 }
 
 .page-nav a:hover {
-  color: #d4af37;
+  color: #d7ec13;
 }
 
 /* On the standalone blog page the section doesn't need the big top gap */
 .blog-page .blog {
   padding-top: 3.5rem;
+}
+
+/* =============================================================================
+   PROJECTS PAGE - past client / collaborative work
+   ============================================================================= */
+
+.projects-page {
+  min-height: 100vh;
+  background: #0f0f0f;
+}
+
+.projects-page .projects {
+  padding-top: 3.5rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: #1a1a1a;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(215, 236, 19, 0.1);
+  border-color: rgba(215, 236, 19, 0.35);
+}
+
+/* Cover image (or placeholder tile when no image is set) */
+.project-thumb {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #1f1f1f 0%, #141414 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-thumb-placeholder {
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(215, 236, 19, 0.5);
+}
+
+.project-info {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.project-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.project-meta h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f9fafb;
+  line-height: 1.3;
+}
+
+.project-year {
+  flex-shrink: 0;
+  color: #d7ec13;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.project-desc {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 /* =============================================================================
@@ -792,7 +916,7 @@ section h2 {
   top: 0.5rem;
   bottom: 0.5rem;
   width: 2px;
-  background: linear-gradient(to bottom, #d4af37 0%, rgba(212, 175, 55, 0.15) 100%);
+  background: linear-gradient(to bottom, #d7ec13 0%, rgba(215, 236, 19, 0.15) 100%);
 }
 
 /* Individual log entry card */
@@ -808,8 +932,8 @@ section h2 {
 
 .devlog-entry:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.1);
-  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 12px 30px rgba(215, 236, 19, 0.1);
+  border-color: rgba(215, 236, 19, 0.35);
 }
 
 /* Timeline dot aligned to the vertical line */
@@ -821,9 +945,9 @@ section h2 {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #d4af37;
+  background: #d7ec13;
   border: 3px solid #0f0f0f;
-  box-shadow: 0 0 0 1px #d4af37;
+  box-shadow: 0 0 0 1px #d7ec13;
 }
 
 .devlog-meta {
@@ -835,7 +959,7 @@ section h2 {
 }
 
 .devlog-date {
-  color: #d4af37;
+  color: #d7ec13;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -845,8 +969,8 @@ section h2 {
   font-size: 0.75rem;
   font-weight: 500;
   color: #e5e7eb;
-  background: rgba(212, 175, 55, 0.12);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(215, 236, 19, 0.12);
+  border: 1px solid rgba(215, 236, 19, 0.3);
   padding: 0.2rem 0.7rem;
   border-radius: 999px;
 }
@@ -965,7 +1089,7 @@ section h2 {
   right: 0;
   background: transparent;
   border: none;
-  color: #d4af37;
+  color: #d7ec13;
   font-size: 3rem;
   cursor: pointer;
   width: 40px;
@@ -991,7 +1115,7 @@ section h2 {
 
 .modal-info h3 {
   font-size: 1.5rem;
-  color: #d4af37;
+  color: #d7ec13;
   margin-bottom: 0.5rem;
 }
 

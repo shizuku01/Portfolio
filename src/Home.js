@@ -29,6 +29,9 @@ function Home() {
   const [selectedArtwork, setSelectedArtwork] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Sidebar "Blog" dropdown - collapsed by default; toggles its sub-links
+  const [blogMenuOpen, setBlogMenuOpen] = useState(false);
+
   // =========================================================================
   // EVENT HANDLERS
   // =========================================================================
@@ -149,24 +152,38 @@ function Home() {
                 <span>Gallery</span>
               </a>
 
-              {/* Blog - links to the dedicated /blog page. Nested sub-links
-                  deep-link to a specific sub-section via ?tab=. */}
-              <div className="menu-group">
-                <Link to="/blog" className="menu-item">
+              {/* Blog - a dropdown. Clicking toggles the sub-links open;
+                  each sub-link deep-links to a section on /blog via ?tab=. */}
+              <div className={`menu-group ${blogMenuOpen ? 'open' : ''}`}>
+                <button
+                  type="button"
+                  className="menu-item menu-dropdown-toggle"
+                  aria-expanded={blogMenuOpen}
+                  onClick={() => setBlogMenuOpen((open) => !open)}
+                >
                   <span>Blog</span>
-                </Link>
-                <div className="menu-subitems">
-                  {blogSections.map((section) => (
-                    <Link
-                      key={section.id}
-                      to={`/blog?tab=${section.id}`}
-                      className="menu-subitem"
-                    >
-                      <span>{section.label}</span>
-                    </Link>
-                  ))}
-                </div>
+                  <svg className="menu-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </button>
+                {blogMenuOpen && (
+                  <div className="menu-subitems">
+                    {blogSections.map((section) => (
+                      <Link
+                        key={section.id}
+                        to={`/blog?tab=${section.id}`}
+                        className="menu-subitem"
+                      >
+                        <span>{section.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
+
+              <Link to="/projects" className="menu-item">
+                <span>Projects</span>
+              </Link>
 
               <a href="#contact" className="menu-item">
                 <span>Contact</span>

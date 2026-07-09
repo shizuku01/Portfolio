@@ -7,7 +7,8 @@
 // sidebar can deep-link straight to a section.
 
 import React from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import PageHeader from './PageHeader';
 import { blogSections } from './blogData';
 
 // -----------------------------------------------------------------------------
@@ -79,18 +80,7 @@ function BlogPage() {
 
   return (
     <div className="blog-page">
-      {/* Simple page header with a way back to the main site */}
-      <header className="page-header">
-        <Link to="/" className="page-brand">LATTE</Link>
-        <nav className="page-nav">
-          <Link to="/">Home</Link>
-          <a href="/#gallery">Gallery</a>
-          <a href="/#contact">Contact</a>
-          <a href="https://x.com/huihualaji" target="_blank" rel="noopener noreferrer">
-            Twitter
-          </a>
-        </nav>
-      </header>
+      <PageHeader />
 
       <section className="blog">
         <div className="container">
