@@ -12,9 +12,10 @@ docker-compose*
 node_modules
 npm-debug.log*
 
-# Build outputs
-build
-dist
+# Build outputs (repo-root ONLY — anchored so nested public/game/Build/ from
+# the Unity WebGL build is still copied into the image)
+/build
+/dist
 
 # Environment files
 .env
