@@ -57,11 +57,13 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // =============================================================================
 
 // Email addresses are configurable via environment variables so they aren't
-// hardcoded. They fall back to the original values if not provided.
+// hardcoded. They fall back to the values below if not provided.
 //   EMAIL_USER     - the Gmail account that sends the mail (must match the App Password)
 //   EMAIL_TO       - where contact-form messages are delivered (defaults to EMAIL_USER)
 //   EMAIL_PASSWORD - 16-char Gmail App Password (set in .env, never committed)
-const EMAIL_USER = process.env.EMAIL_USER || 'likaiwen2014@gmail.com';
+// By default the form sends FROM and delivers TO relatte0620@gmail.com — so all
+// that's needed to make it work is an App Password for that account in .env.
+const EMAIL_USER = process.env.EMAIL_USER || 'relatte0620@gmail.com';
 const EMAIL_TO = process.env.EMAIL_TO || EMAIL_USER;
 
 // Configure nodemailer transporter using Gmail
