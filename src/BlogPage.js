@@ -9,6 +9,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PageHeader from './PageHeader';
+import GamePlayer from './GamePlayer';
 import { blogSections } from './blogData';
 
 // -----------------------------------------------------------------------------
@@ -20,6 +21,7 @@ function Timeline({ section }) {
     return (
       <div className="blog-panel" role="tabpanel">
         {section.intro && <p className="devlog-intro">{section.intro}</p>}
+        {section.game && <GamePlayer game={section.game} />}
         <p className="blog-empty">Nothing here yet — check back soon. ✨</p>
       </div>
     );
@@ -28,6 +30,8 @@ function Timeline({ section }) {
   return (
     <div className="blog-panel" role="tabpanel">
       {section.intro && <p className="devlog-intro">{section.intro}</p>}
+
+      {section.game && <GamePlayer game={section.game} />}
 
       <div className="devlog-timeline">
         {/* Sort a copy newest-first so posts can be added in any order */}

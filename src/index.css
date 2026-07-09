@@ -877,6 +877,99 @@ section h2 {
 }
 
 /* =============================================================================
+   GAME EMBED - Unity WebGL demo inside the Unity Development tab
+   ============================================================================= */
+
+.game-embed {
+  max-width: 960px;
+  margin: 0 auto 3rem;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.game-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.game-fullscreen-btn {
+  flex-shrink: 0;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f0f0f;
+  background: #fffb00;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.game-fullscreen-btn:hover {
+  background: #ffff4d;
+  transform: translateY(-1px);
+}
+
+/* aspect-ratio is set inline from the game's width/height; iframe fills it */
+.game-frame-wrap {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.game-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.game-note {
+  margin-top: 0.75rem;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+/* Shown until the real WebGL build is dropped in and marked ready */
+.game-placeholder {
+  border: 1px dashed #333;
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: #9ca3af;
+  line-height: 1.7;
+}
+
+.game-placeholder-title {
+  color: #fffb00;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.game-placeholder code {
+  background: #1a1a1a;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  color: #e5e7eb;
+  font-size: 0.85em;
+}
+
+/* =============================================================================
    BLOG PAGE - standalone /blog page header
    ============================================================================= */
 

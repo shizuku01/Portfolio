@@ -59,6 +59,18 @@ export const blogSections = [
     id: 'unity',
     label: 'Unity Development',
     intro: "Daily notes on the games I'm building in Unity.",
+    // Playable WebGL demo embedded at the top of this tab.
+    //   src    - path to the Unity build's index.html (served from public/game/)
+    //   width/height - the game's native resolution (sets the embed aspect ratio)
+    //   ready  - flip to true ONCE the build is actually in public/game/, so the
+    //            player shows the game instead of the "coming soon" placeholder.
+    game: {
+      title: 'Playable Demo — Untitled 2D Platformer',
+      src: '/game/index.html',
+      width: 960,
+      height: 600,
+      ready: false,
+    },
     posts: [
       {
         date: '2026-07-07',
