@@ -65,11 +65,11 @@ export const blogSections = [
     //   ready  - flip to true ONCE the build is actually in public/game/, so the
     //            player shows the game instead of the "coming soon" placeholder.
     game: {
-      title: 'Playable Demo — Untitled 2D Platformer',
+      title: 'Playable Demo — 2D Game',
       src: '/game/index.html',
       width: 960,
       height: 600,
-      ready: false,
+      ready: true,
     },
     posts: [
       {

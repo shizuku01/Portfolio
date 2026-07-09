@@ -91,6 +91,26 @@ if (process.env.EMAIL_PASSWORD) {
 // STATIC FILE SERVING
 // =============================================================================
 
+// -----------------------------------------------------------------------------
+// Unity WebGL: serve pre-compressed build files with the correct headers.
+// Unity's loader requests files like ".data.br"/".wasm.br" (Brotli) or ".gz"
+// (Gzip). Express won't tag them by default, so the browser would receive raw
+// compressed bytes and the game would fail to load. Setting Content-Encoding
+// lets the browser transparently decompress them; Content-Type keeps wasm/js
+// correct. This runs before the static handler, which then streams the bytes.
+// -----------------------------------------------------------------------------
+app.use('/game', (req, res, next) => {
+  if (req.path.endsWith('.br')) res.set('Content-Encoding', 'br');
+  else if (req.path.endsWith('.gz')) res.set('Content-Encoding', 'gzip');
+  else return next();
+
+  if (req.path.includes('.wasm')) res.set('Content-Type', 'application/wasm');
+  else if (req.path.includes('.js')) res.set('Content-Type', 'application/javascript');
+  else res.set('Content-Type', 'application/octet-stream');
+
+  next();
+});
+
 // Serve static files from the React build directory
 // This allows the server to serve the compiled React application
 app.use(express.static(path.join(__dirname, 'build')));
