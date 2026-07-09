@@ -134,6 +134,11 @@ function Home() {
             </a>
           </div>
         </div>
+
+        {/* Decorative white triangle in the bottom-right of the hero, so it's
+            visible on the landing screen. It scrolls away with the page as you
+            move down and comes back as you scroll up (not fixed). */}
+        <div className="corner-triangle" aria-hidden="true" />
       </section>
 
       {/* ===================================================================
@@ -370,11 +375,6 @@ function Home() {
           <p>&copy; 2024 Latte. All rights reserved.</p>
         </div>
       </footer>
-
-      {/* Decorative white triangle in the bottom-right corner. It's absolutely
-          positioned inside .portfolio, so it scrolls with the page content
-          instead of staying fixed to the viewport. */}
-      <div className="corner-triangle" aria-hidden="true" />
 
       {/* ===================================================================
           ARTWORK MODAL - Full Image Popup
