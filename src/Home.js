@@ -125,20 +125,21 @@ function Home() {
 
           <h1>Hello, I'm <span className="highlight">Latte</span></h1>
           <p className="hero-subtitle">Illustrator & Graphic Designer</p>
-
-          <div className="hero-arrow">
-            <a href="#gallery" className="scroll-arrow">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-            </a>
-          </div>
         </div>
 
-        {/* Decorative white triangle in the bottom-right of the hero, so it's
-            visible on the landing screen. It scrolls away with the page as you
-            move down and comes back as you scroll up (not fixed). */}
-        <div className="corner-triangle" aria-hidden="true" />
+        {/* White corner triangle doubles as the scroll-down control. On hover,
+            two chevrons ease in ("emerge from nothing") to signal scrolling
+            down to the gallery. It scrolls with the page (not fixed). */}
+        <a href="#gallery" className="corner-triangle" aria-label="Scroll to gallery">
+          <span className="corner-chevrons" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </span>
+        </a>
       </section>
 
       {/* ===================================================================

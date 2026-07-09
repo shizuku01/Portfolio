@@ -71,13 +71,57 @@ body {
   background: #ffffff;
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
   z-index: 11;          /* above the content sections (z-index: 10) */
-  pointer-events: none; /* purely decorative - never blocks clicks */
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Two stacked chevrons near the corner, hidden until the triangle is hovered */
+.corner-chevrons {
+  position: absolute;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #0f0f0f;
+}
+
+.corner-chevrons svg {
+  width: 28px;
+  height: 28px;
+  margin-top: -10px;    /* overlap into a tight double-chevron */
+  opacity: 0;
+  transform: translateY(-10px);
+  /* ease-in reveal: fade + settle down into place */
+  transition: opacity 0.35s ease-in, transform 0.35s ease-in;
+}
+
+/* Stagger the second chevron so they emerge one after the other */
+.corner-chevrons svg:nth-child(2) {
+  transition-delay: 0.09s;
+}
+
+.corner-triangle:hover .corner-chevrons svg,
+.corner-triangle:focus-visible .corner-chevrons svg {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (max-width: 768px) {
   .corner-triangle {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
+  }
+
+  .corner-chevrons {
+    right: 14px;
+    bottom: 10px;
+  }
+
+  .corner-chevrons svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
