@@ -68,10 +68,11 @@ function Timeline({ section }) {
 // BlogPage - header nav + tab bar + active sub-section
 // -----------------------------------------------------------------------------
 function BlogPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  // Which tab is active: read from ?tab= in the URL, falling back to the first
-  // section if the param is missing or points at a section that no longer exists.
+  // Which sub-section is active: read from ?tab= in the URL, falling back to the
+  // first section if the param is missing or points at one that no longer exists.
+  // Navigation between sub-sections now happens via the Blog dropdown in the top bar.
   const requested = searchParams.get('tab');
   const activeId = blogSections.some((s) => s.id === requested)
     ? requested
@@ -79,37 +80,16 @@ function BlogPage() {
   const activeSection =
     blogSections.find((s) => s.id === activeId) || blogSections[0];
 
-  // Switch tab by updating the URL (keeps it linkable + back-button friendly)
-  const selectTab = (id) => setSearchParams({ tab: id });
-
   return (
     <div className="blog-page">
       <PageHeader />
 
       <section className="blog">
         <div className="container">
-          <h2>Blog</h2>
-          <p className="blog-intro">
-            Different threads of what I'm working on — pick a topic below.
-          </p>
+          {/* Just the current sub-section name, as a lime pill, top-left */}
+          <h2 className="blog-section-title">{activeSection.label}</h2>
 
-          {/* Tab bar (generated from blogSections) */}
-          <div className="blog-tabs" role="tablist">
-            {blogSections.map((section) => (
-              <button
-                key={section.id}
-                type="button"
-                role="tab"
-                aria-selected={activeId === section.id}
-                className={`blog-tab ${activeId === section.id ? 'active' : ''}`}
-                onClick={() => selectTab(section.id)}
-              >
-                {section.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Active sub-section */}
+          {/* Active sub-section content */}
           <Timeline section={activeSection} />
         </div>
       </section>
