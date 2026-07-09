@@ -132,10 +132,10 @@ function Home() {
             down to the gallery. It scrolls with the page (not fixed). */}
         <a href="#gallery" className="corner-triangle" aria-label="Scroll to gallery">
           <span className="corner-chevrons" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="m6 9 6 6 6-6"/>
             </svg>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="m6 9 6 6 6-6"/>
             </svg>
           </span>

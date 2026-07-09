@@ -76,24 +76,28 @@ body {
   text-decoration: none;
 }
 
-/* Two stacked chevrons near the corner, hidden until the triangle is hovered */
+/* Two big, thin chevrons pointing into the corner. Rotated -45deg so each
+   chevron's two arms run parallel to the triangle's straight edges (the
+   vertical right edge and the horizontal bottom edge). Offset inward from the
+   very corner. Hidden until the triangle is hovered. */
 .corner-chevrons {
   position: absolute;
-  right: 24px;
-  bottom: 18px;
+  right: 46px;          /* offset inward, into the screen */
+  bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #0f0f0f;
+  transform: rotate(-45deg);   /* point into the bottom-right corner */
 }
 
 .corner-chevrons svg {
-  width: 28px;
-  height: 28px;
-  margin-top: -10px;    /* overlap into a tight double-chevron */
+  width: 60px;          /* big */
+  height: 60px;
+  margin-top: -30px;    /* overlap into a tight double-chevron */
   opacity: 0;
-  transform: translateY(-10px);
-  /* ease-in reveal: fade + settle down into place */
+  /* start pulled back along the pointing direction, then ease into place */
+  transform: translateY(-12px);
   transition: opacity 0.35s ease-in, transform 0.35s ease-in;
 }
 
@@ -110,18 +114,19 @@ body {
 
 @media (max-width: 768px) {
   .corner-triangle {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
   }
 
   .corner-chevrons {
-    right: 14px;
-    bottom: 10px;
+    right: 30px;
+    bottom: 26px;
   }
 
   .corner-chevrons svg {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
   }
 }
 
