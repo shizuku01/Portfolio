@@ -63,9 +63,9 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 //   EMAIL_PASSWORD - 16-char Gmail App Password (set in .env, never committed)
 // The form authenticates as EMAIL_USER (whose App Password is in .env) and
 // delivers the messages to EMAIL_TO. The App Password MUST belong to EMAIL_USER
-// — here we send using the likaiwen2014 account and deliver to relatte0620.
+// — here we both send and deliver using the likaiwen2014 account.
 const EMAIL_USER = process.env.EMAIL_USER || 'likaiwen2014@gmail.com';
-const EMAIL_TO = process.env.EMAIL_TO || 'relatte0620@gmail.com';
+const EMAIL_TO = process.env.EMAIL_TO || EMAIL_USER;
 
 // Configure nodemailer transporter using Gmail
 // This creates an email transport that will send emails through Gmail's SMTP server
