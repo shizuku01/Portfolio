@@ -175,11 +175,51 @@ ${message}
         </div>
       `
     };
-    
+
+    // Automatic confirmation sent back to the visitor so they know their
+    // message was received. Sent from the same authenticated account, with a
+    // friendly "Latte" display name.
+    const autoReplyOptions = {
+      from: `"Latte" <${EMAIL_USER}>`,
+      to: email,
+      subject: 'Thanks for reaching out! — Latte',
+      text: `Hi ${name},
+
+Thanks so much for your message — I've received it and will get back to you as soon as I can.
+
+Here's a copy of what you sent:
+"${message}"
+
+Talk soon,
+Latte`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <h2 style="color: #111;">Thanks for reaching out! 🎨</h2>
+          <p>Hi ${name},</p>
+          <p>Thanks so much for your message — I've received it and will get back to you as soon as I can.</p>
+          <div style="background: #f5f5f5; border-left: 4px solid #fffb00; padding: 12px 16px; border-radius: 4px; margin: 20px 0;">
+            <p style="margin: 0; color: #555; line-height: 1.6;"><em>${message.replace(/\n/g, '<br>')}</em></p>
+          </div>
+          <p>Talk soon,<br><strong>Latte</strong></p>
+          <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;">
+          <p style="color: #999; font-size: 12px;">This is an automated confirmation — you don't need to reply to this message.</p>
+        </div>
+      `
+    };
+
     try {
-      // Send the email
+      // Send the notification to Latte
       await transporter.sendMail(mailOptions);
-      
+
+      // Send the auto-reply to the visitor. If only this part fails we still
+      // treat the submission as successful — Latte already got the message.
+      try {
+        await transporter.sendMail(autoReplyOptions);
+        console.log(`✅ Auto-reply sent to ${email}`);
+      } catch (autoReplyError) {
+        console.error('⚠️  Auto-reply failed (main message still delivered):', autoReplyError.message);
+      }
+
       // Send success response back to the frontend
       res.json({
         success: true,
