@@ -9,6 +9,19 @@ import axios from 'axios';
 import { devlogPosts } from './devlog';
 
 // =============================================================================
+// BLOG SUB-SECTIONS
+// =============================================================================
+// The Blog section is organized into tabbed sub-sections ("threads" of things
+// I'm working on). Devlog is the first one. To add another sub-section:
+//   1. Append an entry here (unique `id` + display `label`).
+//   2. Render its panel inside the Blog <section> (search for "BLOG SECTION"),
+//      guarded by `activeBlogTab === '<your-id>'`.
+// The sidebar sub-links and the tab bar are both generated from this list.
+const blogTabs = [
+  { id: 'devlog', label: 'Devlog' },
+];
+
+// =============================================================================
 // MAIN APP COMPONENT
 // =============================================================================
 function App() {
@@ -31,6 +44,9 @@ function App() {
   // Modal state - tracks which artwork is being viewed in the modal
   const [selectedArtwork, setSelectedArtwork] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Blog state - tracks which Blog sub-section (tab) is currently shown
+  const [activeBlogTab, setActiveBlogTab] = useState(blogTabs[0].id);
 
   // =========================================================================
   // EVENT HANDLERS
@@ -174,9 +190,27 @@ function App() {
               <a href="#gallery" className="menu-item">
                 <span>Gallery</span>
               </a>
-              <a href="#devlog" className="menu-item">
-                <span>Devlog</span>
-              </a>
+
+              {/* Blog - parent link with nested sub-section links. Clicking a
+                  sub-link both activates its tab and scrolls to the Blog section. */}
+              <div className="menu-group">
+                <a href="#blog" className="menu-item">
+                  <span>Blog</span>
+                </a>
+                <div className="menu-subitems">
+                  {blogTabs.map((tab) => (
+                    <a
+                      key={tab.id}
+                      href="#blog"
+                      className="menu-subitem"
+                      onClick={() => setActiveBlogTab(tab.id)}
+                    >
+                      <span>{tab.label}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
               <a href="#contact" className="menu-item">
                 <span>Contact</span>
               </a>
@@ -290,45 +324,73 @@ function App() {
       </section>
 
       {/* ===================================================================
-          DEVLOG SECTION - Unity Game Development Progress
+          BLOG SECTION - Threads of things I'm working on
           ===================================================================
-          A running log of daily game-dev progress. Entries live in
-          src/devlog.js and are rendered newest-first here.
+          A tabbed section. Each tab is a sub-section defined in `blogTabs`
+          (see top of this file). Devlog is the first sub-section; add more by
+          appending to `blogTabs` and rendering a matching panel below.
       */}
-      <section id="devlog" className="devlog">
+      <section id="blog" className="blog">
         <div className="container">
-          <h2>Devlog</h2>
-          <p className="devlog-intro">
-            Daily notes on the games I'm building in Unity.
+          <h2>Blog</h2>
+          <p className="blog-intro">
+            Different threads of what I'm working on — pick a topic below.
           </p>
 
-          <div className="devlog-timeline">
-            {/* Sort a copy newest-first so entries can be added in any order */}
-            {[...devlogPosts]
-              .sort((a, b) => b.date.localeCompare(a.date))
-              .map((post, index) => (
-                <article className="devlog-entry" key={`${post.date}-${index}`}>
-                  <div className="devlog-meta">
-                    <time className="devlog-date">{post.date}</time>
-                    {post.game && <span className="devlog-game">{post.game}</span>}
-                  </div>
-                  <h3 className="devlog-title">{post.title}</h3>
-                  {post.image && (
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="devlog-image"
-                      loading="lazy"
-                    />
-                  )}
-                  <div className="devlog-body">
-                    {post.body.map((paragraph, i) => (
-                      <p key={i}>{paragraph}</p>
-                    ))}
-                  </div>
-                </article>
-              ))}
+          {/* Sub-section tab bar (generated from blogTabs) */}
+          <div className="blog-tabs" role="tablist">
+            {blogTabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={activeBlogTab === tab.id}
+                className={`blog-tab ${activeBlogTab === tab.id ? 'active' : ''}`}
+                onClick={() => setActiveBlogTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
+
+          {/* --- Devlog sub-section -------------------------------------- */}
+          {/* A running log of daily game-dev progress. Entries live in
+              src/devlog.js and are rendered newest-first here. */}
+          {activeBlogTab === 'devlog' && (
+            <div className="blog-panel" role="tabpanel">
+              <p className="devlog-intro">
+                Daily notes on the games I'm building in Unity.
+              </p>
+
+              <div className="devlog-timeline">
+                {/* Sort a copy newest-first so entries can be added in any order */}
+                {[...devlogPosts]
+                  .sort((a, b) => b.date.localeCompare(a.date))
+                  .map((post, index) => (
+                    <article className="devlog-entry" key={`${post.date}-${index}`}>
+                      <div className="devlog-meta">
+                        <time className="devlog-date">{post.date}</time>
+                        {post.game && <span className="devlog-game">{post.game}</span>}
+                      </div>
+                      <h3 className="devlog-title">{post.title}</h3>
+                      {post.image && (
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="devlog-image"
+                          loading="lazy"
+                        />
+                      )}
+                      <div className="devlog-body">
+                        {post.body.map((paragraph, i) => (
+                          <p key={i}>{paragraph}</p>
+                        ))}
+                      </div>
+                    </article>
+                  ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
