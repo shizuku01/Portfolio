@@ -37,7 +37,10 @@ COPY . .
 # =============================================================================
 
 # Build the React frontend for production
-# This creates optimized, minified files in the 'build' directory
+# This creates optimized, minified files in the 'build' directory.
+# GENERATE_SOURCEMAP=false cuts build memory and time significantly — important
+# on small (e.g. 2 GB) servers where the build can otherwise be OOM-killed.
+ENV GENERATE_SOURCEMAP=false
 RUN npm run build
 
 # =============================================================================
