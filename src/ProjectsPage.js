@@ -16,7 +16,7 @@ function ProjectsPage() {
 
       <section className="projects">
         <div className="container">
-          <h2>Projects</h2>
+          <h2 className="blog-section-title">Projects</h2>
           <p className="blog-intro">
             Selected past projects — client and collaborative work, separate from
             my personal art.

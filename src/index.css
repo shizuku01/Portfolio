@@ -1027,18 +1027,14 @@ section h2 {
 
 .page-nav-menu {
   position: absolute;
-  top: calc(100% + 0.6rem);
+  top: calc(100% + 0.5rem);
   left: 0;
-  min-width: 190px;
+  min-width: 170px;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.4rem;
-  background: #1a1a1a;
-  border: 1px solid #262626;
-  border-radius: 10px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-  /* hidden until open, with a small ease */
+  gap: 0.4rem;
+  padding: 0.25rem 0;
+  /* no background/border — just a bulleted list; hidden until open */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px);
@@ -1053,32 +1049,41 @@ section h2 {
 }
 
 .page-nav-menu-item {
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: #e5e7eb;
   text-decoration: none;
   font-size: 0.9rem;
   white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+/* Bullet marker in the accent color */
+.page-nav-menu-item::before {
+  content: '•';
+  color: #fffb00;
+  font-size: 1.1em;
+  line-height: 1;
 }
 
 .page-nav-menu-item:hover {
-  background: rgba(255, 251, 0, 0.1);
   color: #fffb00;
 }
 
 /* Current sub-section name on the blog page — lime pill, black text (matches
    the old active-tab look), left-aligned at the top of the page */
 .blog-section-title {
-  display: inline-block;
-  margin-bottom: 2.5rem;
+  display: block;
+  width: fit-content;
+  margin: 0 auto 2.5rem;   /* centered */
   padding: 0.5rem 1.5rem;
   color: #0f0f0f;
   background: #fffb00;
   border-radius: 999px;
   font-size: 1.5rem;
   font-weight: 700;
-  text-align: left;
+  text-align: center;
 }
 
 .page-brand {
