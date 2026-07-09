@@ -53,6 +53,34 @@ body {
   padding: 0 20px;      /* Horizontal padding for mobile spacing */
 }
 
+/* Main page wrapper - positioning anchor for the corner triangle */
+.portfolio {
+  position: relative;
+  overflow-x: hidden;   /* triangle sits flush to the edge, no side-scroll */
+}
+
+/* Decorative white triangle pinned to the bottom-right of the page. Because
+   it's absolute inside .portfolio (not fixed), it moves with the page as you
+   scroll. clip-path carves a right triangle filling the bottom-right corner. */
+.corner-triangle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 220px;
+  height: 220px;
+  background: #ffffff;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  z-index: 11;          /* above the content sections (z-index: 10) */
+  pointer-events: none; /* purely decorative - never blocks clicks */
+}
+
+@media (max-width: 768px) {
+  .corner-triangle {
+    width: 120px;
+    height: 120px;
+  }
+}
+
 /* =============================================================================
    HERO SECTION
    =============================================================================

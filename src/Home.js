@@ -371,6 +371,11 @@ function Home() {
         </div>
       </footer>
 
+      {/* Decorative white triangle in the bottom-right corner. It's absolutely
+          positioned inside .portfolio, so it scrolls with the page content
+          instead of staying fixed to the viewport. */}
+      <div className="corner-triangle" aria-hidden="true" />
+
       {/* ===================================================================
           ARTWORK MODAL - Full Image Popup
           =================================================================== */}
