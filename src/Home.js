@@ -166,19 +166,20 @@ function Home() {
                     <path d="m6 9 6 6 6-6"/>
                   </svg>
                 </button>
-                {blogMenuOpen && (
-                  <div className="menu-subitems">
-                    {blogSections.map((section) => (
-                      <Link
-                        key={section.id}
-                        to={`/blog?tab=${section.id}`}
-                        className="menu-subitem"
-                      >
-                        <span>{section.label}</span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                {/* Always rendered so it can ease open AND closed; visibility
+                    is driven by the .open class on .menu-group (see CSS). */}
+                <div className="menu-subitems">
+                  {blogSections.map((section) => (
+                    <Link
+                      key={section.id}
+                      to={`/blog?tab=${section.id}`}
+                      className="menu-subitem"
+                      tabIndex={blogMenuOpen ? 0 : -1}
+                    >
+                      <span>{section.label}</span>
+                    </Link>
+                  ))}
+                </div>
               </div>
 
               <Link to="/projects" className="menu-item">
