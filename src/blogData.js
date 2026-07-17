@@ -122,7 +122,7 @@ export const blogSections = [
       src: '/lingyue/index.html',
       height: 760,
       ready: true,
-      note: 'Every page has a built-in editor: press Shift+D to change colours/type live, or Shift+B to drag in layout blocks. Best on desktop.',
+      note: 'Every page has a built-in editor — press Shift+E (or the “Edit design” button) to change colours, fonts and layout live. Available in English and 中文. Best on desktop.',
     },
     posts: [
       {
@@ -133,7 +133,8 @@ export const blogSections = [
           'Took a single fintech brief and pushed it through twelve visual directions instead of settling on the first idea that worked.',
           'They come in three tiers: four maximalist originals (a trading-terminal cockpit, an engineering blueprint, an investment memo, and a Swiss numeric ledger), a decluttered version of each that keeps the identity but strips it back to the argument, and four brand-new minimalist directions.',
           'The most useful part was deciding what to cut. Distilling the source deck down to five sections — thesis, the problem, the capability, why it is trustworthy, and one call to action — did more for the design than any amount of styling.',
-          'Each page also ships with a small editor I built: Shift+D swaps colours, fonts and the global type scale live; Shift+B opens a block library you can drag new sections in from. Everything is themed through CSS variables, so a block dropped into any direction adopts that direction automatically.',
+          'Each page also ships with a small editor I built. Shift+E opens one panel with four tabs: recolour the page, swap the fonts and type scale, drag in new sections, or save the look. It speaks English and 中文, and you can point it at a single section instead of the whole page.',
+          'The interesting constraint was writing it for people who have never opened a design tool. That meant no jargon on screen — the panel says “Accent”, “Background”, “Text” rather than the CSS variable names underneath — and everything past the first four controls is folded away until you ask for it.',
         ],
       },
     ],

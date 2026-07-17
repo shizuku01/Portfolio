@@ -4,109 +4,172 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Design iterations — 12 directions</title>
-<meta name="description" content="One brief, twelve design directions. Each page has a live editor." />
+<meta name="description" content="One brief, twelve design directions. Every page has a live editor." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0f0f0f; --surface:#1a1a1a; --line:#262626; --text:#e5e7eb; --dim:#9ca3af; --accent:#fffb00;
-    --f:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-    --ease:cubic-bezier(.22,1,.36,1);
-  }
+  :root{--bg:#0f0f0f;--surface:#1a1a1a;--line:#262626;--text:#e5e7eb;--dim:#9ca3af;--accent:#fffb00;
+    --f:"Inter",system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    --ease:cubic-bezier(.22,1,.36,1)}
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
 
-  header{padding:52px 0 30px}
-  h1{font-size:clamp(26px,4.4vw,40px);font-weight:700;letter-spacing:-.03em;line-height:1.1}
-  header p{color:var(--dim);margin-top:10px;font-size:15px}
+  /* header + language */
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:44px 0 26px}
+  h1{font-size:clamp(25px,4.2vw,38px);font-weight:700;letter-spacing:-.03em;line-height:1.12}
+  .top p{color:var(--dim);margin-top:9px;font-size:14.5px;max-width:52ch}
+  .lang{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;flex:none}
+  .lang button{border:0;background:none;color:var(--dim);font:600 12px var(--f);padding:6px 13px;border-radius:999px;cursor:pointer;transition:.2s}
+  .lang button.on{background:var(--accent);color:#000}
 
-  /* ---------- HOW TO USE — the only instructions, 2 steps ---------- */
-  .how{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 10px}
-  .step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;transition:border-color .4s var(--ease)}
-  .step:hover{border-color:var(--accent)}
-  kbd{display:inline-block;background:var(--accent);color:#000;font-family:var(--f);font-weight:700;font-size:14px;
-    padding:5px 10px;border-radius:6px;letter-spacing:.02em}
-  .step h2{font-size:17px;font-weight:600;margin:12px 0 4px}
-  .step p{color:var(--dim);font-size:14px}
-  .safe{color:var(--dim);font-size:13px;margin:6px 0 40px;padding-left:14px;border-left:2px solid var(--line)}
+  /* the one big command */
+  .open{display:flex;align-items:center;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:10px;flex-wrap:wrap}
+  kbd{background:var(--accent);color:#000;font:700 16px var(--f);padding:9px 14px;border-radius:8px;white-space:nowrap}
+  .open b{font-size:17px;font-weight:600;display:block}
+  .open span{color:var(--dim);font-size:13.5px}
+  .safe{color:var(--dim);font-size:12.5px;padding-left:13px;border-left:2px solid var(--line);margin-bottom:34px}
 
-  /* ---------- GROUPS ---------- */
-  .g{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
-     margin:34px 0 14px;display:flex;align-items:center;gap:12px}
-  .g::after{content:"";flex:1;height:1px;background:var(--line)}
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-  .card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);
-    transition:transform .45s var(--ease),border-color .4s var(--ease)}
+  /* feature groups — big name + small caption */
+  .grp{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+    margin:26px 0 12px;display:flex;align-items:center;gap:11px}
+  .grp::after{content:"";flex:1;height:1px;background:var(--line)}
+  .feats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .ft{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:14px 16px;transition:border-color .35s var(--ease)}
+  .ft:hover{border-color:#3a3a3a}
+  .ft b{display:block;font-size:14.5px;font-weight:600;margin-bottom:2px}
+  .ft span{color:var(--dim);font-size:12.5px;line-height:1.5;display:block}
+
+  /* gallery */
+  .gal{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+    margin:34px 0 12px;display:flex;align-items:center;gap:11px}
+  .gal::after{content:"";flex:1;height:1px;background:var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .card{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--surface);transition:transform .4s var(--ease),border-color .35s var(--ease)}
   .card:hover{transform:translateY(-4px);border-color:var(--accent)}
-  .sw{height:76px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;letter-spacing:-.01em}
-  .card .b{padding:13px 14px 15px}
-  .card h3{font-size:14.5px;font-weight:600}
-  .card span{font-size:12px;color:var(--dim)}
+  .sw{height:70px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+  .card .b{padding:11px 12px 13px}
+  .card h3{font-size:13.5px;font-weight:600}
+  .card em{font-style:normal;font-size:11.5px;color:var(--dim)}
+  .s-min1{background:#FCFCFD;color:#2A5BD7}.s-min2{background:#0F1216;color:#93A8FF}
+  .s-min3{background:#F1EFE8;color:#2E6A55}.s-min4{background:#fff;color:#0A0A0A}
+  .s-desk{background:#080B11;color:#F5A623}.s-bp{background:#E7EDF2;color:#1A5FD0}
+  .s-memo{background:#EBE7DC;color:#7C2230}.s-ledger{background:#F4F3F0;color:#E23124}
 
-  /* swatches = a real preview of each direction's palette */
-  .s-min1{background:#FCFCFD;color:#2A5BD7} .s-min2{background:#0F1216;color:#93A8FF}
-  .s-min3{background:#F1EFE8;color:#2E6A55} .s-min4{background:#fff;color:#0A0A0A}
-  .s-desk{background:#080B11;color:#F5A623} .s-bp{background:#E7EDF2;color:#1A5FD0}
-  .s-memo{background:#EBE7DC;color:#7C2230} .s-ledger{background:#F4F3F0;color:#E23124}
-
-  footer{margin-top:44px;padding:20px 0 46px;border-top:1px solid var(--line);color:var(--dim);font-size:12.5px}
-  footer a{color:var(--dim);text-decoration:underline;text-underline-offset:3px}
-  footer a:hover{color:var(--text)}
-
+  footer{margin-top:38px;padding:18px 0 44px;border-top:1px solid var(--line);color:var(--dim);font-size:12.5px}
+  footer a{text-decoration:underline;text-underline-offset:3px}
   @media(max-width:820px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.how{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.feats{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.top{flex-direction:column}}
   @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>One brief, twelve designs.</h1>
-    <p>Every page below is live — and you can restyle any of them yourself. No design experience needed.</p>
-  </header>
-
-  <div class="how">
-    <div class="step">
-      <kbd>Shift + D</kbd>
-      <h2>Change how it looks</h2>
-      <p>Colours, fonts and text size. Click a colour, drag a slider — the page updates as you go.</p>
+  <div class="top">
+    <div>
+      <h1 data-en="One brief, twelve designs." data-zh="一个需求，十二种设计。">One brief, twelve designs.</h1>
+      <p data-en="Every page below is live — and you can restyle any of them yourself. No design experience needed." data-zh="下面每个页面都是活的——你可以自己改配色和字体，不需要任何设计基础。">Every page below is live — and you can restyle any of them yourself. No design experience needed.</p>
     </div>
-    <div class="step">
-      <kbd>Shift + B</kbd>
-      <h2>Add or remove sections</h2>
-      <p>Drag a ready-made block onto the page. Hover any section and hit × to delete it.</p>
+    <div class="lang"><button data-l="en">EN</button><button data-l="zh">中文</button></div>
+  </div>
+
+  <div class="open">
+    <kbd>Shift + E</kbd>
+    <div>
+      <b data-en="Open the editor" data-zh="打开编辑器">Open the editor</b>
+      <span data-en="On any design below. Or click the “Edit design” button in the bottom-left corner." data-zh="在下面任意一个设计里按。或点击左下角的「编辑设计」按钮。">On any design below. Or click the “Edit design” button in the bottom-left corner.</span>
     </div>
   </div>
-  <p class="safe">Nothing here is public — changes stay in your browser. Hit <b>Reset</b> in the panel to put everything back.</p>
+  <p class="safe" data-en="Nothing here is public — changes only affect what you see, and Reset puts everything back." data-zh="这些改动不会公开——只影响你自己看到的页面，点「全部重置」即可还原。">Nothing here is public — changes only affect what you see, and Reset puts everything back.</p>
 
-  <div class="g">Minimal</div>
-  <div class="grid">
-    <a class="card" href="min-1-clarity.html"><div class="sw s-min1">Aa</div><div class="b"><h3>Clarity</h3><span>White · blue</span></div></a>
-    <a class="card" href="min-2-afterhours.html"><div class="sw s-min2">Aa</div><div class="b"><h3>After Hours</h3><span>Dark · serif</span></div></a>
-    <a class="card" href="min-3-fieldnotes.html"><div class="sw s-min3">Aa</div><div class="b"><h3>Field Notes</h3><span>Sand · green</span></div></a>
-    <a class="card" href="min-4-statement.html"><div class="sw s-min4">Aa</div><div class="b"><h3>Statement</h3><span>Black &amp; white</span></div></a>
+  <div class="grp" data-en="Colour tab" data-zh="颜色 标签页">Colour tab</div>
+  <div class="feats">
+    <div class="ft"><b data-en="Ready-made palettes" data-zh="现成配色">Ready-made palettes</b><span data-en="One click recolours the whole page. Start here." data-zh="一键换掉整页配色。从这里开始最快。">One click recolours the whole page. Start here.</span></div>
+    <div class="ft"><b data-en="Main colours" data-zh="主要颜色">Main colours</b><span data-en="The four that matter: accent, background, text, lines." data-zh="最关键的四个：强调色、背景、文字、线条。">The four that matter: accent, background, text, lines.</span></div>
+    <div class="ft"><b data-en="More colours" data-zh="更多颜色">More colours</b><span data-en="Every remaining colour, folded away until you want it." data-zh="其余所有颜色，需要时再展开。">Every remaining colour, folded away until you want it.</span></div>
+    <div class="ft"><b data-en="+ Save current" data-zh="＋ 存当前">+ Save current</b><span data-en="Keep a palette you like and reuse it later." data-zh="把你喜欢的配色存下来，之后一键复用。">Keep a palette you like and reuse it later.</span></div>
   </div>
 
-  <div class="g">Cleaned up</div>
-  <div class="grid">
-    <a class="card" href="clean-1-the-desk.html"><div class="sw s-desk">Aa</div><div class="b"><h3>The Desk</h3><span>Trading terminal</span></div></a>
-    <a class="card" href="clean-2-the-blueprint.html"><div class="sw s-bp">Aa</div><div class="b"><h3>The Blueprint</h3><span>Engineering plan</span></div></a>
-    <a class="card" href="clean-3-the-memo.html"><div class="sw s-memo">Aa</div><div class="b"><h3>The Memo</h3><span>Printed memo</span></div></a>
-    <a class="card" href="clean-4-the-ledger.html"><div class="sw s-ledger">Aa</div><div class="b"><h3>The Ledger</h3><span>Swiss grid</span></div></a>
+  <div class="grp" data-en="Text tab" data-zh="文字 标签页">Text tab</div>
+  <div class="feats">
+    <div class="ft"><b data-en="Font pairings" data-zh="现成字体搭配">Font pairings</b><span data-en="Swap the whole typeface set at once. Missing fonts load automatically." data-zh="一键换掉整套字体。需要的字体会自动加载。">Swap the whole typeface set at once. Missing fonts load automatically.</span></div>
+    <div class="ft"><b data-en="Text size" data-zh="文字大小">Text size</b><span data-en="One slider scales every heading and paragraph together." data-zh="一个滑杆等比缩放所有标题和正文。">One slider scales every heading and paragraph together.</span></div>
+    <div class="ft"><b data-en="Fonts" data-zh="字体">Fonts</b><span data-en="Set headings, body and labels separately. Preview updates live." data-zh="标题、正文、标签可分别设置，右侧实时预览。">Set headings, body and labels separately. Preview updates live.</span></div>
+    <div class="ft"><b data-en="Use fonts from my computer" data-zh="使用我电脑里的字体">Use fonts from my computer</b><span data-en="Adds your installed fonts to the list. Chrome/Edge only — otherwise just type a font name." data-zh="把你已安装的字体加入列表。仅 Chrome/Edge 支持——否则直接输入字体名。">Adds your installed fonts to the list. Chrome/Edge only — otherwise just type a font name.</span></div>
+    <div class="ft"><b data-en="Fine tuning" data-zh="微调">Fine tuning</b><span data-en="Body size, line spacing and letter spacing, if you want to go further." data-zh="正文字号、行距、字距——想再细调时展开。">Body size, line spacing and letter spacing, if you want to go further.</span></div>
   </div>
 
-  <div class="g">Original — more detail</div>
-  <div class="grid">
-    <a class="card" href="1-the-desk.html"><div class="sw s-desk">Aa</div><div class="b"><h3>The Desk</h3><span>Full version</span></div></a>
-    <a class="card" href="2-the-blueprint.html"><div class="sw s-bp">Aa</div><div class="b"><h3>The Blueprint</h3><span>Full version</span></div></a>
-    <a class="card" href="3-the-memo.html"><div class="sw s-memo">Aa</div><div class="b"><h3>The Memo</h3><span>Full version</span></div></a>
-    <a class="card" href="4-the-ledger.html"><div class="sw s-ledger">Aa</div><div class="b"><h3>The Ledger</h3><span>Full version</span></div></a>
+  <div class="grp" data-en="Layout tab" data-zh="版面 标签页">Layout tab</div>
+  <div class="feats">
+    <div class="ft"><b data-en="Add a section" data-zh="添加区块">Add a section</b><span data-en="Drag a block from the panel onto the page. A green line shows where it lands." data-zh="把区块从面板拖到页面上。绿线会显示它会落在哪里。">Drag a block from the panel onto the page. A green line shows where it lands.</span></div>
+    <div class="ft"><b data-en="Move or delete" data-zh="移动或删除">Move or delete</b><span data-en="Hover any section — a small toolbar appears with up, down and delete." data-zh="鼠标悬停在任意区块上，右上角会出现上移／下移／删除。">Hover any section — a small toolbar appears with up, down and delete.</span></div>
+    <div class="ft"><b data-en="Page width" data-zh="页面宽度">Page width</b><span data-en="Make the content column wider or narrower." data-zh="让内容区更宽或更窄。">Make the content column wider or narrower.</span></div>
+    <div class="ft"><b data-en="Zoom" data-zh="整页缩放">Zoom</b><span data-en="Scale the entire page to check how it feels denser or roomier." data-zh="整页等比缩放，快速感受疏密。">Scale the entire page to check how it feels denser or roomier.</span></div>
   </div>
 
-  <footer>Best on desktop. <a href="textmind-website-v15.html">See the first draft</a> this all started from.</footer>
+  <div class="grp" data-en="Edit just one section" data-zh="只改某一个区块">Edit just one section</div>
+  <div class="feats">
+    <div class="ft"><b data-en="“Editing” dropdown" data-zh="「正在编辑」下拉框">“Editing” dropdown</b><span data-en="Switch from Whole page to a single section. Everything then applies to that one only." data-zh="从「整个页面」切换到某个区块，之后所有改动只作用于它。">Switch from Whole page to a single section. Everything then applies to that one only.</span></div>
+    <div class="ft"><b data-en="Outline button" data-zh="框选按钮">Outline button</b><span data-en="Boxes every section. Hover to highlight green, click to select it." data-zh="框出所有区块。鼠标划过变绿，点一下即选中。">Boxes every section. Hover to highlight green, click to select it.</span></div>
+  </div>
+
+  <div class="grp" data-en="Save tab" data-zh="保存 标签页">Save tab</div>
+  <div class="feats">
+    <div class="ft"><b data-en="Copy the CSS" data-zh="复制 CSS">Copy the CSS</b><span data-en="Copies your colours and fonts as code, to paste into the page and keep them." data-zh="把你的配色和字体复制成代码，粘回页面即可永久保留。">Copies your colours and fonts as code, to paste into the page and keep them.</span></div>
+    <div class="ft"><b data-en="Saved looks" data-zh="保存的样式">Saved looks</b><span data-en="Name a look, then load it back any time." data-zh="给样式起个名字保存，随时载入。">Name a look, then load it back any time.</span></div>
+    <div class="ft"><b data-en="Download / Open file" data-zh="下载 / 打开文件">Download / Open file</b><span data-en="Move a look to another browser or send it to someone." data-zh="把样式带到别的浏览器，或发给别人。">Move a look to another browser or send it to someone.</span></div>
+    <div class="ft"><b data-en="Undo · Redo · Reset" data-zh="撤销 · 重做 · 重置">Undo · Redo · Reset</b><span data-en="Always at the bottom of the panel. Ctrl+Z works too." data-zh="始终在面板底部。也可以按 Ctrl+Z。">Always at the bottom of the panel. Ctrl+Z works too.</span></div>
+  </div>
+
+  <div class="gal" data-en="Minimal" data-zh="极简">Minimal</div>
+  <div class="grid">
+    <a class="card" href="min-1-clarity.html"><div class="sw s-min1">Aa</div><div class="b"><h3>Clarity</h3><em data-en="White · blue" data-zh="白 · 蓝">White · blue</em></div></a>
+    <a class="card" href="min-2-afterhours.html"><div class="sw s-min2">Aa</div><div class="b"><h3>After Hours</h3><em data-en="Dark · serif" data-zh="深色 · 衬线">Dark · serif</em></div></a>
+    <a class="card" href="min-3-fieldnotes.html"><div class="sw s-min3">Aa</div><div class="b"><h3>Field Notes</h3><em data-en="Sand · green" data-zh="暖砂 · 绿">Sand · green</em></div></a>
+    <a class="card" href="min-4-statement.html"><div class="sw s-min4">Aa</div><div class="b"><h3>Statement</h3><em data-en="Black &amp; white" data-zh="黑白">Black &amp; white</em></div></a>
+  </div>
+
+  <div class="gal" data-en="Cleaned up" data-zh="精简版">Cleaned up</div>
+  <div class="grid">
+    <a class="card" href="clean-1-the-desk.html"><div class="sw s-desk">Aa</div><div class="b"><h3>The Desk</h3><em data-en="Trading terminal" data-zh="交易终端">Trading terminal</em></div></a>
+    <a class="card" href="clean-2-the-blueprint.html"><div class="sw s-bp">Aa</div><div class="b"><h3>The Blueprint</h3><em data-en="Engineering plan" data-zh="工程图">Engineering plan</em></div></a>
+    <a class="card" href="clean-3-the-memo.html"><div class="sw s-memo">Aa</div><div class="b"><h3>The Memo</h3><em data-en="Printed memo" data-zh="备忘录">Printed memo</em></div></a>
+    <a class="card" href="clean-4-the-ledger.html"><div class="sw s-ledger">Aa</div><div class="b"><h3>The Ledger</h3><em data-en="Swiss grid" data-zh="瑞士网格">Swiss grid</em></div></a>
+  </div>
+
+  <div class="gal" data-en="Original — more detail" data-zh="原始版 — 内容更全">Original — more detail</div>
+  <div class="grid">
+    <a class="card" href="1-the-desk.html"><div class="sw s-desk">Aa</div><div class="b"><h3>The Desk</h3><em data-en="Full version" data-zh="完整版">Full version</em></div></a>
+    <a class="card" href="2-the-blueprint.html"><div class="sw s-bp">Aa</div><div class="b"><h3>The Blueprint</h3><em data-en="Full version" data-zh="完整版">Full version</em></div></a>
+    <a class="card" href="3-the-memo.html"><div class="sw s-memo">Aa</div><div class="b"><h3>The Memo</h3><em data-en="Full version" data-zh="完整版">Full version</em></div></a>
+    <a class="card" href="4-the-ledger.html"><div class="sw s-ledger">Aa</div><div class="b"><h3>The Ledger</h3><em data-en="Full version" data-zh="完整版">Full version</em></div></a>
+  </div>
+
+  <footer>
+    <span data-en="Best on desktop." data-zh="建议在电脑上浏览。">Best on desktop.</span>
+    <a href="textmind-website-v15.html" data-en="See the first draft" data-zh="看看最初的草稿">See the first draft</a>
+  </footer>
 </div>
+
+<script>
+  // language toggle — shares its key with the editor, so switching here
+  // also switches the editor panel's language.
+  var KEY='devmode:lang';
+  function setLang(l){
+    document.documentElement.lang = l==='zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-en]').forEach(function(n){
+      var v=n.getAttribute('data-'+l); if(v!=null) n.textContent=v;
+    });
+    document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)});
+    try{localStorage.setItem(KEY,l)}catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.addEventListener('click',function(){setLang(b.dataset.l)});
+  });
+  var saved=null; try{saved=localStorage.getItem(KEY)}catch(e){}
+  setLang(saved || ((navigator.language||'').toLowerCase().indexOf('zh')===0 ? 'zh' : 'en'));
+</script>
 </body>
 </html>
