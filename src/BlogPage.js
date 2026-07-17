@@ -10,6 +10,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PageHeader from './PageHeader';
 import GamePlayer from './GamePlayer';
+import SitePreview from './SitePreview';
 import { blogSections } from './blogData';
 
 // -----------------------------------------------------------------------------
@@ -22,6 +23,7 @@ function Timeline({ section }) {
       <div className="blog-panel" role="tabpanel">
         {section.intro && <p className="devlog-intro">{section.intro}</p>}
         {section.game && <GamePlayer game={section.game} />}
+        {section.embed && <SitePreview embed={section.embed} />}
         <p className="blog-empty">Nothing here yet — check back soon. ✨</p>
       </div>
     );
@@ -32,6 +34,8 @@ function Timeline({ section }) {
       {section.intro && <p className="devlog-intro">{section.intro}</p>}
 
       {section.game && <GamePlayer game={section.game} />}
+
+      {section.embed && <SitePreview embed={section.embed} />}
 
       <div className="devlog-timeline">
         {/* Sort a copy newest-first so posts can be added in any order */}

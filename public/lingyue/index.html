@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>领阅科技 · 设计方向作品集 | Iterations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0E1116;--panel:#161A22;--line:#242A34;--text:#D6DCE6;--dim:#7C8798;--faint:#5a6474;--accent:#8B7BF0;
+    --disp:"Space Grotesk",system-ui,"PingFang SC","Microsoft YaHei",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--disp);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  header{padding:60px 0 34px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(28px,4.4vw,46px);font-weight:700;letter-spacing:-.02em;margin:14px 0 12px;line-height:1.1}
+  header p{color:var(--dim);max-width:640px;font-size:15.5px}
+  .meta{margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--dim);display:flex;gap:20px;flex-wrap:wrap}
+  .grouphead{display:flex;align-items:baseline;gap:14px;margin:52px 0 4px}
+  .grouphead h2{font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .grouphead .tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+  .grouphead .rule{flex:1;height:1px;background:var(--line)}
+  .gdesc{color:var(--dim);font-size:13.5px;margin-top:6px;max-width:640px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:22px 0 0}
+  .card{border:1px solid var(--line);background:var(--panel);border-radius:13px;overflow:hidden;display:flex;flex-direction:column;transition:.18s}
+  .card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .sw{height:92px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:20px;font-weight:600;letter-spacing:.04em;position:relative;border-bottom:1px solid var(--line)}
+  .card .body{padding:16px 17px 17px;flex:1;display:flex;flex-direction:column}
+  .card .no{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.05em}
+  .card h3{font-size:16px;font-weight:600;margin:6px 0 3px}
+  .card .zh{font-size:12.5px;color:var(--dim);margin-bottom:9px}
+  .card p{font-size:12.5px;color:var(--text);opacity:.82;flex:1;line-height:1.55}
+  .card .go{font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:13px}
+  .orig .card{border-style:dashed}
+  /* swatches */
+  .s-min1{background:#FCFCFD;color:#2A5BD7}
+  .s-min2{background:#0F1216;color:#93A8FF}
+  .s-min3{background:#F1EFE8;color:#2E6A55}
+  .s-min4{background:#fff;color:#0A0A0A}
+  .s-desk{background:#080B11;color:#F5A623}
+  .s-bp{background:#E7EDF2;color:#1A5FD0;background-image:linear-gradient(rgba(26,63,143,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(26,63,143,.09) 1px,transparent 1px);background-size:14px 14px}
+  .s-memo{background:#EBE7DC;color:#7C2230}
+  .s-ledger{background:#F4F3F0;color:#E23124}
+  .s-v15{background:#F8F6F1;color:#2551D8}
+  footer{border-top:1px solid var(--line);margin-top:56px;padding:28px 0 52px;font-family:var(--mono);font-size:12px;color:var(--faint);line-height:1.8}
+  @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">领阅科技 TextMind · Design Iterations</span>
+    <h1>设计方向作品集</h1>
+    <p>同一份核心内容（信号→判断→决策），三组呈现：<b>极简新方向</b>、原始四方向的<b>精简版</b>、以及最初的<b>完整版</b>。每一个都内置 Dev Mode（按 <span style="font-family:var(--mono)">Shift+D</span> 实时改配色/字体/间距/按区块编辑）。</p>
+    <div class="meta"><span>12 iterations + 原稿 v15</span><span>内容取自 BP · 已脱敏</span><span>frontend-design skill</span></div>
+  </header>
+
+  <div class="grouphead"><span class="tag">A</span><h2>极简新方向</h2><span class="rule"></span></div>
+  <p class="gdesc">从 PPT 提炼「专家判断可交付」这条主线，砍掉招商 deck 材料，只留 5 段：论点 · 判断漏损 · 研投控 · 为何可信 · 联系。四种极简语言。</p>
+  <div class="grid">
+    <a class="card" href="min-1-clarity.html"><div class="sw s-min1">Aa</div><div class="body"><div class="no">MINIMAL · 01</div><h3>Clarity</h3><div class="zh">近白 · 蓝 · 克制</div><p>判断链缩成标题下一行安静的等宽文字；机构信任感。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="min-2-afterhours.html"><div class="sw s-min2">Aa</div><div class="body"><div class="no">MINIMAL · 02</div><h3>After Hours</h3><div class="zh">深色 · 轻衬线 · 沉静</div><p>Fraunces 细衬线在暗底上的从容陈述，非「终端」的密集。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="min-3-fieldnotes.html"><div class="sw s-min3">Aa</div><div class="body"><div class="no">MINIMAL · 03</div><h3>Field Notes</h3><div class="zh">暖砂 · 墨绿 · grotesque</div><p>暖纸配「无衬线+绿」，刻意避开米色衬线的套路；人味。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="min-4-statement.html"><div class="sw s-min4">Aa</div><div class="body"><div class="no">MINIMAL · 04</div><h3>Statement</h3><div class="zh">纯黑白 · 巨型字</div><p>无彩色，靠 Syne 的超大字号与留白承载论点本身。</p><div class="go">打开 →</div></div></a>
+  </div>
+
+  <div class="grouphead"><span class="tag">B</span><h2>精简版（保留原身份）</h2><span class="rule"></span></div>
+  <p class="gdesc">四个原始方向各自「去杂」：保留其视觉身份与招牌元素（判断链 / 节点图 / 案卷 / 数字网格），但同样收敛到 5 段主线。用于原版 ↔ 精简对照。</p>
+  <div class="grid">
+    <a class="card" href="clean-1-the-desk.html"><div class="sw s-desk">◑</div><div class="body"><div class="no">CLEAN · The Desk</div><h3>投研终端</h3><div class="zh">深色终端 · 琥珀</div><p>留住判断链面板，砍掉行情走带、定价、路线图等。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="clean-2-the-blueprint.html"><div class="sw s-bp">◑</div><div class="body"><div class="no">CLEAN · Blueprint</div><h3>思维链图谱</h3><div class="zh">蓝图 · 节点图</div><p>留住节点原理图与图签，砍掉三链、四技术长篇与团队。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="clean-3-the-memo.html"><div class="sw s-memo">◑</div><div class="body"><div class="no">CLEAN · The Memo</div><h3>投资备忘录</h3><div class="zh">编辑 · 牛血红</div><p>留住抬头与「判断漏损」案卷，砍掉定价表、团队、经济账。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="clean-4-the-ledger.html"><div class="sw s-ledger">◑</div><div class="body"><div class="no">CLEAN · The Ledger</div><h3>数字网格</h3><div class="zh">瑞士网格 · 红</div><p>留住数字身份（一行关键数），砍掉定价/预测/路线图长表。</p><div class="go">打开 →</div></div></a>
+  </div>
+
+  <div class="grouphead"><span class="tag">C</span><h2>原始方向（完整版）</h2><span class="rule"></span></div>
+  <p class="gdesc">最初的四个方向，内容最全（含市场、定价 ROI、团队、路线图、融资）。留作对照与素材库。</p>
+  <div class="grid orig">
+    <a class="card" href="1-the-desk.html"><div class="sw s-desk">◐</div><div class="body"><div class="no">FULL · 01</div><h3>The Desk</h3><div class="zh">深色终端座舱</div><p>行情走带 + 判断链 + 定价 + 团队…完整版。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="2-the-blueprint.html"><div class="sw s-bp">◐</div><div class="body"><div class="no">FULL · 02</div><h3>The Blueprint</h3><div class="zh">工程原理图</div><p>节点图 + 三链 + 四技术 + 实证 + 团队…完整版。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="3-the-memo.html"><div class="sw s-memo">◐</div><div class="body"><div class="no">FULL · 03</div><h3>The Memo</h3><div class="zh">投资备忘录</div><p>抬头 + 案卷 + 先例 + 定价表 + 团队…完整版。</p><div class="go">打开 →</div></div></a>
+    <a class="card" href="4-the-ledger.html"><div class="sw s-ledger">◐</div><div class="body"><div class="no">FULL · 04</div><h3>The Ledger</h3><div class="zh">瑞士数字网格</div><p>市场 + 定价 ROI + 收入预期 + 路线图 + 融资…完整版。</p><div class="go">打开 →</div></div></a>
+  </div>
+
+  <div class="grouphead"><span class="tag">·</span><h2>参考基线</h2><span class="rule"></span></div>
+  <div class="grid">
+    <a class="card orig" href="textmind-website-v15.html" style="max-width:none"><div class="sw s-v15">◇</div><div class="body"><div class="no">BASELINE</div><h3>v15 原稿</h3><div class="zh">暖米 · 衬线 · 蓝</div><p>第一版，范围最广（含个人投资者线）；对照参考。</p><div class="go">打开 →</div></div></a>
+  </div>
+
+  <footer>
+    12 个方向共享同一套已脱敏内容，只是取舍与视觉语言不同。<br>
+    字体经 Google Fonts 加载（需联网，均有系统回退）；中文走系统字体。每个页面按 Shift+D 打开 Dev Mode。
+  </footer>
+</div>
+</body>
+</html>

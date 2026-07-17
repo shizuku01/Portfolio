@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>领阅科技 · The Blueprint（精简）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fs:1;
+    --paper:#E7EDF2;--paper-2:#DEE6EE;--sheet:#F4F7FA;--ink:#122C46;--ink-2:#2C4964;--dim:#6E829A;
+    --blue:#1A5FD0;--blue-deep:#123f8f;--annot:#C24A2C;--grid:rgba(26,63,143,.09);--grid-2:rgba(26,63,143,.045);--line:#B9C7D6;
+    --disp:"Space Grotesk",system-ui,"PingFang SC","Microsoft YaHei",sans-serif;
+    --body:"Inter",system-ui,"PingFang SC","Microsoft YaHei",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;--maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:calc(15.5px * var(--fs));line-height:1.62;-webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--grid-2) 1px,transparent 1px),linear-gradient(90deg,var(--grid-2) 1px,transparent 1px),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:24px 24px,24px 24px,120px 120px,120px 120px}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--blue);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+  .eyebrow{font-family:var(--mono);font-size:calc(11px * var(--fs));letter-spacing:.16em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"⌖"}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(231,237,242,.9);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--ink)}
+  .nav{max-width:var(--maxw);margin:0 auto;padding:0 30px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--disp);font-weight:700;font-size:calc(18px * var(--fs));letter-spacing:-.01em}
+  .brand b{color:var(--blue)}
+  nav a{font-family:var(--mono);font-size:calc(12.5px * var(--fs));color:var(--ink-2);margin-left:24px}
+  nav a:hover{color:var(--blue)}
+  .cta{border:1.5px solid var(--ink);padding:8px 15px;color:var(--ink)!important;margin-left:24px;transition:.15s}
+  .cta:hover{background:var(--ink);color:var(--sheet)!important}
+  .burger{display:none;background:none;border:1.5px solid var(--ink);color:var(--ink);font-family:var(--mono);padding:7px 11px;cursor:pointer}
+
+  .hero{padding:64px 0 40px}
+  .hero h1{font-family:var(--disp);font-size:calc(clamp(34px,5vw,60px) * var(--fs));line-height:1.04;font-weight:700;letter-spacing:-.025em;margin:22px 0 18px;max-width:16ch}
+  .hero h1 em{font-style:normal;color:var(--blue)}
+  .hero .lead{font-size:calc(17px * var(--fs));color:var(--ink-2);max-width:54ch;line-height:1.62}
+  .hrow{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:calc(13px * var(--fs));padding:12px 20px;border:1.5px solid var(--ink);color:var(--ink);cursor:pointer;transition:.15s}
+  .btn:hover{background:var(--sheet)}
+  .btn-fill{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .btn-fill:hover{background:var(--blue-deep);color:#fff}
+
+  .sheet{margin-top:42px;background:var(--sheet);border:1.5px solid var(--ink);position:relative}
+  .sheet .sh{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1.5px solid var(--ink);font-family:var(--mono);font-size:calc(11px * var(--fs));color:var(--dim);letter-spacing:.08em}
+  .sheet .sh b{color:var(--blue)}
+  .sheet svg{display:block;width:100%;height:auto}
+  .hstats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink)}
+  .hstats div{padding:16px 20px;border-right:1px solid var(--line)}
+  .hstats div:last-child{border-right:none}
+  .hstats .v{font-family:var(--disp);font-size:calc(24px * var(--fs));font-weight:600;color:var(--ink);line-height:1}
+  .hstats .v em{font-style:normal;color:var(--blue)}
+  .hstats .k{font-family:var(--mono);font-size:calc(10px * var(--fs));color:var(--dim);margin-top:8px}
+  .tblock{position:absolute;right:0;bottom:0;border-left:1.5px solid var(--ink);border-top:1.5px solid var(--ink);background:var(--sheet);display:grid;grid-template-columns:repeat(3,auto);font-family:var(--mono);font-size:calc(10px * var(--fs));color:var(--ink-2)}
+  .tblock div{padding:8px 14px;border-right:1px solid var(--line)}
+  .tblock div:last-child{border-right:none}
+  .tblock b{display:block;color:var(--ink);font-size:calc(11px * var(--fs));margin-top:2px}
+
+  section{padding:88px 0;border-top:1.5px solid var(--ink);margin-top:72px}
+  .lead2{max-width:60ch}
+  h2{font-family:var(--disp);font-size:calc(clamp(28px,3.6vw,42px) * var(--fs));font-weight:700;letter-spacing:-.02em;color:var(--ink);line-height:1.1;margin:16px 0 0}
+  h2 em{font-style:normal;color:var(--blue)}
+  .sub{font-size:calc(16px * var(--fs));color:var(--ink-2);max-width:56ch;margin-top:16px;line-height:1.6}
+  .big{font-family:var(--disp);font-weight:700;font-size:calc(clamp(48px,8vw,92px) * var(--fs));letter-spacing:-.03em;line-height:1;margin-top:8px}
+  .big em{font-style:normal;color:var(--blue)}
+
+  .specs{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--ink);background:var(--sheet)}
+  .spec{padding:28px 26px;border-right:1px solid var(--line)}
+  .spec:last-child{border-right:none}
+  .spec .no{font-family:var(--mono);font-size:calc(11px * var(--fs));color:var(--annot);letter-spacing:.1em}
+  .spec h3{font-family:var(--disp);font-size:calc(19px * var(--fs));font-weight:600;margin:12px 0 10px}
+  .spec p{font-size:calc(13.5px * var(--fs));color:var(--ink-2);line-height:1.6}
+
+  .metrics{margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1.5px solid var(--ink);background:var(--sheet)}
+  .m{padding:26px 22px;border-right:1px solid var(--line)}
+  .m:last-child{border-right:none}
+  .m .v{font-family:var(--disp);font-size:calc(clamp(28px,3.6vw,42px) * var(--fs));font-weight:700;color:var(--blue);letter-spacing:-.02em;line-height:1}
+  .m .c{font-size:calc(12.5px * var(--fs));color:var(--ink-2);margin-top:12px;line-height:1.5}
+
+  .cta-blk{background:var(--ink);color:var(--sheet);margin-top:72px;text-align:center;padding:100px 30px}
+  .cta-blk .eyebrow{color:#7fb0ff;justify-content:center}
+  .cta-blk h2{color:#fff;max-width:20ch;margin:16px auto 0}
+  .cta-blk h2 em{color:#8fd0dc}
+  .cta-blk .hrow{justify-content:center;margin-top:30px}
+  .cta-blk .btn{border-color:rgba(255,255,255,.4);color:#fff;background:none}
+  .cta-blk .btn-fill{background:#fff;color:var(--ink);border-color:#fff}
+
+  footer{background:var(--ink);color:#8ea3bd;padding:0 30px 34px;font-family:var(--mono);font-size:calc(12px * var(--fs))}
+  .foot{max-width:var(--maxw);margin:0 auto;border-top:1px solid rgba(255,255,255,.14);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+  @media(max-width:900px){
+    nav{display:none}.burger{display:block}
+    .hstats{grid-template-columns:1fr 1fr}
+    .specs,.metrics{grid-template-columns:1fr}
+    .spec,.m{border-right:none;border-bottom:1px solid var(--line)}
+    .tblock{position:static;border-left:none;border-top:1.5px solid var(--ink);grid-template-columns:1fr 1fr}
+    section{padding:66px 0;margin-top:60px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">领阅<b>·</b>TextMind</a>
+    <nav>
+      <a href="#problem">痛点</a><a href="#product">能力</a><a href="#trust">为何可信</a>
+      <a class="cta" href="#contact">预约演示</a>
+    </nav>
+    <button class="burger" id="burger">≡</button>
+  </div>
+</header>
+
+<a id="top"></a>
+<div class="wrap">
+<section class="hero" style="border-top:none;margin-top:0">
+  <span class="eyebrow">金融垂域 AI · 投研 OPT</span>
+  <h1>把专家的推理链路，<br>画成一张<em>可追踪的图</em>。</h1>
+  <p class="lead">领阅为证券、基金与财富管理机构打造金融垂域 AI——每个假设结构化为可追踪节点、每个结论逐层归因。</p>
+  <div class="hrow">
+    <a class="btn btn-fill" href="#contact">预约演示 →</a>
+    <a class="btn" href="#product">查看能力</a>
+  </div>
+
+  <div class="sheet rv">
+    <div class="sh"><span>DWG · 判断链原理图 <b>SIGNAL → THESIS → VERIFY → CONCLUSION</b></span><span>REV 16</span></div>
+    <svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="思维链图谱原理图">
+      <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#C24A2C"/></marker></defs>
+      <g stroke="#C24A2C" stroke-width="1"><line x1="60" y1="34" x2="940" y2="34"/><line x1="60" y1="28" x2="60" y2="40"/><line x1="940" y1="28" x2="940" y2="40"/></g>
+      <text x="500" y="27" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#C24A2C">建设周期 = 传统图谱 × 1/4 · 假设结构化率 &gt;85%</text>
+      <g stroke="#B9C7D6" stroke-width="1.4"><line x1="150" y1="110" x2="150" y2="185"/><line x1="150" y1="185" x2="330" y2="110"/><line x1="330" y1="185" x2="510" y2="120"/><line x1="510" y1="195" x2="690" y2="120"/><line x1="690" y1="185" x2="850" y2="150"/></g>
+      <g stroke="#1A5FD0" stroke-width="2.6" fill="none" marker-end="url(#ah)"><line x1="168" y1="110" x2="312" y2="110"/><line x1="348" y1="110" x2="492" y2="128"/><line x1="528" y1="128" x2="672" y2="128"/><line x1="708" y1="128" x2="832" y2="148"/></g>
+      <g font-family="IBM Plex Mono,monospace" font-size="12">
+        <circle cx="150" cy="110" r="13" fill="#1A5FD0"/><text x="150" y="90" text-anchor="middle" fill="#122C46">信号</text>
+        <circle cx="150" cy="185" r="8" fill="#B9C7D6"/><text x="150" y="212" text-anchor="middle" fill="#6E829A">证据</text>
+        <circle cx="330" cy="110" r="13" fill="#1A5FD0"/><text x="330" y="90" text-anchor="middle" fill="#122C46">假设</text>
+        <circle cx="330" cy="185" r="8" fill="#B9C7D6"/>
+        <circle cx="510" cy="128" r="13" fill="#1A5FD0"/><text x="510" y="108" text-anchor="middle" fill="#122C46">验证</text>
+        <circle cx="510" cy="195" r="8" fill="#C24A2C"/><text x="510" y="222" text-anchor="middle" fill="#C24A2C">冲击 · 认知告警</text>
+        <circle cx="690" cy="128" r="13" fill="#1A5FD0"/><text x="690" y="108" text-anchor="middle" fill="#122C46">归因</text>
+        <circle cx="850" cy="150" r="17" fill="none" stroke="#1A5FD0" stroke-width="2.6"/><circle cx="850" cy="150" r="7" fill="#1A5FD0"/><text x="850" y="122" text-anchor="middle" fill="#122C46">结论 100% 可溯源</text>
+      </g>
+    </svg>
+    <div class="hstats">
+      <div><div class="v"><em>&lt;2%</em></div><div class="k">关键事实错误率 · 基线 10–15%</div></div>
+      <div><div class="v">↓90%</div><div class="k">冷启动数据需求</div></div>
+      <div><div class="v">&lt;3s</div><div class="k">P95 端到端延迟</div></div>
+      <div><div class="v">↓80–90%</div><div class="k">推理与工具调用成本</div></div>
+    </div>
+    <div class="tblock">
+      <div>项目 PROJECT<b>投研 OPT</b></div><div>图号 DWG<b>TM-COT-016</b></div><div>广州领阅科技<b>TEXTMIND</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="lead2 rv"><span class="eyebrow">痛点 · 判断漏损</span><h2>决定盈亏的 3–5 条信号，漏在<em>「被读到」和「起作用」</em>之间。</h2></div>
+  <div class="rv"><div class="big">约 <em>70%</em> 漏失</div></div>
+  <p class="sub rv">堆人、堆数据的投研模式正在失效。AI 把信息侧做满了，判断侧却几乎空白——领阅补上的正是这段。</p>
+</section>
+
+<section id="product">
+  <div class="lead2 rv"><span class="eyebrow">能力 · 研 · 投 · 控</span><h2>一个垂域底座，<em>覆盖全链路</em>。</h2><p class="sub">硬件即插即用、数据不出域，把一支投研团队的判断力装进一个盒子。</p></div>
+  <div class="specs rv">
+    <div class="spec"><div class="no">研 · ANALYST</div><h3>研究员 Copilot</h3><p>分析框架沉淀为可追踪判断网络；关键信号实时映射到持仓假设，主动推送冲击，支持反向归因。</p></div>
+    <div class="spec"><div class="no">投 · PM</div><h3>基金经理 Copilot</h3><p>团队判断、分歧与置信度聚合为统一视图；实时识别「看空仍重仓」等三类偏离。</p></div>
+    <div class="spec"><div class="no">控 · RISK</div><h3>风控 Copilot</h3><p>风险全链路追溯到信号源；基于判断链冲击的事前预警——认知告警，不是阈值告警。</p></div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="lead2 rv"><span class="eyebrow">为何可信 · TRUST</span><h2>每个结论都带证据锚点，幻觉<em>可检测、可拦截</em>。</h2><p class="sub">每个推理节点嵌入可信度评估，逐层校验；低可信自动触发补证据。</p></div>
+  <div class="metrics rv">
+    <div class="m"><div class="v">&lt;2%</div><div class="c">关键事实错误率 · 基线 10–15%</div></div>
+    <div class="m"><div class="v">100%</div><div class="c">结论可溯源</div></div>
+    <div class="m"><div class="v">↓90%</div><div class="c">冷启动数据需求</div></div>
+    <div class="m"><div class="v">&lt;3s</div><div class="c">P95 · 百人级并发</div></div>
+  </div>
+</section>
+</div>
+
+<section class="cta-blk" id="contact">
+  <span class="eyebrow">Let's build</span>
+  <h2>把专家的判断力，写进你机构的<em>系统架构</em>。</h2>
+  <div class="hrow"><a class="btn btn-fill" href="mailto:hello@example.com">预约演示 →</a></div>
+</section>
+<footer><div class="foot"><span>广州领阅科技 · TEXTMIND</span><span>hello@example.com</span></div></footer>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  document.getElementById('burger').addEventListener('click',()=>{const n=document.querySelector('nav');n.style.cssText='display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--paper);border-bottom:1.5px solid var(--ink);padding:16px 30px;gap:14px;align-items:flex-start'});
+</script>
+<script src="dev-mode.js"></script>
+<script src="dev-blocks.js"></script>
+</body>
+</html>

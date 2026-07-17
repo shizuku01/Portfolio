@@ -105,4 +105,37 @@ export const blogSections = [
     intro: 'Hands-on builds and physical projects.',
     posts: [],
   },
+
+  // ---------------------------------------------------------------------------
+  // WEB DESIGN — design explorations for real briefs
+  // ---------------------------------------------------------------------------
+  {
+    id: 'design',
+    label: 'Web Design',
+    intro: 'Design directions I explored for real briefs — click through the live pages.',
+    // Live gallery embedded at the top of this tab.
+    //   src    - entry page, served as static files from public/lingyue/
+    //   height - frame height in px
+    //   ready  - flip to false to show a placeholder instead of the iframe
+    embed: {
+      title: 'Design Iterations — a fintech brief (12 directions)',
+      src: '/lingyue/index.html',
+      height: 760,
+      ready: true,
+      note: 'Every page has a built-in editor: press Shift+D to change colours/type live, or Shift+B to drag in layout blocks. Best on desktop.',
+    },
+    posts: [
+      {
+        date: '2026-07-15',
+        title: '12 design directions for one brief',
+        tag: 'Design',
+        body: [
+          'Took a single fintech brief and pushed it through twelve visual directions instead of settling on the first idea that worked.',
+          'They come in three tiers: four maximalist originals (a trading-terminal cockpit, an engineering blueprint, an investment memo, and a Swiss numeric ledger), a decluttered version of each that keeps the identity but strips it back to the argument, and four brand-new minimalist directions.',
+          'The most useful part was deciding what to cut. Distilling the source deck down to five sections — thesis, the problem, the capability, why it is trustworthy, and one call to action — did more for the design than any amount of styling.',
+          'Each page also ships with a small editor I built: Shift+D swaps colours, fonts and the global type scale live; Shift+B opens a block library you can drag new sections in from. Everything is themed through CSS variables, so a block dropped into any direction adopts that direction automatically.',
+        ],
+      },
+    ],
+  },
 ];
