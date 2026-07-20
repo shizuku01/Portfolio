@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>领阅科技 · 企业版 | Corporate</title>
+<meta name="description" content="领阅科技 TextMind — 为证券、基金与财富管理机构打造金融垂域 AI。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF; --alt:#F5F6F8; --ink:#151B26; --ink-2:#5A6577; --line:#DCE4F2;
+    --accent:#FFAE00; --accent-2:#E69C00; --accent-soft:#FFF2D2;
+    --navy1:#213554; --navy2:#18263E;
+    --disp:"Sora",system-ui,"PingFang SC","Microsoft YaHei",sans-serif;
+    --body:"Inter",system-ui,"PingFang SC","Microsoft YaHei",sans-serif;
+    --maxw:1160px; --r:16px; --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  ::selection{background:var(--accent-soft)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.14}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:14px 26px;border-radius:10px;background:var(--accent);color:#18263E;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .2s}
+  .btn:hover{transform:translateY(-2px);background:var(--accent-2);box-shadow:0 14px 30px rgba(255,174,0,.32)}
+  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:13px 24px}
+  .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.6);box-shadow:none;transform:translateY(-2px)}
+  .btn-sm{font-size:13.5px;padding:10px 20px;border-radius:8px}
+  .lead{color:var(--ink-2);font-size:16.5px}
+
+  /* ---- scroll reveal ---- */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .rv.in{opacity:1;transform:none}
+
+  /* ---- header ---- */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+  header.stuck{border-color:rgba(0,0,0,.08);box-shadow:0 4px 20px rgba(0,0,0,.06)}
+  header .wrap{max-width:none;padding:0 clamp(16px,2.2vw,30px)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .navlogo{height:48px;width:auto}
+  .menu{display:flex;gap:30px;align-items:center}
+  .menu a{font-size:14.5px;color:var(--ink-2);font-weight:500;transition:color .2s}
+  .menu a:hover{color:var(--ink)}
+  .menu .btn-sm{color:#fff}
+  .burger{display:none;background:none;border:1px solid rgba(0,0,0,.2);border-radius:9px;padding:9px 11px;cursor:pointer}
+  /* mobile drawer */
+  .mob{display:none;position:fixed;inset:0;z-index:49;background:var(--navy2);flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;transition:opacity .3s var(--ease)}
+  .mob.open{display:flex;opacity:1}
+  .mob a{font-family:var(--disp);font-size:22px;font-weight:600;color:#fff;opacity:.85;transition:opacity .2s}
+  .mob a:hover{opacity:1}
+  .mob-close{position:absolute;top:22px;right:22px;background:none;border:0;color:#fff;cursor:pointer;padding:8px}
+  .mob-close svg{width:24px;height:24px}
+
+  /* ---- hero ---- */
+  .hero{display:grid;grid-template-columns:0.8fr 1.2fr;min-height:calc(100vh - 74px);min-height:calc(100svh - 74px)}
+  .hero-l{position:relative;background:#18263E;color:#fff;display:flex;flex-direction:column;justify-content:center;padding:64px clamp(26px,4vw,60px)}
+  .hero-l .inner{max-width:500px;width:100%}
+  .pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:6px 13px;margin-bottom:26px}
+  .hero-l h1{font-weight:800;font-size:clamp(34px,3.6vw,46px);margin-bottom:18px;display:none;animation:hfade .55s var(--ease)}
+  .hero-l h1.on{display:block}
+  .htitles{min-height:calc(clamp(34px,3.6vw,46px) * 2.3 + 18px);margin-bottom:4px}
+  .hdescs{min-height:92px;margin-bottom:30px}
+  .hero-l .hdesc{color:rgba(255,255,255,.72);font-size:15.5px;max-width:44ch;margin:0;display:none;animation:hfade .55s var(--ease)}
+  .hero-l .hdesc.on{display:block}
+  @keyframes hfade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+  .hero-r{position:relative;background:#e8e9ee;overflow:hidden}
+  .hcar{position:absolute;inset:0;overflow:hidden}
+  .htrack{display:flex;height:100%;will-change:transform}
+  .htrack img{width:100%;height:100%;object-fit:cover}
+  .hslide{flex:0 0 100%;width:100%;height:100%;position:relative;background:#c8ccd5;overflow:hidden}
+  .hdots{position:absolute;left:24px;bottom:22px;display:flex;gap:9px;z-index:3}
+  .hdots button{width:26px;height:3px;padding:0;border:0;border-radius:2px;background:rgba(255,255,255,.55);cursor:pointer;transition:.3s var(--ease);box-shadow:0 1px 3px rgba(0,0,0,.28)}
+  .hdots button.on{background:var(--accent);width:46px}
+  .harrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.85);border:0;border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18);transition:background .2s,transform .2s}
+  .harrow:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
+  .harrow svg{width:18px;height:18px;color:var(--ink)}
+  .hprev{left:14px}
+  .hnext{right:14px}
+
+  /* ---- 3 offering cards ---- */
+  .cards3{padding:64px 0}
+  .cards3 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .ocard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+  .ocard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+  .ocard:hover::before{transform:scaleX(1)}
+  .ocard:hover{transform:translateY(-6px);box-shadow:0 22px 46px -26px rgba(20,18,37,.25);border-color:transparent}
+  .ic{width:46px;height:46px;border-radius:12px;background:#18263E;display:grid;place-items:center;margin-bottom:18px}
+  .ic svg{width:23px;height:23px;stroke:var(--accent);fill:none;stroke-width:1.7}
+  .ocard h3{font-weight:600;font-size:19px;margin-bottom:9px}
+  .ocard p{color:var(--ink-2);font-size:13.8px;line-height:1.62}
+
+  /* ---- trust (2col) ---- */
+  .trust{padding:56px 0;background:var(--alt)}
+  .trust .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .trust h2{font-weight:700;font-size:clamp(26px,3vw,34px);margin-bottom:34px}
+  .sf{display:grid;grid-template-columns:1fr 1fr;gap:30px 26px}
+  .sf-ic{width:38px;height:38px;border-radius:10px;background:#18263E;display:grid;place-items:center;margin-bottom:12px}
+  .sf-ic svg{width:19px;height:19px;stroke:var(--accent);fill:none;stroke-width:1.7}
+  .sf h4{font-weight:600;font-size:15.5px;margin-bottom:6px}
+  .sf p{color:var(--ink-2);font-size:13px;line-height:1.55}
+  .frame{border-radius:18px;overflow:hidden;box-shadow:0 30px 64px -34px rgba(20,18,37,.34);aspect-ratio:4/3;background:#e8e9ee}
+  .frame img{width:100%;height:100%;object-fit:cover}
+
+  /* ---- services ---- */
+  .services{padding:64px 0}
+  .services .top{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:42px}
+  .services h2{font-weight:700;font-size:clamp(26px,3vw,34px)}
+  .services .top p{color:var(--ink-2);font-size:15px}
+  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .scard{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+  .scard:hover{transform:translateY(-6px);box-shadow:0 24px 48px -26px rgba(24,38,62,.28);border-color:transparent}
+  .scard .art{height:150px;display:grid;place-items:center;background:linear-gradient(160deg,#F5F6F8,#EBEDF2)}
+  .scard .art svg{width:66px;height:66px}
+  .scard .bd{padding:24px 24px 28px}
+  .scard h3{font-weight:600;font-size:18px;margin-bottom:9px}
+  .scard p{color:var(--ink-2);font-size:13.6px;line-height:1.6}
+
+  /* ---- logos ---- */
+  .logos{padding:26px 0 8px}
+  .logos .lbl{text-align:center;color:var(--ink-2);font-size:13px;margin-bottom:22px}
+  .logos .lbl b{color:var(--ink);font-weight:600}
+  .logostrip{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 46px;opacity:.62}
+  .logostrip span{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.04em;color:var(--ink-2)}
+  .logostrip svg{width:18px;height:18px;stroke:var(--ink-2);fill:none;stroke-width:1.8}
+
+  /* ---- stats band ---- */
+  .statband{background:var(--alt);margin-top:54px}
+  .statband .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;padding:66px 0}
+  .statband .frame{box-shadow:0 30px 64px -34px rgba(20,18,37,.3);background:#e0e2e8}
+  .statband h2{font-weight:700;font-size:clamp(25px,2.9vw,33px);margin-bottom:16px}
+  .statband p{color:var(--ink-2);font-size:14.5px;margin-bottom:30px;max-width:52ch}
+  .nums{display:flex;gap:56px;flex-wrap:wrap}
+  .nums .n{font-family:var(--disp);font-weight:800;font-size:clamp(34px,4vw,46px);color:var(--accent);letter-spacing:-.02em}
+  .nums .c{color:var(--ink-2);font-size:13.5px;margin-top:4px}
+
+  /* ---- testimonial ---- */
+  .testi{padding:78px 0;text-align:center}
+  .testi-mark{font-family:var(--disp);font-size:72px;font-weight:800;color:var(--accent);opacity:.25;line-height:1;margin-bottom:-8px}
+  .avs{display:flex;justify-content:center;margin-bottom:26px}
+  .avs img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 14px rgba(20,18,37,.16);margin-left:-12px}
+  .avs img:first-child{margin-left:0}
+  .testi .q{font-family:var(--disp);font-weight:600;font-size:clamp(19px,2.2vw,25px);line-height:1.5;max-width:22ch;margin:0 auto 24px}
+  .testi .nm{font-weight:600;font-size:15px}
+  .testi .role{color:var(--ink-2);font-size:13px;margin-top:3px}
+
+  /* ---- updates ---- */
+  .updates{padding:16px 0 78px;background:var(--alt)}
+  .updates h2{text-align:center;font-weight:700;font-size:clamp(25px,2.9vw,32px);margin-bottom:42px}
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .post{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+  .post:hover{transform:translateY(-5px);box-shadow:0 22px 44px -26px rgba(20,18,37,.22);border-color:transparent}
+  .tag{display:inline-block;font-size:11.5px;font-weight:600;color:#8A5E00;border:1px solid var(--accent-soft);background:var(--accent-soft);border-radius:6px;padding:3px 9px;margin-bottom:16px}
+  .post h3{font-weight:600;font-size:17px;margin-bottom:8px}
+  .post .date{color:var(--ink-2);font-size:12.5px;margin-bottom:10px}
+  .post p{color:var(--ink-2);font-size:13.4px;line-height:1.6}
+
+  /* ---- CTA band ---- */
+  .ctaband{background:radial-gradient(120% 160% at 80% 0,#243a5c,var(--navy1) 45%,var(--navy2));color:#fff;text-align:center;padding:82px 0}
+  .ctaband h2{font-weight:800;font-size:clamp(27px,3.4vw,40px);margin-bottom:16px;white-space:nowrap}
+  .ctaband p{color:rgba(255,255,255,.72);font-size:15px;max-width:50ch;margin:0 auto 30px}
+  .ctaband .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* ---- footer ---- */
+  footer{background:var(--navy2);color:#b7b3d4}
+  footer .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;padding:64px 0 40px}
+  footer .brand b{font-family:var(--disp);color:#fff;font-weight:700;font-size:19px;display:block;margin-bottom:14px}
+  footer .brand p{font-size:12.8px;line-height:1.7;opacity:.72}
+  footer h5{color:#fff;font-weight:600;font-size:13px;margin-bottom:16px;letter-spacing:.02em}
+  footer ul{list-style:none;display:grid;gap:11px}
+  footer a{font-size:13px;opacity:.72;transition:opacity .2s}
+  footer a:hover{opacity:1}
+  footer .bottom{border-top:1px solid rgba(255,255,255,.08);padding:20px 0;font-size:12.3px;opacity:.6}
+
+  /* ---- text editor ---- */
+  #te-fab{position:fixed;left:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:8px;
+    font:600 13px/1 var(--body);color:#151B26;background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:11px 16px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.12);transition:transform .3s var(--ease),box-shadow .3s}
+  #te-fab:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.16)}
+  #te-fab.on{background:var(--accent);color:#18263E;border-color:var(--accent)}
+  #te-fab svg{width:15px;height:15px}
+  body.te-on [data-te]{cursor:text;outline:1.5px dashed rgba(255,174,0,.45);outline-offset:3px;border-radius:3px}
+  body.te-on [data-te]:hover{outline-color:var(--accent)}
+  body.te-on [data-te][contenteditable="true"]{outline:2px solid var(--accent);outline-offset:3px;background:rgba(255,174,0,.04)}
+  #te-tb{position:fixed;z-index:10000;display:none;align-items:center;gap:3px;background:#fff;border:1px solid var(--line);
+    border-radius:10px;padding:4px 5px;box-shadow:0 8px 28px rgba(0,0,0,.15)}
+  #te-tb button{border:0;background:none;color:var(--ink);border-radius:6px;cursor:pointer;font-weight:600;
+    line-height:1;padding:6px 9px;font-size:13px;transition:background .15s}
+  #te-tb button:hover{background:var(--alt)}
+  #te-tb button.on{background:var(--accent-soft);color:#8A5E00}
+  #te-tb .te-sep{width:1px;height:18px;background:var(--line);margin:0 3px}
+  #te-tb .te-sz{font:600 11px ui-monospace,monospace;color:var(--ink-2);min-width:38px;text-align:center}
+  #te-tb select{font:500 12px var(--body);border:1px solid var(--line);border-radius:6px;padding:5px 6px;background:#fff;color:var(--ink);outline:none;max-width:120px}
+  #te-tb input[type=color]{width:26px;height:26px;padding:0;border:1px solid var(--line);border-radius:6px;background:none;cursor:pointer;-webkit-appearance:none;appearance:none}
+  #te-tb input[type=color]::-webkit-color-swatch-wrapper{padding:2px}
+  #te-tb input[type=color]::-webkit-color-swatch{border:none;border-radius:4px}
+  #te-tb input[type=text]{font:500 12px var(--body);border:1px solid var(--line);border-radius:6px;padding:5px 6px;background:#fff;color:var(--ink);outline:none}
+  #te-tb input[type=text]:focus{border-color:var(--accent)}
+  /* save/load panel */
+  #te-panel{position:fixed;left:18px;bottom:58px;z-index:9999;display:none;width:260px;background:#fff;border:1px solid var(--line);
+    border-radius:12px;padding:14px;box-shadow:0 8px 28px rgba(0,0,0,.14);font-size:13px}
+  #te-panel.open{display:block}
+  #te-panel h4{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px}
+  #te-panel .te-row{display:flex;gap:6px;margin-bottom:8px}
+  #te-panel input[type=text]{flex:1;border:1px solid var(--line);border-radius:7px;padding:7px 9px;font:500 12px var(--body);outline:none;color:var(--ink)}
+  #te-panel input[type=text]:focus{border-color:var(--accent)}
+  #te-panel button{border:1px solid var(--line);background:var(--alt);border-radius:7px;padding:7px 10px;cursor:pointer;
+    font:500 12px var(--body);color:var(--ink);transition:background .15s}
+  #te-panel button:hover{background:var(--accent-soft);border-color:var(--accent)}
+  #te-panel .te-list{max-height:160px;overflow-y:auto;margin-top:6px}
+  #te-panel .te-item{display:flex;align-items:center;gap:6px;padding:6px 0;border-top:1px solid var(--line)}
+  #te-panel .te-item span{flex:1;font-weight:500;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #te-panel .te-item button{padding:4px 8px;font-size:11px}
+  #te-panel .te-item .te-del{background:none;border:0;color:#c0392b;cursor:pointer;font-size:14px;padding:2px 4px}
+  #te-panel .te-item .te-del:hover{color:#e74c3c}
+  #te-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,8px);z-index:10001;background:var(--ink);color:#fff;
+    border-radius:999px;padding:9px 18px;font:600 12px var(--body);opacity:0;pointer-events:none;transition:.25s var(--ease);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+  #te-toast.show{opacity:1;transform:translate(-50%,0)}
+  /* image editor (SVG-based) */
+  body.te-on img:not(.navlogo){cursor:pointer}
+  body.te-on .te-svg image{cursor:pointer}
+  img.te-src{visibility:hidden!important}
+  body.te-on .te-drop-target{outline:3px dashed var(--accent);outline-offset:-3px;background:rgba(255,174,0,.06)}
+  body.te-dropping{cursor:copy}
+  #te-xf{position:fixed;z-index:10000;display:none;pointer-events:none;outline:2px solid var(--accent);box-shadow:0 0 0 1px rgba(255,174,0,.25)}
+  #te-xf .h{position:absolute;width:12px;height:12px;background:#fff;border:2px solid var(--accent);border-radius:2px;pointer-events:auto;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+  #te-xf .h.nw{left:-7px;top:-7px;cursor:nwse-resize}
+  #te-xf .h.ne{right:-7px;top:-7px;cursor:nesw-resize}
+  #te-xf .h.se{right:-7px;bottom:-7px;cursor:nwse-resize}
+  #te-xf .h.sw{left:-7px;bottom:-7px;cursor:nesw-resize}
+  .te-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+  .te-svg image{pointer-events:auto}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;min-height:auto}.hero-r{min-height:340px}
+    .cards3 .grid,.svc,.posts{grid-template-columns:1fr}
+    .trust .grid,.services .top,.statband .grid{grid-template-columns:1fr;gap:34px}
+    footer .grid{grid-template-columns:1fr 1fr}
+    .menu{display:none}.burger{display:inline-flex}
+    .harrow{width:34px;height:34px}
+    .harrow svg{width:15px;height:15px}
+    .hprev{left:8px}.hnext{right:8px}
+  }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#top"><img class="navlogo" src="Logo-dark.png" alt="领阅科技 TextMind"></a>
+    <nav class="menu">
+      <a href="#top">首页</a>
+      <a href="#trust">关于</a>
+      <a href="#services">能力</a>
+      <a href="#services">解决方案 ▾</a>
+      <a href="#cta">联系我们</a>
+      <a class="btn btn-sm" href="#cta" style="margin-left:6px">预约演示</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151B26" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div class="mob" id="mobMenu">
+  <button class="mob-close" id="mobClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  <a href="#top" class="mob-link">首页</a>
+  <a href="#trust" class="mob-link">关于</a>
+  <a href="#services" class="mob-link">能力</a>
+  <a href="#services" class="mob-link">解决方案</a>
+  <a href="#cta" class="mob-link">联系我们</a>
+  <a class="btn" href="#cta" class="mob-link" style="margin-top:12px">预约演示</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-l">
+    <div class="inner">
+      <span class="pill">👋 你好，我们是领阅科技</span>
+      <div class="htitles">
+        <h1 class="on">为金融机构打造<br>可交付的垂域 AI</h1>
+        <h1>秒级研报摘要<br>让阅读留给判断</h1>
+        <h1>投研协同<br>一个工作台上完成</h1>
+        <h1>风险预警<br>全程留痕可追溯</h1>
+      </div>
+      <div class="hdescs">
+        <p class="hdesc on">面向证券、基金与财富管理机构，从信号到决策，让每一次判断都有据可依、可追溯、可交付。</p>
+        <p class="hdesc">汇聚研报、公告与舆情，秒级生成结构化摘要与关键要点，把一整天的阅读压缩成几分钟。</p>
+        <p class="hdesc">投研团队在同一个工作台上协同，观点、数据与结论彼此打通，讨论不再依赖零散的文档。</p>
+        <p class="hdesc">实时风险画像与异常预警，每一条结论都能回到原始研报与数据，全程留痕、随时可查。</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#cta">立即开始</a><a class="btn btn-ghost" href="#trust">了解更多</a></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hcar">
+      <div class="htrack">
+        <div class="hslide"><img src="img/r1-hero.jpg" alt="团队协作"></div>
+        <div class="hslide"><img src="img/r1-hero2.jpg" alt=""></div>
+        <div class="hslide"><img src="img/r1-hero3.jpg" alt=""></div>
+        <div class="hslide"><img src="img/r1-hero4.jpg" alt=""></div>
+      </div>
+      <div class="hdots">
+        <button class="on" aria-label="幻灯片 1"></button>
+        <button aria-label="幻灯片 2"></button>
+        <button aria-label="幻灯片 3"></button>
+        <button aria-label="幻灯片 4"></button>
+      </div>
+      <button class="harrow hprev" aria-label="上一张"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="harrow hnext" aria-label="下一张"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- 3 OFFERINGS -->
+<section class="cards3">
+  <div class="wrap grid rv">
+    <div class="ocard">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg></div>
+      <h3>智能研究</h3>
+      <p>汇聚研报、公告与舆情，秒级生成结构化摘要与关键要点，把阅读留给判断。</p>
+    </div>
+    <div class="ocard">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V9l5-4 6 5 5-4v13"/><path d="M4 19h16"/></svg></div>
+      <h3>投研辅助</h3>
+      <p>从信号到策略，辅助资产配置与择时决策，推理链路全程可解释。</p>
+    </div>
+    <div class="ocard">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <h3>风险合规</h3>
+      <p>实时风险画像与异常预警，每一步留痕，合规可追溯。</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" id="trust">
+  <div class="wrap grid rv">
+    <div>
+      <h2>机构信赖领阅<br>我们交付结果</h2>
+      <div class="sf">
+        <div>
+          <div class="sf-ic"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <h4>垂域理解</h4>
+          <p>深耕金融语料，术语、语境与上下文都拿捏得准。</p>
+        </div>
+        <div>
+          <div class="sf-ic"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+          <h4>结论可解释</h4>
+          <p>每条结论都能溯源到原始研报与数据。</p>
+        </div>
+        <div>
+          <div class="sf-ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
+          <h4>稳定可靠</h4>
+          <p>高性能、稳定、安全，满足机构级要求。</p>
+        </div>
+        <div>
+          <div class="sf-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+          <h4>专属支持</h4>
+          <p>专属团队随时响应，陪伴落地每一步。</p>
+        </div>
+      </div>
+    </div>
+    <div class="frame"><img src="img/r1-trust.jpg" alt="洽谈"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="top rv">
+      <h2>专业能力<br>助力机构持续增长</h2>
+      <p>从策略到执行，领阅的能力覆盖研究、投研与风控的每个环节，提供可靠、高质量的金融垂域解决方案。</p>
+    </div>
+    <div class="svc rv">
+      <div class="scard">
+        <div class="art"><svg viewBox="0 0 64 64" fill="none"><rect x="10" y="14" width="44" height="30" rx="4" fill="#D8DAE2"/><rect x="10" y="14" width="44" height="9" rx="4" fill="#18263E"/><rect x="16" y="30" width="20" height="4" rx="2" fill="#fff"/><rect x="16" y="37" width="13" height="4" rx="2" fill="#fff"/><rect x="24" y="46" width="16" height="6" rx="3" fill="#FFAE00"/></svg></div>
+        <div class="bd"><h3>智能研究</h3><p>秒级研报摘要与要点提炼，让团队专注在判断本身。</p></div>
+      </div>
+      <div class="scard">
+        <div class="art"><svg viewBox="0 0 64 64" fill="none"><path d="M14 40l10-4 8 6 8-10 10 4" stroke="#18263E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="36" r="4" fill="#FFAE00"/><circle cx="40" cy="32" r="4" fill="#D8DAE2"/><rect x="12" y="46" width="40" height="5" rx="2.5" fill="#D8DAE2"/></svg></div>
+        <div class="bd"><h3>投研辅助</h3><p>信号驱动的配置与择时建议，辅助更稳健的决策。</p></div>
+      </div>
+      <div class="scard">
+        <div class="art"><svg viewBox="0 0 64 64" fill="none"><path d="M32 12l16 7v9c0 10-7 15-16 18-9-3-16-8-16-18v-9z" fill="#D8DAE2"/><path d="M32 12l16 7v9c0 10-7 15-16 18" fill="#FFAE00"/><path d="m25 31 5 5 9-9" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="bd"><h3>风险与合规</h3><p>实时监控、智能预警与全程可追溯的留痕。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<section class="logos rv">
+  <div class="wrap">
+    <div class="lbl">已服务 <b>40+</b> 家领先金融机构</div>
+    <div class="logostrip">
+      <span><svg viewBox="0 0 24 24"><path d="M4 18 10 6l4 8 2-4 4 8z"/></svg>恒晟 HENGSHENG</span>
+      <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9 12h6"/></svg>睿信 RUIXIN</span>
+      <span><svg viewBox="0 0 24 24"><path d="m3 21 18-9L3 3v7l10 2-10 2z"/></svg>远航 YUANHANG</span>
+      <span><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>金岩 JINYAN</span>
+      <span><svg viewBox="0 0 24 24"><path d="m12 3 2.6 6H21l-5 4 2 7-6-4-6 4 2-7-5-4h6.4z"/></svg>星图 XINGTU</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="statband">
+  <div class="wrap grid rv">
+    <div class="frame"><img src="img/r1-stats.jpg" alt="团队"></div>
+    <div>
+      <h2>我们专注每一次判断<br>交付可靠结果</h2>
+      <p>每一个数字背后，都是对稳定、准确与可追溯的坚持。从服务机构到处理文档，这些成果印证了客户对领阅的信任。</p>
+      <div class="nums">
+        <div><div class="n">40+</div><div class="c">服务机构</div></div>
+        <div><div class="n">10万+</div><div class="c">日均处理文档</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testi">
+  <div class="wrap rv">
+    <div class="testi-mark">"</div>
+    <div class="avs">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%23c9bcfb'/%3E%3Ccircle cx='60' cy='46' r='22' fill='%23fff'/%3E%3Cpath d='M18 116c0-24 20-34 42-34s42 10 42 34z' fill='%23fff'/%3E%3C/svg%3E" alt="">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%238b73f5'/%3E%3Ccircle cx='60' cy='46' r='22' fill='%23fff'/%3E%3Cpath d='M18 116c0-24 20-34 42-34s42 10 42 34z' fill='%23fff'/%3E%3C/svg%3E" alt="">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%236C4CF1'/%3E%3Ccircle cx='60' cy='46' r='22' fill='%23fff'/%3E%3Cpath d='M18 116c0-24 20-34 42-34s42 10 42 34z' fill='%23fff'/%3E%3C/svg%3E" alt="">
+    </div>
+    <p class="q">"领阅的研究助手让我们的效率有了质的提升——从早会准备到策略复盘，每一步都更快、更有据可依。"</p>
+    <div class="nm">陈铭</div>
+    <div class="role">某券商 · 投研负责人</div>
+  </div>
+</section>
+
+<!-- UPDATES -->
+<section class="updates rv" id="updates">
+  <div class="wrap">
+    <h2>了解领阅的最新动态</h2>
+    <div class="posts">
+      <div class="post">
+        <span class="tag">洞察</span>
+        <h3>从信号到决策：垂域 AI 如何落地</h3>
+        <div class="date">2026年6月18日</div>
+        <p>拆解金融垂域 AI 从数据到判断的完整链路。</p>
+      </div>
+      <div class="post">
+        <span class="tag">洞察</span>
+        <h3>研报摘要背后的技术</h3>
+        <div class="date">2026年5月9日</div>
+        <p>秒级摘要是如何做到既快又准的。</p>
+      </div>
+      <div class="post">
+        <span class="tag">洞察</span>
+        <h3>可追溯，如何真正实现</h3>
+        <div class="date">2026年4月21日</div>
+        <p>让每一条结论都能回到原文与数据。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ctaband rv" id="cta">
+  <div class="wrap">
+    <h2>让每一次金融判断都有据可依</h2>
+    <p style="font-style:normal;opacity:.85">contact@textmind.ai&ensp;·&ensp;深圳市南山区科技园</p>
+    <div class="btn-row">
+      <a class="btn" href="#cta">预约演示</a>
+      <a class="btn btn-ghost" href="#services">了解产品</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap grid">
+    <div class="brand">
+      <b>领阅科技</b>
+      <p>由领阅科技提供支持 · 版权所有<br>金融垂域 AI · 从信号到决策</p>
+    </div>
+    <div>
+      <h5>公司</h5>
+      <ul><li><a href="#trust">关于我们</a></li><li><a href="#trust">团队</a></li><li><a href="#cta">招聘</a></li><li><a href="#updates">新闻</a></li></ul>
+    </div>
+    <div>
+      <h5>产品</h5>
+      <ul><li><a href="#services">智能研究</a></li><li><a href="#services">投研辅助</a></li><li><a href="#services">风险合规</a></li><li><a href="#services">开放 API</a></li></ul>
+    </div>
+    <div>
+      <h5>条款</h5>
+      <ul><li><a href="#cta">隐私政策</a></li><li><a href="#cta">服务条款</a></li><li><a href="#cta">数据安全</a></li><li><a href="#cta">常见问题</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap"><div class="bottom">© 2026 领阅科技 TextMind. 保留所有权利。</div></div>
+</footer>
+
+<!-- TEXT EDITOR FAB -->
+<button id="te-fab" title="Shift+E to toggle">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6V5h16v1M12 5v14M9 19h6"/></svg>
+  <span>编辑</span>
+</button>
+
+<!-- SAVE/LOAD PANEL -->
+<div id="te-panel">
+  <h4>预设</h4>
+  <div class="te-row">
+    <input type="text" id="te-name" placeholder="命名此样式…">
+    <button id="te-save">保存</button>
+  </div>
+  <div class="te-row">
+    <button id="te-export" style="flex:1">↓ 导出预设</button>
+    <button id="te-import" style="flex:1">↑ 导入预设</button>
+    <input type="file" id="te-file" accept=".json" style="display:none">
+  </div>
+  <div class="te-row">
+    <button id="te-export-site" style="flex:1">↓ 导出网站为 HTML</button>
+  </div>
+  <div class="te-list" id="te-list"></div>
+</div>
+
+<!-- TOAST -->
+<div id="te-toast"></div>
+
+<!-- TEXT EDITOR TOOLBAR -->
+<div id="te-tb">
+  <select id="te-font" title="Font family">
+    <option value="">Font</option>
+    <option>Sora</option><option>Inter</option><option>Space Grotesk</option>
+    <option>IBM Plex Sans</option><option>Public Sans</option><option>Archivo</option>
+    <option>Georgia</option><option>Fraunces</option><option>Playfair Display</option>
+    <option>system-ui</option>
+    <option value="__custom__">Custom…</option>
+  </select>
+  <input type="text" id="te-custom-font" placeholder="Arial, Comic Sans…" title="Type a font name and press Enter" style="display:none;width:110px">
+  <button id="te-load-fonts" title="加载已安装的系统字体" style="font-size:11px;padding:6px 7px">加载字体</button>
+  <span class="te-sep"></span>
+  <button id="te-minus" title="Smaller">−</button>
+  <span class="te-sz" id="te-sz">16px</span>
+  <button id="te-plus" title="Larger">+</button>
+  <span class="te-sep"></span>
+  <button id="te-bold" title="Bold" style="font-weight:800">B</button>
+  <button id="te-italic" title="Italic" style="font-style:italic;font-family:Georgia,serif">I</button>
+  <span class="te-sep"></span>
+  <input type="color" id="te-color" value="#FFAE00" title="Text color (applies to selection)">
+</div>
+
+<script>
+  /* sticky header */
+  addEventListener('scroll', function () { document.getElementById('top').classList.toggle('stuck', scrollY > 8); }, { passive: true });
+
+  /* scroll reveal */
+  window.__teInitScrollReveal = function () {
+    var els = document.querySelectorAll('.rv');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  };
+  window.__teInitScrollReveal();
+
+  /* mobile menu */
+  (function () {
+    var btn = document.getElementById('burgerBtn');
+    var mob = document.getElementById('mobMenu');
+    var close = document.getElementById('mobClose');
+    if (!btn || !mob) return;
+    btn.addEventListener('click', function () { mob.classList.add('open'); });
+    close.addEventListener('click', function () { mob.classList.remove('open'); });
+    mob.querySelectorAll('.mob-link').forEach(function (a) { a.addEventListener('click', function () { mob.classList.remove('open'); }); });
+  })();
+
+  /* hero carousel */
+  window.__teInitCarousel = function () {
+    var car = document.querySelector('.hcar'); if (!car) return;
+    var track = car.querySelector('.htrack');
+    var dots = [].slice.call(car.querySelectorAll('.hdots button'));
+    var descs = [].slice.call(document.querySelectorAll('.hdesc'));
+    var real = [].slice.call(track.children); var n = real.length; if (n < 2) return;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var clone = real[0].cloneNode(true); track.appendChild(clone);
+    var i = 0, t = null, st = null, DUR = 800;
+    function render(anim) {
+      track.style.transition = anim ? ('transform .8s var(--ease)') : 'none';
+      track.style.transform = 'translateX(' + (-i * 100) + '%)';
+      var a = i % n;
+      dots.forEach(function (d, k) { d.classList.toggle('on', k === a); });
+      var titles = document.querySelectorAll('.hero-l h1');
+      titles.forEach(function (t2, k) { t2.classList.toggle('on', k === a); });
+      descs.forEach(function (d, k) { d.classList.toggle('on', k === a); });
+    }
+    function next() { i++; render(true); if (i === n) { clearTimeout(st); st = setTimeout(function () { i = 0; render(false); }, DUR + 40); } }
+    function prev() {
+      clearTimeout(st);
+      if (i === 0) { i = n - 1; render(false); }
+      else { i--; render(true); }
+    }
+    function toSlide(k) { clearTimeout(st); if (i >= n) i = 0; i = k; render(true); }
+    function start() { if (reduce) return; stop(); t = setInterval(next, 2000); }
+    function stop() { if (t) { clearInterval(t); t = null; } }
+    window.__teCarouselStart = start;
+    window.__teCarouselStop = stop;
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { toSlide(k); start(); }); });
+    car.querySelector('.hprev').addEventListener('click', function () { prev(); start(); });
+    car.querySelector('.hnext').addEventListener('click', function () { next(); start(); });
+    car.addEventListener('mouseenter', stop);
+    car.addEventListener('mouseleave', start);
+    /* pause when editing text in the hero section */
+    var hero = car.closest('.hero') || car.parentElement;
+    hero.addEventListener('focusin', function () { stop(); });
+    hero.addEventListener('focusout', function () {
+      /* only restart if focus left the hero entirely */
+      setTimeout(function () { if (!hero.contains(document.activeElement) && !document.querySelector('[contenteditable="true"]')) start(); }, 100);
+    });
+    /* pause while the page/window is not active (e.g. OS file picker open) */
+    function anythingSelected() {
+      var xf = document.getElementById('te-xf');
+      return !!(document.querySelector('[contenteditable="true"]') || (xf && getComputedStyle(xf).display !== 'none'));
+    }
+    window.addEventListener('blur', stop);
+    window.addEventListener('focus', function () { if (!anythingSelected()) start(); });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else if (!anythingSelected()) start(); });
+    render(false); start();
+  };
+  window.__teInitCarousel();
+  /* ---- text editor ---- */
+  (function () {
+    var fab = document.getElementById('te-fab');
+    if (!fab) return; /* exported file has no editor UI; skip editor init */
+    var tb = document.getElementById('te-tb');
+    var fontSel = document.getElementById('te-font');
+    var customFont = document.getElementById('te-custom-font');
+    var loadFontsBtn = document.getElementById('te-load-fonts');
+    var szLabel = document.getElementById('te-sz');
+    var colorIn = document.getElementById('te-color');
+    var boldBtn = document.getElementById('te-bold');
+    var italicBtn = document.getElementById('te-italic');
+    var on = false, curEl = null, lastRange = null, pickingColor = false;
+    var BLOCK = /^(H[1-6]|P|LI|BLOCKQUOTE|FIGCAPTION|TD|TH|DT|DD|DIV)$/;
+    var UI = '#te-fab,#te-tb,#te-load-fonts';
+
+    /* mark editable targets */
+    function markTargets(v) {
+      document.querySelectorAll('h1,h2,h3,h4,h5,p,li,span,a,td,th,dt,dd,figcaption,label,b,strong,em,i,cite').forEach(function (el) {
+        if (el.closest(UI) || el.closest('header .menu') || el.closest('.mob') || el.closest('script') || el.closest('style')) return;
+        if (v) el.setAttribute('data-te', ''); else el.removeAttribute('data-te');
+      });
+    }
+
+    function toggle() {
+      on = !on;
+      fab.classList.toggle('on', on);
+      document.body.classList.toggle('te-on', on);
+      markTargets(on);
+      if (!on) {
+        deselect();
+        panelOpen = false;
+        panel.classList.remove('open');
+      } else {
+        panelOpen = true;
+        panel.classList.add('open');
+      }
+    }
+    fab.addEventListener('click', toggle);
+    document.addEventListener('keydown', function (e) {
+      if (e.shiftKey && (e.key === 'E' || e.key === 'e') && !isEditing()) { e.preventDefault(); toggle(); }
+      if (e.key === 'Escape' && on) toggle();
+    });
+    function isEditing() { var a = document.activeElement; return a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA' || a.isContentEditable); }
+
+    function pickText(t) {
+      if (!t || t.nodeType !== 1 || t.closest(UI)) return null;
+      if (t.tagName === 'IMG' || (t.tagName === 'image' && t.namespaceURI === 'http://www.w3.org/2000/svg')) return null;
+      var e = t, h = 0;
+      while (e && e !== document.body && h < 8) {
+        if (e.closest && e.closest('header .menu, .mob, button, input, textarea, select, label')) return null;
+        if (BLOCK.test(e.tagName) && e.textContent.trim()) return e;
+        e = e.parentElement; h++;
+      }
+      return null;
+    }
+
+    function select(el) {
+      if (curEl === el) return;
+      deselect();
+      curEl = el;
+      el.setAttribute('contenteditable', 'true');
+      el.focus();
+      posToolbar();
+      if (window.__teCarouselStop) window.__teCarouselStop();
+    }
+    function deselect() {
+      if (curEl) { curEl.removeAttribute('contenteditable'); curEl = null; }
+      hideToolbar();
+      if (window.__teCarouselStart) window.__teCarouselStart();
+    }
+
+    document.addEventListener('click', function (e) {
+      if (!on) return;
+      if (e.target.closest(UI)) return;
+      var el = pickText(e.target);
+      if (el) { e.preventDefault(); select(el); return; }
+      /* don't deselect if the user dragged a selection that is still inside/partially inside the active text box */
+      var s = window.getSelection();
+      if (curEl && s && s.rangeCount && (curEl.contains(s.anchorNode) || curEl.contains(s.focusNode))) return;
+      deselect();
+    }, true);
+
+    document.addEventListener('focusout', function (e) {
+      if (!on || !curEl) return;
+      if (pickingColor) return;
+      var rel = e.relatedTarget;
+      if (rel && (rel.closest(UI) || curEl.contains(rel))) return;
+      setTimeout(function () { if (curEl && !curEl.contains(document.activeElement)) deselect(); }, 120);
+    }, true);
+
+    /* track selection for partial color; constrain selection to active text box */
+    document.addEventListener('selectionchange', function () {
+      if (!curEl) return;
+      var s = window.getSelection();
+      if (!s || !s.rangeCount) return;
+      var r = s.getRangeAt(0);
+      var inside = curEl.contains(r.startContainer) && curEl.contains(r.endContainer);
+      if (!inside) {
+        /* selection leaked outside — restore last valid range or collapse to start of text box */
+        s.removeAllRanges();
+        if (lastRange && curEl.contains(lastRange.startContainer) && curEl.contains(lastRange.endContainer)) {
+          s.addRange(lastRange);
+        } else {
+          var nr = document.createRange();
+          nr.selectNodeContents(curEl);
+          nr.collapse(true);
+          s.addRange(nr);
+        }
+        return;
+      }
+      if (!s.isCollapsed) lastRange = r.cloneRange();
+    });
+
+    /* toolbar positioning */
+    function posToolbar() {
+      if (!curEl) return;
+      tb.style.display = 'flex';
+      updateSz();
+      var r = curEl.getBoundingClientRect();
+      var top = r.top - tb.offsetHeight - 10;
+      if (top < 8) top = r.bottom + 10;
+      tb.style.left = Math.max(8, Math.min(r.left, window.innerWidth - tb.offsetWidth - 8)) + 'px';
+      tb.style.top = top + 'px';
+    }
+    function hideToolbar() { tb.style.display = 'none'; }
+    window.addEventListener('scroll', function () { if (curEl) posToolbar(); }, true);
+    window.addEventListener('resize', function () { if (curEl) posToolbar(); });
+
+    /* font size */
+    function curSize() {
+      if (!curEl) return 16;
+      var s = window.getSelection();
+      var ref = (s && s.rangeCount && !s.isCollapsed && curEl.contains(s.anchorNode))
+        ? (s.anchorNode.nodeType === 1 ? s.anchorNode : s.anchorNode.parentElement) : curEl;
+      return Math.round(parseFloat(getComputedStyle(ref).fontSize) || 16);
+    }
+    function updateSz() { szLabel.textContent = curSize() + 'px'; }
+
+    function bumpSize(d) {
+      if (!curEl) return;
+      var cur = curSize(), nv = Math.max(8, Math.min(200, cur + d));
+      applyToSelection('font-size', nv + 'px');
+      updateSz();
+    }
+    document.getElementById('te-minus').addEventListener('click', function (e) { e.preventDefault(); bumpSize(-1); });
+    document.getElementById('te-plus').addEventListener('click', function (e) { e.preventDefault(); bumpSize(1); });
+
+    /* bold / italic */
+    function execFmt(cmd) {
+      if (!curEl) return;
+      curEl.focus();
+      try { document.execCommand('styleWithCSS', false, true); } catch (x) {}
+      try { document.execCommand(cmd, false, null); } catch (x) {}
+    }
+    boldBtn.addEventListener('click', function (e) { e.preventDefault(); execFmt('bold'); });
+    italicBtn.addEventListener('click', function (e) { e.preventDefault(); execFmt('italic'); });
+
+    /* color — applies to selection if there is one, else whole element */
+    colorIn.addEventListener('mousedown', function () { pickingColor = true; });
+    colorIn.addEventListener('input', function () {
+      if (!curEl) return;
+      applyColor(colorIn.value);
+    });
+    colorIn.addEventListener('change', function () {
+      pickingColor = false;
+      if (!curEl) return;
+      applyColor(colorIn.value);
+    });
+    colorIn.addEventListener('blur', function () { pickingColor = false; });
+
+    function applyColor(col) {
+      if (!curEl) return;
+      /* restore the saved selection so execCommand can apply to it */
+      if (lastRange && curEl.contains(lastRange.startContainer) && curEl.contains(lastRange.endContainer)) {
+        var s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(lastRange);
+      }
+      /* check if there's an active selection inside the element */
+      var s2 = window.getSelection();
+      var hasSelection = s2 && s2.rangeCount && !s2.isCollapsed && curEl.contains(s2.anchorNode) && curEl.contains(s2.focusNode);
+      curEl.focus();
+      try { document.execCommand('styleWithCSS', false, true); } catch (x) {}
+      if (hasSelection) {
+        /* apply color to just the highlighted portion */
+        try { document.execCommand('foreColor', false, col); } catch (x) {}
+      } else {
+        /* no selection — apply to whole element */
+        curEl.style.color = col;
+      }
+      /* re-save the selection after execCommand modifies the DOM */
+      var s3 = window.getSelection();
+      if (s3 && s3.rangeCount && !s3.isCollapsed && curEl.contains(s3.anchorNode)) {
+        lastRange = s3.getRangeAt(0).cloneRange();
+      }
+    }
+
+    /* font family */
+    function applyFont(fam) {
+      if (!curEl || !fam) return;
+      fam = fam.trim();
+      if (!fam) return;
+      /* only load from Google if it looks like a Google Font (single word or capitalized) */
+      if (!/^system-ui$|^sans-serif$|^serif$|^monospace$|^cursive$|^fantasy$/i.test(fam)) {
+        if (!document.querySelector('link[href*="' + fam.replace(/ /g, '+') + '"]')) {
+          var l = document.createElement('link');
+          l.rel = 'stylesheet';
+          l.href = 'https://fonts.googleapis.com/css2?family=' + fam.replace(/ /g, '+') + ':wght@400;500;600;700;800&display=swap';
+          document.head.appendChild(l);
+        }
+      }
+      var qfam = fam.indexOf(' ') >= 0 ? '"' + fam + '"' : fam;
+      applyToSelection('font-family', qfam + ',system-ui,sans-serif');
+    }
+    fontSel.addEventListener('change', function () {
+      if (fontSel.value === '__custom__') {
+        fontSel.value = '';
+        customFont.style.display = 'inline-block';
+        customFont.focus();
+        return;
+      }
+      applyFont(fontSel.value);
+    });
+    customFont.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { applyFont(customFont.value); customFont.style.display = 'none'; }
+      if (e.key === 'Escape') { customFont.value = ''; customFont.style.display = 'none'; }
+    });
+    customFont.addEventListener('blur', function () {
+      if (customFont.value.trim()) applyFont(customFont.value);
+      customFont.style.display = 'none';
+    });
+
+    /* load installed system fonts via Local Font Access API */
+    loadFontsBtn.addEventListener('click', function () {
+      if (!('queryLocalFonts' in window)) {
+        toast('System fonts not available in this browser');
+        customFont.style.display = 'inline-block';
+        customFont.focus();
+        return;
+      }
+      window.queryLocalFonts().then(function (fonts) {
+        var families = [];
+        fonts.forEach(function (f) { if (families.indexOf(f.family) < 0) families.push(f.family); });
+        families.sort();
+        var customOpt = fontSel.querySelector('option[value="__custom__"]');
+        families.forEach(function (fam) {
+          var opt = document.createElement('option');
+          opt.textContent = fam;
+          opt.value = fam;
+          fontSel.insertBefore(opt, customOpt);
+        });
+        toast('Loaded ' + families.length + ' system fonts');
+      }).catch(function (e) {
+        toast('Could not access system fonts');
+        customFont.style.display = 'inline-block';
+        customFont.focus();
+      });
+    });
+
+    function applyToSelection(prop, val) {
+      if (!curEl) return;
+      var s = window.getSelection();
+      if (s && s.rangeCount && !s.isCollapsed && curEl.contains(s.anchorNode) && curEl.contains(s.focusNode)) {
+        var range = s.getRangeAt(0);
+        var span = document.createElement('span');
+        span.style[prop.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); })] = val;
+        try { range.surroundContents(span); }
+        catch (x) { var f = range.extractContents(); span.appendChild(f); range.insertNode(span); }
+        var nr = document.createRange(); nr.selectNodeContents(span);
+        s.removeAllRanges(); s.addRange(nr);
+      } else {
+        curEl.style[prop.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); })] = val;
+      }
+    }
+
+    /* ---- save / load ---- */
+    var STORE_KEY = 'te:loadouts:' + location.pathname;
+    var panel = document.getElementById('te-panel');
+    var nameIn = document.getElementById('te-name');
+    var listEl = document.getElementById('te-list');
+    var toastEl = document.getElementById('te-toast');
+    var toastT = null;
+    var panelOpen = false;
+
+    function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 1600); }
+
+    function getContent() {
+      /* grab all page content, excluding editor UI */
+      var out = [];
+      document.body.querySelectorAll(':scope > *').forEach(function (el) {
+        if (el.id && /^(te-|dm-|db-)/.test(el.id)) return;
+        if (el.id === 'mobMenu') return;
+        if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') return;
+        var c = el.cloneNode(true);
+        c.querySelectorAll('[data-te]').forEach(function (x) { x.removeAttribute('data-te'); });
+        c.querySelectorAll('[contenteditable]').forEach(function (x) { x.removeAttribute('contenteditable'); });
+        out.push(c.outerHTML);
+      });
+      return out.join('\n');
+    }
+
+    function loadStore() { try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch (e) { return {}; } }
+    function saveStore(o) { try { localStorage.setItem(STORE_KEY, JSON.stringify(o)); } catch (e) {} }
+
+    function refreshList() {
+      var store = loadStore(), keys = Object.keys(store).sort();
+      listEl.innerHTML = '';
+      if (!keys.length) { listEl.innerHTML = '<div style="color:var(--ink-2);font-size:12px;padding:8px 0">尚无保存的预设。</div>'; return; }
+      keys.forEach(function (name) {
+        var item = document.createElement('div'); item.className = 'te-item';
+        var sp = document.createElement('span'); sp.textContent = name;
+        var ldBtn = document.createElement('button'); ldBtn.textContent = '加载';
+        ldBtn.addEventListener('click', function () { applyLoadout(store[name]); toast('已加载：' + name); });
+        var delBtn = document.createElement('button'); delBtn.className = 'te-del'; delBtn.textContent = '×';
+        delBtn.addEventListener('click', function () { var s = loadStore(); delete s[name]; saveStore(s); refreshList(); toast('已删除'); });
+        item.appendChild(sp); item.appendChild(ldBtn); item.appendChild(delBtn);
+        listEl.appendChild(item);
+      });
+    }
+
+    function applyLoadout(html) {
+      /* remove current content */
+      document.body.querySelectorAll(':scope > *').forEach(function (el) {
+        if (el.id && /^(te-|dm-|db-)/.test(el.id)) return;
+        if (el.id === 'mobMenu' || el.id === 'te-panel' || el.id === 'te-toast' || el.id === 'te-fab' || el.id === 'te-tb') return;
+        if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') return;
+        el.remove();
+      });
+      /* insert saved HTML before scripts */
+      var tmp = document.createElement('div'); tmp.innerHTML = html;
+      var ref = document.body.querySelector('script');
+      while (tmp.firstChild) document.body.insertBefore(tmp.firstChild, ref);
+      /* re-init editor targets if edit mode is on */
+      if (on) { deselect(); markTargets(true); }
+      /* re-init scroll reveal */
+      document.querySelectorAll('.rv').forEach(function (el) { el.classList.remove('in'); });
+      if (window.__teInitScrollReveal) window.__teInitScrollReveal();
+      /* re-init carousel */
+      if (window.__teInitCarousel) window.__teInitCarousel();
+    }
+
+    document.getElementById('te-save').addEventListener('click', function () {
+      var name = nameIn.value.trim();
+      if (!name) { nameIn.focus(); toast('请先命名'); return; }
+      var store = loadStore(); store[name] = getContent(); saveStore(store);
+      nameIn.value = ''; refreshList(); toast('已保存：' + name);
+    });
+
+    document.getElementById('te-export').addEventListener('click', function () {
+      var name = nameIn.value.trim() || '预设';
+      var blob = new Blob([JSON.stringify({ name: name, html: getContent() }, null, 2)], { type: 'application/json' });
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name + '.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a); toast('已导出');
+    });
+
+    document.getElementById('te-import').addEventListener('click', function () { document.getElementById('te-file').click(); });
+    document.getElementById('te-file').addEventListener('change', function (e) {
+      var f = e.target.files && e.target.files[0]; if (!f) return;
+      var rd = new FileReader();
+      rd.onload = function () {
+        try {
+          var d = JSON.parse(rd.result);
+          var name = d.name || '导入的预设';
+          var store = loadStore(); store[name] = d.html || d; saveStore(store);
+          refreshList(); toast('已导入：' + name);
+        } catch (x) { toast('无效文件'); }
+      };
+      rd.readAsText(f); e.target.value = '';
+    });
+
+    document.getElementById('te-export-site').addEventListener('click', function () {
+      var clone = document.documentElement.cloneNode(true);
+      /* strip editor UI */
+      ['#te-fab','#te-tb','#te-panel','#te-toast','#te-xf','#te-mask'].forEach(function(s) {
+        var el = clone.querySelector(s); if (el) el.remove();
+      });
+      /* clean editor states */
+      clone.querySelectorAll('[contenteditable]').forEach(function(el) { el.removeAttribute('contenteditable'); });
+      clone.querySelectorAll('[data-te]').forEach(function(el) { el.removeAttribute('data-te'); });
+      clone.body.classList.remove('te-on', 'te-dropping');
+      var blob = new Blob(['<!DOCTYPE html>\n' + clone.outerHTML], { type: 'text/html' });
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'textmind-site.html';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a); toast('网站已导出');
+    });
+
+    refreshList();
+
+    /* ==== IMAGE EDITOR — SVG-BASED ====
+     * HTML images cannot be freely transformed without layout/reflow issues.
+     * When selected, an inline SVG is placed inside the image's parent. The SVG
+     * <image> element is edited directly and stays in place after deselect, so
+     * there is no conversion back to CSS that can shoot the image elsewhere.
+     */
+    var imgSel = null, xfEl = null, svgEl = null, svgImg = null;
+    var UI = '#te-fab,#te-tb,#te-load-fonts,#te-panel,#te-toast,#te-xf';
+    var hist = [], ptr = -1;
+
+    /* build overlay handles */
+    xfEl = document.createElement('div'); xfEl.id = 'te-xf';
+    ['nw','ne','se','sw'].forEach(function(d) {
+      var h = document.createElement('div'); h.className = 'h ' + d;
+      h.addEventListener('mousedown', startResize);
+      xfEl.appendChild(h);
+    });
+    document.body.appendChild(xfEl);
+
+    function setSvgImg(x, y, w, h) {
+      if (!svgImg) return;
+      svgImg.setAttribute('x', x);
+      svgImg.setAttribute('y', y);
+      svgImg.setAttribute('width', Math.max(1, w));
+      svgImg.setAttribute('height', Math.max(1, h));
+    }
+
+    function posOverlay() {
+      if (!svgImg) { xfEl.style.display = 'none'; return; }
+      var r = svgImg.getBoundingClientRect();
+      xfEl.style.display = 'block';
+      xfEl.style.left = r.left + 'px';
+      xfEl.style.top = r.top + 'px';
+      xfEl.style.width = r.width + 'px';
+      xfEl.style.height = r.height + 'px';
+    }
+
+    function findOriginalImg(svg) {
+      var p = svg && svg.parentElement;
+      if (!p) return null;
+      return p.querySelector('img.te-src') || null;
+    }
+
+    /* ---- select ---- */
+    function sel(img) {
+      desel();
+      var p = img.parentElement;
+      /* ensure parent clips */
+      p.style.overflow = 'hidden';
+      if (getComputedStyle(p).position === 'static') p.style.position = 'relative';
+
+      if (img.tagName === 'image' && img.namespaceURI === 'http://www.w3.org/2000/svg') {
+        /* re-selecting an existing SVG image */
+        svgImg = img;
+        svgEl = svgImg.ownerSVGElement;
+        imgSel = findOriginalImg(svgEl);
+      } else {
+        /* selecting a normal <img> — create SVG copy */
+        imgSel = img;
+        img.classList.add('te-src');
+        var pRect = p.getBoundingClientRect();
+        svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svgEl.classList.add('te-svg');
+        svgEl.setAttribute('viewBox', '0 0 ' + Math.round(pRect.width) + ' ' + Math.round(pRect.height));
+        svgEl.setAttribute('overflow', 'hidden');
+        p.appendChild(svgEl);
+        var rect = img.getBoundingClientRect();
+        svgImg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+        svgImg.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', img.src);
+        svgImg.setAttribute('href', img.src);
+        svgImg.setAttribute('x', rect.left - pRect.left);
+        svgImg.setAttribute('y', rect.top - pRect.top);
+        svgImg.setAttribute('width', rect.width);
+        svgImg.setAttribute('height', rect.height);
+        svgImg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+        svgEl.appendChild(svgImg);
+        /* hide original (keeps layout space) */
+      }
+      posOverlay();
+      svgImg._justSel = true;
+      setTimeout(function () { if (svgImg) svgImg._justSel = false; }, 0);
+      hist = []; ptr = -1; snap();
+      if (window.__teCarouselStop) window.__teCarouselStop();
+    }
+
+    function desel() {
+      if (!svgImg) { imgSel = null; svgEl = null; xfEl.style.display = 'none'; return; }
+      /* leave the SVG in place; just remove selection state */
+      xfEl.style.display = 'none';
+      imgSel = null; svgImg = null; svgEl = null;
+      if (window.__teCarouselStart) window.__teCarouselStart();
+    }
+
+    /* ---- interaction ---- */
+    document.addEventListener('click', function (e) {
+      if (!on) return;
+      if (e.target.closest(UI)) return;
+      var t = e.target;
+      /* detect click on SVG image or its SVG container */
+      var svgImgTarget = (t.tagName === 'image' && t.namespaceURI === 'http://www.w3.org/2000/svg') ? t :
+        (t.tagName === 'svg' && t.classList.contains('te-svg')) ? t.querySelector('image') : null;
+      if (svgImgTarget) {
+        e.preventDefault(); e.stopPropagation();
+        sel(svgImgTarget);
+        return;
+      }
+      if (t.tagName === 'IMG' && !t.closest('#te-fab')) {
+        e.preventDefault(); e.stopPropagation();
+        sel(t);
+      }
+    }, true);
+
+    document.addEventListener('mousedown', function (e) {
+      if (!on || !svgImg) return;
+      if (e.target === svgImg && !svgImg._justSel) { e.preventDefault(); startDrag(e); return; }
+      if (!e.target.closest('#te-xf') && e.target !== svgImg) desel();
+    }, true);
+
+    /* ---- move ---- */
+    function startDrag(e) {
+      var sx = e.clientX, sy = e.clientY;
+      var ox = parseFloat(svgImg.getAttribute('x')) || 0;
+      var oy = parseFloat(svgImg.getAttribute('y')) || 0;
+      function mv(ev) {
+        setSvgImg(ox + ev.clientX - sx, oy + ev.clientY - sy,
+          parseFloat(svgImg.getAttribute('width')),
+          parseFloat(svgImg.getAttribute('height')));
+        posOverlay();
+      }
+      function up() {
+        document.removeEventListener('mousemove', mv, true);
+        document.removeEventListener('mouseup', up, true);
+        snap();
+      }
+      document.addEventListener('mousemove', mv, true);
+      document.addEventListener('mouseup', up, true);
+    }
+
+    /* ---- resize (preserve aspect ratio) ---- */
+    function startResize(e) {
+      if (!svgImg) return;
+      e.preventDefault(); e.stopPropagation();
+      var dir = e.target.className.match(/\b(nw|ne|se|sw)\b/)[1];
+      var sx = e.clientX, sy = e.clientY;
+      var sw = parseFloat(svgImg.getAttribute('width'));
+      var sh = parseFloat(svgImg.getAttribute('height'));
+      var x = parseFloat(svgImg.getAttribute('x'));
+      var y = parseFloat(svgImg.getAttribute('y'));
+      var ratio = sw / sh;
+      function mv(ev) {
+        var dx = ev.clientX - sx, dy = ev.clientY - sy;
+        var nw = sw, nh = sh, nx = x, ny = y;
+        if (dir === 'se') {
+          nw = sw + dx; nh = nw / ratio;
+          if (Math.abs(dy) > Math.abs(dx)) { nh = sh + dy; nw = nh * ratio; }
+        } else if (dir === 'sw') {
+          nw = sw - dx; nh = nw / ratio;
+          if (Math.abs(dy) > Math.abs(dx)) { nh = sh + dy; nw = nh * ratio; }
+          nx = x + (sw - nw);
+        } else if (dir === 'ne') {
+          nw = sw + dx; nh = nw / ratio;
+          if (Math.abs(dy) > Math.abs(dx)) { nh = sh - dy; nw = nh * ratio; }
+          ny = y + (sh - nh);
+        } else if (dir === 'nw') {
+          nw = sw - dx; nh = nw / ratio;
+          if (Math.abs(dy) > Math.abs(dx)) { nh = sh - dy; nw = nh * ratio; }
+          nx = x + (sw - nw); ny = y + (sh - nh);
+        }
+        nw = Math.max(40, Math.round(nw));
+        nh = Math.round(nw / ratio);
+        setSvgImg(nx, ny, nw, nh);
+        posOverlay();
+      }
+      function up() {
+        document.removeEventListener('mousemove', mv, true);
+        document.removeEventListener('mouseup', up, true);
+        snap();
+      }
+      document.addEventListener('mousemove', mv, true);
+      document.addEventListener('mouseup', up, true);
+    }
+
+    /* ---- undo / redo ---- */
+    function snap() {
+      if (!svgImg) return;
+      var s = { x: svgImg.getAttribute('x'), y: svgImg.getAttribute('y'),
+        w: svgImg.getAttribute('width'), h: svgImg.getAttribute('height') };
+      if (ptr >= 0 && JSON.stringify(hist[ptr]) === JSON.stringify(s)) return;
+      hist = hist.slice(0, ptr + 1); hist.push(s);
+      if (hist.length > 50) hist.shift();
+      ptr = hist.length - 1;
+    }
+    function undo() {
+      if (!svgImg || ptr <= 0) return; ptr--;
+      var s = hist[ptr]; setSvgImg(s.x, s.y, s.w, s.h); posOverlay(); toast('撤销');
+    }
+    function redo() {
+      if (!svgImg || ptr >= hist.length - 1) return; ptr++;
+      var s = hist[ptr]; setSvgImg(s.x, s.y, s.w, s.h); posOverlay(); toast('重做');
+    }
+    document.addEventListener('keydown', function (e) {
+      if (!svgImg) return;
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z')) { e.preventDefault(); e.shiftKey ? redo() : undo(); return; }
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y')) { e.preventDefault(); redo(); return; }
+      if (e.key === 'Delete' || e.key === 'Backspace') {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+        e.preventDefault();
+        var orig = imgSel;
+        desel();
+        if (orig) {
+          var s = orig.closest('.te-svg');
+          if (s) s.remove();
+          else orig.remove();
+        }
+        toast('图片已删除');
+      }
+    });
+
+    /* reposition overlay on scroll/resize */
+    window.addEventListener('scroll', function () { posOverlay(); }, true);
+    window.addEventListener('resize', posOverlay);
+
+    /* ---- drag & drop files ---- */
+    var dropTgt = null;
+    function hasFiles(e) { return !!(e.dataTransfer && e.dataTransfer.types && [].indexOf.call(e.dataTransfer.types, 'Files') >= 0); }
+    function imgAt(e) {
+      var t = e.target;
+      if (!t || t.closest(UI)) return null;
+      if (t.tagName === 'IMG') return t;
+      if (t.tagName === 'image' && t.namespaceURI === 'http://www.w3.org/2000/svg') return t;
+      var svg = t.closest && t.closest('.te-svg');
+      if (svg) return svg.querySelector('image');
+      return null;
+    }
+    function setImgSrc(img, src) {
+      if (img.tagName === 'image') {
+        img.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', src);
+        img.setAttribute('href', src);
+      } else {
+        img.src = src;
+        img.removeAttribute('srcset');
+      }
+    }
+    document.addEventListener('dragover', function (e) {
+      if (!hasFiles(e)) return;
+      if (window.__teCarouselStop) window.__teCarouselStop();
+      if (!on) return;
+      e.preventDefault(); e.dataTransfer.dropEffect = 'copy';
+      document.body.classList.add('te-dropping');
+      var img = imgAt(e); if (dropTgt && dropTgt !== img) dropTgt.classList.remove('te-drop-target');
+      dropTgt = img; if (img) img.classList.add('te-drop-target');
+    });
+    document.addEventListener('dragleave', function (e) {
+      if (!e.relatedTarget) {
+        if (window.__teCarouselStart) window.__teCarouselStart();
+        document.body.classList.remove('te-dropping'); if (dropTgt) { dropTgt.classList.remove('te-drop-target'); dropTgt = null; }
+      }
+    });
+    document.addEventListener('drop', function (e) {
+      if (!hasFiles(e)) return;
+      if (window.__teCarouselStart) window.__teCarouselStart();
+      if (!on) return; e.preventDefault(); document.body.classList.remove('te-dropping');
+      var files = e.dataTransfer.files, file = null;
+      for (var i = 0; i < files.length; i++) if (/^image\//.test(files[i].type)) { file = files[i]; break; }
+      if (!file) return;
+      var rd = new FileReader();
+      rd.onload = function () {
+        var target = imgAt(e);
+        if (target) { setImgSrc(target, rd.result); toast('Image replaced'); }
+        else {
+          var img = document.createElement('img'); img.src = rd.result; img.alt = '';
+          img.style.cssText = 'display:block;max-width:100%;width:300px;height:auto;margin:16px auto;border-radius:8px';
+          var near = e.target;
+          while (near && near !== document.body && getComputedStyle(near).display === 'inline') near = near.parentElement;
+          if (near && near.parentElement) near.insertAdjacentElement('afterend', img);
+          else document.body.appendChild(img);
+          toast('Image added');
+        }
+        if (dropTgt) { dropTgt.classList.remove('te-drop-target'); dropTgt = null; }
+      };
+      rd.readAsDataURL(file);
+    });
+  })();
+</script>
+</body>
+</html>
