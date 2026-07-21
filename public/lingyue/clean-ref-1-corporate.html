@@ -7,7 +7,7 @@
 <meta name="description" content="领阅科技 TextMind — 为证券、基金与财富管理机构打造金融垂域 AI。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#FFFFFF; --alt:#F5F6F8; --ink:#151B26; --ink-2:#5A6577; --line:#DCE4F2;
@@ -18,7 +18,7 @@
     --maxw:1160px; --r:16px; --ease:cubic-bezier(.22,1,.36,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:74px}
   body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
@@ -56,22 +56,22 @@
   .mob-close svg{width:24px;height:24px}
 
   /* ---- hero ---- */
-  .hero{display:grid;grid-template-columns:0.8fr 1.2fr;min-height:calc(100vh - 74px);min-height:calc(100svh - 74px)}
+  .hero{display:grid;grid-template-columns:1.2fr 0.8fr;min-height:calc(100vh - 74px);min-height:calc(100svh - 74px)}
   .hero-l{position:relative;background:#18263E;color:#fff;display:flex;flex-direction:column;justify-content:center;padding:64px clamp(26px,4vw,60px)}
-  .hero-l .inner{max-width:500px;width:100%}
+  .hero-l .inner{width:100%}
   .pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:6px 13px;margin-bottom:26px}
-  .hero-l h1{font-weight:800;font-size:clamp(34px,3.6vw,46px);margin-bottom:18px;display:none;animation:hfade .55s var(--ease)}
+  .hero-l h1{font-weight:800;font-size:72px;line-height:1.08;letter-spacing:.01em;margin:0;animation:hfade .55s var(--ease)}
   .hero-l h1.on{display:block}
-  .htitles{min-height:calc(clamp(34px,3.6vw,46px) * 2.3 + 18px);margin-bottom:4px}
-  .hdescs{min-height:92px;margin-bottom:30px}
-  .hero-l .hdesc{color:rgba(255,255,255,.72);font-size:15.5px;max-width:44ch;margin:0;display:none;animation:hfade .55s var(--ease)}
+  .htitles{margin-bottom:64px}
+  .hdescs{margin-bottom:32px}
+  .hero-l .hdesc{color:rgba(255,255,255,.78);font-size:clamp(24px,2.8vw,31px);line-height:1.5;margin:0;animation:hfade .55s var(--ease)}
   .hero-l .hdesc.on{display:block}
   @keyframes hfade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
-  .hero-r{position:relative;background:#e8e9ee;overflow:hidden}
-  .hcar{position:absolute;inset:0;overflow:hidden}
+  .hero-r{position:relative;background:#18263E;overflow:hidden}
+  .hcar{position:absolute;top:60px;bottom:60px;left:0;right:0;overflow:hidden}
   .htrack{display:flex;height:100%;will-change:transform}
-  .htrack img{width:100%;height:100%;object-fit:cover}
-  .hslide{flex:0 0 100%;width:100%;height:100%;position:relative;background:#c8ccd5;overflow:hidden}
+  .htrack img{width:100%;height:100%;object-fit:cover;border:0;display:block}
+  .hslide{flex:0 0 100%;width:100%;height:100%;position:relative;background:transparent;overflow:hidden}
   .hdots{position:absolute;left:24px;bottom:22px;display:flex;gap:9px;z-index:3}
   .hdots button{width:26px;height:3px;padding:0;border:0;border-radius:2px;background:rgba(255,255,255,.55);cursor:pointer;transition:.3s var(--ease);box-shadow:0 1px 3px rgba(0,0,0,.28)}
   .hdots button.on{background:var(--accent);width:46px}
@@ -83,16 +83,13 @@
   .hnext{right:14px}
 
   /* ---- 3 offering cards ---- */
-  .cards3{padding:64px 0}
-  .cards3 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .ocard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
-  .ocard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
-  .ocard:hover::before{transform:scaleX(1)}
-  .ocard:hover{transform:translateY(-6px);box-shadow:0 22px 46px -26px rgba(20,18,37,.25);border-color:transparent}
-  .ic{width:46px;height:46px;border-radius:12px;background:#18263E;display:grid;place-items:center;margin-bottom:18px}
-  .ic svg{width:23px;height:23px;stroke:var(--accent);fill:none;stroke-width:1.7}
-  .ocard h3{font-weight:600;font-size:19px;margin-bottom:9px}
-  .ocard p{color:var(--ink-2);font-size:13.8px;line-height:1.62}
+  .cards3{padding:72px 0}
+  .cards3 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:60px}
+  .ocard{background:var(--alt);border-radius:var(--r);padding:40px 34px}
+  .ic{width:56px;height:56px;border-radius:14px;background:#18263E;display:grid;place-items:center;margin-bottom:22px}
+  .ic svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:1.7}
+  .ocard h3{font-weight:600;font-size:23px;margin-bottom:11px}
+  .ocard p{color:var(--ink-2);font-size:16.5px;line-height:1.62}
 
   /* ---- trust (2col) ---- */
   .trust{padding:56px 0;background:var(--alt)}
@@ -119,6 +116,40 @@
   .scard .bd{padding:24px 24px 28px}
   .scard h3{font-weight:600;font-size:18px;margin-bottom:9px}
   .scard p{color:var(--ink-2);font-size:13.6px;line-height:1.6}
+
+  /* ---- tech section ---- */
+  .tech{padding:72px 0}
+  .tech-head{max-width:800px;margin-bottom:56px}
+  .tech-eyebrow{font-family:var(--body);font-size:12px;letter-spacing:.15em;color:var(--ink-2);display:inline-flex;align-items:center;gap:10px}
+  .tech-eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
+  .tech-head h2{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3vw,34px);color:var(--ink);margin:18px 0 16px}
+  .tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:#1a1a1a;border:1px solid #1a1a1a;border-radius:18px;overflow:hidden}
+  .tcell{background:#e2e4e8;padding:42px 44px}
+  .tcell .no{font-family:var(--disp);font-style:italic;font-size:44px;color:var(--line);line-height:1}
+  .tcell:hover .no{color:var(--accent)}
+  .tcell h4{font-family:var(--disp);font-size:19px;font-weight:600;color:var(--ink);margin:14px 0 12px}
+  .tcell p{font-size:14.5px;color:var(--ink-2);line-height:1.64}
+  .tviz{margin:18px 0 2px;background:#fff;border:1px solid #1a1a1a;border-radius:12px;padding:14px 14px 10px}
+  .tviz svg{width:100%;height:auto;display:block}
+  .tviz .cap{font-family:var(--body);font-size:11px;letter-spacing:.06em;color:var(--ink-2);margin-top:8px;text-align:right}
+  .metric{display:inline-block;font-family:var(--body);font-size:12px;color:var(--ink);background:#e8eaed;border:1px solid #1a1a1a;padding:3px 9px;border-radius:6px;margin:14px 6px 0 0}
+
+  /* ---- scan / app section ---- */
+  .scan{padding:72px 0;background:var(--alt)}
+  .scan-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch}
+  .scan-card{background:var(--bg);border-radius:var(--r);padding:44px 40px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .scan-card .aic{width:56px;height:56px;border-radius:14px;background:#18263E;display:grid;place-items:center;margin:0 auto 22px}
+  .scan-card .aic svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .scan-card h3{font-weight:700;font-size:clamp(22px,2.6vw,28px);margin-bottom:14px}
+  .scan-card p{color:var(--ink-2);font-size:15px;line-height:1.64;margin-bottom:28px}
+  .scan-qr{display:flex;justify-content:center;gap:36px}
+  .scan-qr .qritem{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .scan-qr .qrbox{width:120px;height:120px;border:1.5px dashed var(--line);border-radius:12px;background:var(--bg);display:grid;place-items:center;font-size:13px;color:var(--ink-2);position:relative}
+  .scan-qr .qrbox::before,.scan-qr .qrbox::after{content:"";position:absolute;width:16px;height:16px;border:2.5px solid var(--ink-2);border-radius:3px}
+  .scan-qr .qrbox::before{top:8px;left:8px;border-right:none;border-bottom:none}
+  .scan-qr .qrbox::after{bottom:8px;right:8px;border-left:none;border-top:none}
+  .scan-qr .qlbl{font-size:12px;color:var(--ink-2)}
+  .scan-video{background:var(--bg);border-radius:var(--r);display:grid;place-items:center;color:var(--ink-2);font-size:15px;border:1px dashed var(--line)}
 
   /* ---- logos ---- */
   .logos{padding:26px 0 8px}
@@ -149,7 +180,7 @@
   .testi .role{color:var(--ink-2);font-size:13px;margin-top:3px}
 
   /* ---- updates ---- */
-  .updates{padding:16px 0 78px;background:var(--alt)}
+  .updates{padding:78px 0;background:var(--bg)}
   .updates h2{text-align:center;font-weight:700;font-size:clamp(25px,2.9vw,32px);margin-bottom:42px}
   .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   .post{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
@@ -235,9 +266,17 @@
   .te-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
   .te-svg image{pointer-events:auto}
 
+  /* ---- lightbox ---- */
+  #te-lightbox{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.85);cursor:zoom-out}
+  #te-lightbox.open{display:flex}
+  #te-lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .te-zoomable{cursor:zoom-in;transition:opacity .2s}
+  .te-zoomable:hover{opacity:.85}
+
   @media(max-width:900px){
     .hero{grid-template-columns:1fr;min-height:auto}.hero-r{min-height:340px}
-    .cards3 .grid,.svc,.posts{grid-template-columns:1fr}
+    .cards3 .grid,.svc,.tech-grid,.posts{grid-template-columns:1fr}
+    .scan-grid{grid-template-columns:1fr}
     .trust .grid,.services .top,.statband .grid{grid-template-columns:1fr;gap:34px}
     footer .grid{grid-template-columns:1fr 1fr}
     .menu{display:none}.burger{display:inline-flex}
@@ -249,16 +288,17 @@
 </head>
 <body>
 
+<a id="page-top" style="position:absolute;top:0;left:0;width:0;height:0;overflow:hidden"></a>
+
 <header id="top">
   <div class="wrap nav">
-    <a href="#top"><img class="navlogo" src="Logo-dark.png" alt="领阅科技 TextMind"></a>
+    <a href="#page-top"><img class="navlogo" src="Logo-dark.png" alt="领阅科技 TextMind"></a>
     <nav class="menu">
-      <a href="#top">首页</a>
-      <a href="#trust">关于</a>
+      <a href="#page-top">首页</a>
+      <a href="#trust">我们</a>
       <a href="#services">能力</a>
-      <a href="#services">解决方案 ▾</a>
-      <a href="#cta">联系我们</a>
-      <a class="btn btn-sm" href="#cta" style="margin-left:6px">预约演示</a>
+      <a href="#apps">产品</a>
+      <a class="btn btn-sm" href="#cta" style="margin-left:6px">联系我们</a>
     </nav>
     <button class="burger" id="burgerBtn" aria-label="menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#151B26" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
@@ -267,32 +307,23 @@
 <!-- MOBILE DRAWER -->
 <div class="mob" id="mobMenu">
   <button class="mob-close" id="mobClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-  <a href="#top" class="mob-link">首页</a>
-  <a href="#trust" class="mob-link">关于</a>
+  <a href="#page-top" class="mob-link">首页</a>
+  <a href="#trust" class="mob-link">我们</a>
   <a href="#services" class="mob-link">能力</a>
-  <a href="#services" class="mob-link">解决方案</a>
-  <a href="#cta" class="mob-link">联系我们</a>
-  <a class="btn" href="#cta" class="mob-link" style="margin-top:12px">预约演示</a>
+  <a href="#apps" class="mob-link">产品</a>
+  <a class="btn" href="#cta" class="mob-link" style="margin-top:12px">联系我们</a>
 </div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-l">
     <div class="inner">
-      <span class="pill">👋 你好，我们是领阅科技</span>
       <div class="htitles">
-        <h1 class="on">为金融机构打造<br>可交付的垂域 AI</h1>
-        <h1>秒级研报摘要<br>让阅读留给判断</h1>
-        <h1>投研协同<br>一个工作台上完成</h1>
-        <h1>风险预警<br>全程留痕可追溯</h1>
+        <h1>私募基金都<span style="color:var(--accent)">喜欢</span>用"领阅"</h1>
       </div>
       <div class="hdescs">
-        <p class="hdesc on">面向证券、基金与财富管理机构，从信号到决策，让每一次判断都有据可依、可追溯、可交付。</p>
-        <p class="hdesc">汇聚研报、公告与舆情，秒级生成结构化摘要与关键要点，把一整天的阅读压缩成几分钟。</p>
-        <p class="hdesc">投研团队在同一个工作台上协同，观点、数据与结论彼此打通，讨论不再依赖零散的文档。</p>
-        <p class="hdesc">实时风险画像与异常预警，每一条结论都能回到原始研报与数据，全程留痕、随时可查。</p>
+        <p class="hdesc">终结定性时代，定义新一代投研交付方式<br>贯通研究链路，穿透数据与结论之间的黑箱<br>重塑交付范式，实现机构级本地化落地<br>风险预警，全程留痕可追溯</p>
       </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#cta">立即开始</a><a class="btn btn-ghost" href="#trust">了解更多</a></div>
     </div>
   </div>
   <div class="hero-r">
@@ -320,18 +351,18 @@
   <div class="wrap grid rv">
     <div class="ocard">
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg></div>
-      <h3>智能研究</h3>
-      <p>汇聚研报、公告与舆情，秒级生成结构化摘要与关键要点，把阅读留给判断。</p>
+      <h3>数据基座</h3>
+      <p>构建多模态接入层，非结构化文本经因子解析直连量化引擎；端侧部署确保交易全链路数据（持仓/回测/信号）内网闭环。</p>
     </div>
     <div class="ocard">
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V9l5-4 6 5 5-4v13"/><path d="M4 19h16"/></svg></div>
-      <h3>投研辅助</h3>
-      <p>从信号到策略，辅助资产配置与择时决策，推理链路全程可解释。</p>
+      <h3>投研研判</h3>
+      <p>将研判逻辑拆解为"事件-因子-行业-分析-观点"五级链条，以毫秒级归因倒逼仓位纠偏，实时消除持仓与认知的背离。</p>
     </div>
     <div class="ocard">
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></div>
-      <h3>风险合规</h3>
-      <p>实时风险画像与异常预警，每一步留痕，合规可追溯。</p>
+      <h3>三重安全</h3>
+      <p>端侧私有化部署切断数据出域，云端仅赋能算力；增设决策防火墙过滤低置信输出，配合多维权限沙箱隔离策略资产。</p>
     </div>
   </div>
 </section>
@@ -340,53 +371,166 @@
 <section class="trust" id="trust">
   <div class="wrap grid rv">
     <div>
-      <h2>机构信赖领阅<br>我们交付结果</h2>
+      <h2>人工智能专家、基金经理、买方分析师、风控专家联袂打造</h2>
       <div class="sf">
         <div>
           <div class="sf-ic"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg></div>
           <h4>垂域理解</h4>
-          <p>深耕金融语料，术语、语境与上下文都拿捏得准。</p>
+          <p>人工智能专家驱动垂域大模型，深度理解金融语境与术语，让机器真正读懂研报。</p>
         </div>
         <div>
           <div class="sf-ic"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
-          <h4>结论可解释</h4>
-          <p>每条结论都能溯源到原始研报与数据。</p>
+          <h4>实战经验</h4>
+          <p>基金经理以多年实盘经验定义投研交付标准，确保每一条输出都经得起市场检验。</p>
         </div>
         <div>
           <div class="sf-ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
-          <h4>稳定可靠</h4>
-          <p>高性能、稳定、安全，满足机构级要求。</p>
+          <h4>全链打通</h4>
+          <p>买方分析师打通从数据到决策的全链路，消除信息断层，让研判逻辑环环相扣。</p>
         </div>
         <div>
           <div class="sf-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
-          <h4>专属支持</h4>
-          <p>专属团队随时响应，陪伴落地每一步。</p>
+          <h4>合规可控</h4>
+          <p>风控专家构建决策防火墙与多维权限沙箱，确保每一步结论可追溯、可审计。</p>
         </div>
       </div>
     </div>
-    <div class="frame"><img src="img/r1-trust.jpg" alt="洽谈"></div>
+    <div class="frame"><img src="img/trust-diagram.png" alt="平台架构" class="te-zoomable"></div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services" id="services">
+<!-- TECH -->
+<section class="tech" id="services">
   <div class="wrap">
-    <div class="top rv">
-      <h2>专业能力<br>助力机构持续增长</h2>
-      <p>从策略到执行，领阅的能力覆盖研究、投研与风控的每个环节，提供可靠、高质量的金融垂域解决方案。</p>
+    <div class="tech-head rv">
+      <h2>四项底层技术，让垂域能力<br>可信、可进化、可负担。</h2>
     </div>
-    <div class="svc rv">
-      <div class="scard">
-        <div class="art"><svg viewBox="0 0 64 64" fill="none"><rect x="10" y="14" width="44" height="30" rx="4" fill="#D8DAE2"/><rect x="10" y="14" width="44" height="9" rx="4" fill="#18263E"/><rect x="16" y="30" width="20" height="4" rx="2" fill="#fff"/><rect x="16" y="37" width="13" height="4" rx="2" fill="#fff"/><rect x="24" y="46" width="16" height="6" rx="3" fill="#FFAE00"/></svg></div>
-        <div class="bd"><h3>智能研究</h3><p>秒级研报摘要与要点提炼，让团队专注在判断本身。</p></div>
+    <div class="tech-grid rv">
+      <div class="tcell">
+        <div class="no">01</div>
+        <h4>面向投资场景的思维链图谱</h4>
+        <p>基于专家推理链路构建动态金融知识图谱，以传统图谱约四分之一的周期实现投研场景全域覆盖；研究假设自动结构化为可追踪节点，结论逐层归因。</p>
+        <div class="tviz">
+          <svg viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="思维链图谱示意">
+            <g stroke="#2a2a2a" stroke-width="1.2">
+              <line x1="46" y1="34" x2="112" y2="72"/><line x1="46" y1="92" x2="112" y2="72"/>
+              <line x1="112" y1="72" x2="188" y2="40"/><line x1="112" y1="72" x2="188" y2="96"/>
+              <line x1="188" y1="40" x2="262" y2="66"/><line x1="188" y1="96" x2="262" y2="66"/>
+              <line x1="262" y1="66" x2="334" y2="58"/><line x1="188" y1="40" x2="252" y2="20"/>
+            </g>
+            <g stroke="var(--accent)" stroke-width="2.4">
+              <line x1="46" y1="34" x2="112" y2="72"/><line x1="112" y1="72" x2="188" y2="40"/>
+              <line x1="188" y1="40" x2="262" y2="66"/><line x1="262" y1="66" x2="334" y2="58"/>
+            </g>
+            <g>
+              <circle cx="46" cy="34" r="9" fill="var(--accent)"/><circle cx="46" cy="92" r="6" fill="#2a2a2a"/>
+              <circle cx="112" cy="72" r="9" fill="var(--accent)"/>
+              <circle cx="188" cy="40" r="9" fill="var(--accent)"/><circle cx="188" cy="96" r="6" fill="#2a2a2a"/>
+              <circle cx="252" cy="20" r="6" fill="#2a2a2a"/>
+              <circle cx="262" cy="66" r="9" fill="var(--accent)"/>
+              <circle cx="334" cy="58" r="11" fill="none" stroke="var(--accent)" stroke-width="2.4"/>
+              <circle cx="334" cy="58" r="5" fill="var(--accent)"/>
+            </g>
+            <g font-family="system-ui,sans-serif" font-size="9" fill="var(--ink-2)">
+              <text x="34" y="16">信号</text><text x="100" y="106">证据</text>
+              <text x="176" y="22">假设</text><text x="250" y="90">验证</text>
+              <text x="322" y="88">结论</text>
+            </g>
+          </svg>
+          <div class="cap">专家推理链 → 动态知识图谱 · 结论逐层归因</div>
+        </div>
+        <div><span class="metric">建设周期 ↓75%</span><span class="metric">假设结构化率 &gt;85%</span></div>
       </div>
-      <div class="scard">
-        <div class="art"><svg viewBox="0 0 64 64" fill="none"><path d="M14 40l10-4 8 6 8-10 10 4" stroke="#18263E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="36" r="4" fill="#FFAE00"/><circle cx="40" cy="32" r="4" fill="#D8DAE2"/><rect x="12" y="46" width="40" height="5" rx="2.5" fill="#D8DAE2"/></svg></div>
-        <div class="bd"><h3>投研辅助</h3><p>信号驱动的配置与择时建议，辅助更稳健的决策。</p></div>
+      <div class="tcell">
+        <div class="no">02</div>
+        <h4>小样本高可信的行为预测</h4>
+        <p>基于行为金融学预生成客户原型画像，精准捕捉关注点、风险偏好与决策节奏；冷启动即可用，并随使用持续自我演化。</p>
+        <div class="tviz">
+          <svg viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="冷启动性能曲线示意">
+            <line x1="34" y1="100" x2="360" y2="100" stroke="#2a2a2a" stroke-width="1.2"/>
+            <line x1="34" y1="100" x2="34" y2="14" stroke="#2a2a2a" stroke-width="1.2"/>
+            <path d="M34 98 C 120 96, 220 84, 356 56" fill="none" stroke="#2a2a2a" stroke-width="1.8" stroke-dasharray="5 5"/>
+            <path d="M34 96 C 60 60, 90 34, 150 26 C 230 18, 300 16, 356 15" fill="none" stroke="var(--accent)" stroke-width="2.6"/>
+            <line x1="76" y1="100" x2="76" y2="34" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="76" cy="42" r="4.5" fill="var(--accent)"/>
+            <g font-family="system-ui,sans-serif" font-size="9" fill="var(--ink-2)">
+              <text x="84" y="30" fill="var(--accent-2)">原型画像 · 冷启动即可用</text>
+              <text x="252" y="70">传统方案（从零学习）</text>
+              <text x="286" y="114">交互数据量 →</text>
+            </g>
+            <text x="40" y="20" font-family="system-ui,sans-serif" font-size="9" fill="var(--ink-2)">画像可信度 ↑</text>
+          </svg>
+          <div class="cap">行为金融学原型 · 越用越懂团队与客户</div>
+        </div>
+        <div><span class="metric">冷启动数据需求 ↓90%</span><span class="metric">匹配效果 ↑25–30%</span></div>
       </div>
-      <div class="scard">
-        <div class="art"><svg viewBox="0 0 64 64" fill="none"><path d="M32 12l16 7v9c0 10-7 15-16 18-9-3-16-8-16-18v-9z" fill="#D8DAE2"/><path d="M32 12l16 7v9c0 10-7 15-16 18" fill="#FFAE00"/><path d="m25 31 5 5 9-9" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="bd"><h3>风险与合规</h3><p>实时监控、智能预警与全程可追溯的留痕。</p></div>
+      <div class="tcell">
+        <div class="no">03</div>
+        <h4>可信度感知的幻觉管理</h4>
+        <p>在投研链、服务链、验证链的每个推理节点嵌入可信度评估，逐层校验输出的真实性与逻辑严谨性——幻觉在架构层面可检测、可拦截。</p>
+        <div class="tviz">
+          <svg viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="可信度校验链示意">
+            <g stroke="var(--ink-2)" stroke-width="1.4">
+              <line x1="86" y1="44" x2="104" y2="44"/><line x1="176" y1="44" x2="194" y2="44"/><line x1="266" y1="44" x2="284" y2="44"/>
+            </g>
+            <g font-family="system-ui,sans-serif" font-size="9.5">
+              <rect x="16" y="26" width="70" height="36" rx="8" fill="var(--accent-soft)" stroke="#f5e6b8"/>
+              <text x="51" y="48" text-anchor="middle" fill="var(--accent-2)">检索节点</text>
+              <rect x="106" y="26" width="70" height="36" rx="8" fill="var(--accent-soft)" stroke="#f5e6b8"/>
+              <text x="141" y="48" text-anchor="middle" fill="var(--accent-2)">推理节点</text>
+              <rect x="196" y="26" width="70" height="36" rx="8" fill="#FDECEB" stroke="#E8B7B1"/>
+              <text x="231" y="48" text-anchor="middle" fill="#B13A2E">推理节点</text>
+              <rect x="286" y="26" width="78" height="36" rx="8" fill="var(--accent-soft)" stroke="#f5e6b8"/>
+              <text x="325" y="48" text-anchor="middle" fill="var(--accent-2)">输出结论</text>
+            </g>
+            <g font-family="system-ui,sans-serif" font-size="8.5">
+              <text x="51" y="20" text-anchor="middle" fill="#1d8f68">✓ 置信 96%</text>
+              <text x="141" y="20" text-anchor="middle" fill="#1d8f68">✓ 置信 93%</text>
+              <text x="231" y="20" text-anchor="middle" fill="#B13A2E">! 置信 61%</text>
+              <text x="325" y="20" text-anchor="middle" fill="#1d8f68">✓ 已校验</text>
+            </g>
+            <path d="M231 62 L231 84" stroke="#B13A2E" stroke-width="1.4" stroke-dasharray="3 3"/>
+            <rect x="164" y="84" width="134" height="24" rx="7" fill="none" stroke="#B13A2E" stroke-dasharray="4 3"/>
+            <text x="231" y="100" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#B13A2E">低可信节点 → 拦截复核</text>
+          </svg>
+          <div class="cap">每个推理节点嵌入可信度评估 · 逐层校验</div>
+        </div>
+        <div><span class="metric">关键事实错误率 &lt;2%（基线 10–15%）</span><span class="metric">结论 100% 可溯源</span></div>
+      </div>
+      <div class="tcell">
+        <div class="no">04</div>
+        <h4>高性能低成本的实时运算</h4>
+        <p>智能路由把个性化推理与工具调用成本压缩一个数量级，秒级响应扛住海量并发；自学习模式下，算法越跑越准、越用越省。</p>
+        <div class="tviz">
+          <svg viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="智能路由示意">
+            <g font-family="system-ui,sans-serif" font-size="9" fill="var(--ink-2)">
+              <rect x="14" y="30" width="16" height="10" rx="2" fill="#2a2a2a"/>
+              <rect x="14" y="46" width="16" height="10" rx="2" fill="#2a2a2a"/>
+              <rect x="14" y="62" width="16" height="10" rx="2" fill="#2a2a2a"/>
+              <rect x="14" y="78" width="16" height="10" rx="2" fill="#2a2a2a"/>
+              <text x="10" y="106">海量请求</text>
+            </g>
+            <line x1="34" y1="58" x2="96" y2="58" stroke="var(--ink-2)" stroke-width="1.4"/>
+            <path d="M130 30 L164 58 L130 86 L96 58 Z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.6"/>
+            <text x="130" y="62" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="var(--accent-2)">智能路由</text>
+            <line x1="164" y1="58" x2="216" y2="36" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
+            <line x1="164" y1="58" x2="216" y2="86" stroke="#2a2a2a" stroke-width="1.6" stroke-linecap="round"/>
+            <g font-family="system-ui,sans-serif" font-size="9.5">
+              <rect x="218" y="20" width="104" height="32" rx="8" fill="var(--accent-soft)" stroke="#f5e6b8"/>
+              <text x="270" y="40" text-anchor="middle" fill="var(--accent-2)">端侧小模型 ~90%</text>
+              <rect x="218" y="72" width="104" height="32" rx="8" fill="#F5F6F8" stroke="#2a2a2a"/>
+              <text x="270" y="92" text-anchor="middle" fill="var(--ink-2)">云端大模型 ~10%</text>
+            </g>
+            <g font-family="system-ui,sans-serif" font-size="8.5" fill="var(--ink-2)">
+              <text x="334" y="34">成本 ↓</text>
+              <rect x="334" y="40" width="34" height="7" rx="3" fill="#DCE4F2"/>
+              <rect x="334" y="54" width="7" height="7" rx="3" fill="var(--accent)"/>
+              <text x="334" y="74">延迟 &lt;3s</text>
+            </g>
+          </svg>
+          <div class="cap">智能路由分流 · 端云协同，越用越省</div>
+        </div>
+        <div><span class="metric">推理成本 ↓80–90%</span><span class="metric">P95 延迟 &lt;3s</span><span class="metric">百人级并发</span></div>
       </div>
     </div>
   </div>
@@ -395,49 +539,37 @@
 <!-- LOGOS -->
 <section class="logos rv">
   <div class="wrap">
-    <div class="lbl">已服务 <b>40+</b> 家领先金融机构</div>
+    <div class="lbl">已服务 <b>10+</b> 家领先金融机构</div>
     <div class="logostrip">
-      <span><svg viewBox="0 0 24 24"><path d="M4 18 10 6l4 8 2-4 4 8z"/></svg>恒晟 HENGSHENG</span>
-      <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9 12h6"/></svg>睿信 RUIXIN</span>
-      <span><svg viewBox="0 0 24 24"><path d="m3 21 18-9L3 3v7l10 2-10 2z"/></svg>远航 YUANHANG</span>
-      <span><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>金岩 JINYAN</span>
+      <span><svg viewBox="0 0 24 24"><path d="M4 18 10 6l4 8 2-4 4 8z"/></svg>平安证券</span>
+      <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9 12h6"/></svg>东莞证券</span>
+      <span><svg viewBox="0 0 24 24"><path d="m3 21 18-9L3 3v7l10 2-10 2z"/></svg>博源基金</span>
+      <span><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>原始森林</span>
       <span><svg viewBox="0 0 24 24"><path d="m12 3 2.6 6H21l-5 4 2 7-6-4-6 4 2-7-5-4h6.4z"/></svg>星图 XINGTU</span>
     </div>
   </div>
 </section>
 
-<!-- STATS BAND -->
-<section class="statband">
-  <div class="wrap grid rv">
-    <div class="frame"><img src="img/r1-stats.jpg" alt="团队"></div>
-    <div>
-      <h2>我们专注每一次判断<br>交付可靠结果</h2>
-      <p>每一个数字背后，都是对稳定、准确与可追溯的坚持。从服务机构到处理文档，这些成果印证了客户对领阅的信任。</p>
-      <div class="nums">
-        <div><div class="n">40+</div><div class="c">服务机构</div></div>
-        <div><div class="n">10万+</div><div class="c">日均处理文档</div></div>
+<!-- SCAN / APP -->
+<section class="scan" id="apps">
+  <div class="wrap">
+    <div class="scan-grid rv">
+      <div class="scan-card">
+        <div class="aic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+        <h3>不用等待，扫码就能用。</h3>
+        <p>不必等一场正式的采购流程——现在就可以在你的工作流里试试领阅。</p>
+        <div class="scan-qr">
+          <div class="qritem"><div class="qrbox">小程序码<br>占位</div><span class="qlbl">扫码使用</span></div>
+          <div class="qritem"><div class="qrbox">群二维码<br>占位</div><span class="qlbl">扫码入群</span></div>
+        </div>
       </div>
+      <div class="scan-video">视频展示区域</div>
     </div>
-  </div>
-</section>
-
-<!-- TESTIMONIAL -->
-<section class="testi">
-  <div class="wrap rv">
-    <div class="testi-mark">"</div>
-    <div class="avs">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%23c9bcfb'/%3E%3Ccircle cx='60' cy='46' r='22' fill='%23fff'/%3E%3Cpath d='M18 116c0-24 20-34 42-34s42 10 42 34z' fill='%23fff'/%3E%3C/svg%3E" alt="">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%238b73f5'/%3E%3Ccircle cx='60' cy='46' r='22' fill='%23fff'/%3E%3Cpath d='M18 116c0-24 20-34 42-34s42 10 42 34z' fill='%23fff'/%3E%3C/svg%3E" alt="">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%236C4CF1'/%3E%3Ccircle cx='60' cy='46' r='22' fill='%23fff'/%3E%3Cpath d='M18 116c0-24 20-34 42-34s42 10 42 34z' fill='%23fff'/%3E%3C/svg%3E" alt="">
-    </div>
-    <p class="q">"领阅的研究助手让我们的效率有了质的提升——从早会准备到策略复盘，每一步都更快、更有据可依。"</p>
-    <div class="nm">陈铭</div>
-    <div class="role">某券商 · 投研负责人</div>
   </div>
 </section>
 
 <!-- UPDATES -->
-<section class="updates rv" id="updates">
+<section class="updates" id="updates">
   <div class="wrap">
     <h2>了解领阅的最新动态</h2>
     <div class="posts">
@@ -467,11 +599,7 @@
 <section class="ctaband rv" id="cta">
   <div class="wrap">
     <h2>让每一次金融判断都有据可依</h2>
-    <p style="font-style:normal;opacity:.85">contact@textmind.ai&ensp;·&ensp;深圳市南山区科技园</p>
-    <div class="btn-row">
-      <a class="btn" href="#cta">预约演示</a>
-      <a class="btn btn-ghost" href="#services">了解产品</a>
-    </div>
+    <p style="font-style:normal;opacity:.85">广州市南沙区庆慧中路1号、3号、创智三街1号A1栋110106室</p>
   </div>
 </section>
 
@@ -488,7 +616,7 @@
     </div>
     <div>
       <h5>产品</h5>
-      <ul><li><a href="#services">智能研究</a></li><li><a href="#services">投研辅助</a></li><li><a href="#services">风险合规</a></li><li><a href="#services">开放 API</a></li></ul>
+      <ul><li><a href="#services">思维链图谱</a></li><li><a href="#services">行为预测</a></li><li><a href="#services">幻觉管理</a></li><li><a href="#services">实时运算</a></li></ul>
     </div>
     <div>
       <h5>条款</h5>
@@ -548,6 +676,9 @@
   <input type="color" id="te-color" value="#FFAE00" title="Text color (applies to selection)">
 </div>
 
+<!-- LIGHTBOX -->
+<div id="te-lightbox"><img src="" alt=""></div>
+
 <script>
   /* sticky header */
   addEventListener('scroll', function () { document.getElementById('top').classList.toggle('stuck', scrollY > 8); }, { passive: true });
@@ -589,9 +720,6 @@
       track.style.transform = 'translateX(' + (-i * 100) + '%)';
       var a = i % n;
       dots.forEach(function (d, k) { d.classList.toggle('on', k === a); });
-      var titles = document.querySelectorAll('.hero-l h1');
-      titles.forEach(function (t2, k) { t2.classList.toggle('on', k === a); });
-      descs.forEach(function (d, k) { d.classList.toggle('on', k === a); });
     }
     function next() { i++; render(true); if (i === n) { clearTimeout(st); st = setTimeout(function () { i = 0; render(false); }, DUR + 40); } }
     function prev() {
@@ -889,17 +1017,21 @@
 
     function applyToSelection(prop, val) {
       if (!curEl) return;
+      var cssProp = prop.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); });
       var s = window.getSelection();
       if (s && s.rangeCount && !s.isCollapsed && curEl.contains(s.anchorNode) && curEl.contains(s.focusNode)) {
         var range = s.getRangeAt(0);
+        /* split text nodes at selection boundaries to avoid partial element issues */
+        var fragment = range.cloneContents();
         var span = document.createElement('span');
-        span.style[prop.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); })] = val;
-        try { range.surroundContents(span); }
-        catch (x) { var f = range.extractContents(); span.appendChild(f); range.insertNode(span); }
+        span.style[cssProp] = val;
+        span.appendChild(fragment);
+        range.deleteContents();
+        range.insertNode(span);
         var nr = document.createRange(); nr.selectNodeContents(span);
         s.removeAllRanges(); s.addRange(nr);
       } else {
-        curEl.style[prop.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); })] = val;
+        curEl.style[cssProp] = val;
       }
     }
 
@@ -1296,6 +1428,28 @@
         if (dropTgt) { dropTgt.classList.remove('te-drop-target'); dropTgt = null; }
       };
       rd.readAsDataURL(file);
+    });
+  })();
+
+  /* ---- lightbox ---- */
+  (function () {
+    var lb = document.getElementById('te-lightbox');
+    var lbImg = lb.querySelector('img');
+    document.addEventListener('click', function (e) {
+      var zoomable = e.target.closest('.te-zoomable');
+      if (zoomable && !e.target.closest('#te-xf')) {
+        e.preventDefault();
+        lbImg.src = zoomable.src;
+        lbImg.alt = zoomable.alt;
+        lb.classList.add('open');
+        return;
+      }
+      if (lb.classList.contains('open')) {
+        lb.classList.remove('open');
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lb.classList.contains('open')) lb.classList.remove('open');
     });
   })();
 </script>
