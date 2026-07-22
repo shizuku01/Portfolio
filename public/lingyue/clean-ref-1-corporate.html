@@ -136,28 +136,35 @@
 
   /* ---- scan / app section ---- */
   .scan{padding:72px 0;background:var(--alt)}
-  .scan-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch}
-  .scan-card{background:var(--bg);border-radius:var(--r);padding:44px 40px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .scan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:stretch}
+  .scan-card{background:var(--bg);border-radius:var(--r);padding:44px 32px;text-align:center;display:flex;flex-direction:column}
   .scan-card .aic{width:56px;height:56px;border-radius:14px;background:#18263E;display:grid;place-items:center;margin:0 auto 22px}
   .scan-card .aic svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-  .scan-card h3{font-weight:700;font-size:clamp(22px,2.6vw,28px);margin-bottom:14px}
-  .scan-card p{color:var(--ink-2);font-size:15px;line-height:1.64;margin-bottom:28px}
-  .scan-qr{display:flex;justify-content:center;gap:36px}
+  .scan-card h3{font-weight:700;font-size:clamp(20px,2.4vw,24px);margin-bottom:12px}
+  .scan-card p{color:var(--ink-2);font-size:14px;line-height:1.6;margin-bottom:24px;flex:1}
+  .scan-qr{display:flex;justify-content:center;gap:24px;margin-top:auto}
   .scan-qr .qritem{display:flex;flex-direction:column;align-items:center;gap:10px}
-  .scan-qr .qrbox{width:120px;height:120px;border:1.5px dashed var(--line);border-radius:12px;background:var(--bg);display:grid;place-items:center;font-size:13px;color:var(--ink-2);position:relative}
-  .scan-qr .qrbox::before,.scan-qr .qrbox::after{content:"";position:absolute;width:16px;height:16px;border:2.5px solid var(--ink-2);border-radius:3px}
+  .scan-qr .qrbox{width:110px;height:110px;border:1.5px dashed var(--line);border-radius:12px;background:var(--bg);display:grid;place-items:center;font-size:12px;color:var(--ink-2);position:relative}
+  .scan-qr .qrbox::before,.scan-qr .qrbox::after{content:"";position:absolute;width:14px;height:14px;border:2.5px solid var(--ink-2);border-radius:3px}
   .scan-qr .qrbox::before{top:8px;left:8px;border-right:none;border-bottom:none}
   .scan-qr .qrbox::after{bottom:8px;right:8px;border-left:none;border-top:none}
-  .scan-qr .qlbl{font-size:12px;color:var(--ink-2)}
-  .scan-video{background:var(--bg);border-radius:var(--r);display:grid;place-items:center;color:var(--ink-2);font-size:15px;border:1px dashed var(--line)}
+  .scan-qr .qlbl{font-size:11px;color:var(--ink-2)}
+  .scan-qr .qr-img{width:110px;height:110px;object-fit:contain;border-radius:8px}
 
   /* ---- logos ---- */
   .logos{padding:26px 0 8px}
   .logos .lbl{text-align:center;color:var(--ink-2);font-size:13px;margin-bottom:22px}
   .logos .lbl b{color:var(--ink);font-weight:600}
-  .logostrip{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 46px;opacity:.62}
-  .logostrip span{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.04em;color:var(--ink-2)}
-  .logostrip svg{width:18px;height:18px;stroke:var(--ink-2);fill:none;stroke-width:1.8}
+  .logostrip{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:20px 28px;opacity:.62}
+  .logostrip span{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .logostrip .logo-img{object-fit:contain}
+  .logostrip img[alt="平安证券"]{height:40px}
+  .logostrip img[alt="东莞证券"]{height:100px}
+  .logostrip img[alt="博源基金"]{height:130px}
+  .logostrip img[alt="招商基金"]{height:80px}
+  .logostrip img[alt="汇丰基金"]{height:40px}
+  .logostrip img[alt="腾讯科技"]{height:36px}
+  .logostrip img[alt="金证股份"]{height:64px}
 
   /* ---- stats band ---- */
   .statband{background:var(--alt);margin-top:54px}
@@ -283,6 +290,7 @@
     .harrow{width:34px;height:34px}
     .harrow svg{width:15px;height:15px}
     .hprev{left:8px}.hnext{right:8px}
+    .logostrip{gap:24px}
   }
 </style>
 </head>
@@ -539,13 +547,15 @@
 <!-- LOGOS -->
 <section class="logos rv">
   <div class="wrap">
-    <div class="lbl">已服务 <b>10+</b> 家领先金融机构</div>
+    <div class="lbl">已服务 <b>10+</b> 家头部金融/科技机构</div>
     <div class="logostrip">
-      <span><svg viewBox="0 0 24 24"><path d="M4 18 10 6l4 8 2-4 4 8z"/></svg>平安证券</span>
-      <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9 12h6"/></svg>东莞证券</span>
-      <span><svg viewBox="0 0 24 24"><path d="m3 21 18-9L3 3v7l10 2-10 2z"/></svg>博源基金</span>
-      <span><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>原始森林</span>
-      <span><svg viewBox="0 0 24 24"><path d="m12 3 2.6 6H21l-5 4 2 7-6-4-6 4 2-7-5-4h6.4z"/></svg>星图 XINGTU</span>
+      <span><img src="img/平安证券.png" alt="平安证券" class="logo-img"></span>
+      <span><img src="img/东莞证券.png" alt="东莞证券" class="logo-img"></span>
+      <span><img src="img/博源基金.png" alt="博源基金" class="logo-img"></span>
+      <span><img src="img/招商基金.png" alt="招商基金" class="logo-img"></span>
+      <span><img src="img/汇丰银行.png" alt="汇丰基金" class="logo-img"></span>
+      <span><img src="img/腾讯科技.svg" alt="腾讯科技" class="logo-img"></span>
+      <span><img src="img/金证股份.png" alt="金证股份" class="logo-img"></span>
     </div>
   </div>
 </section>
@@ -556,40 +566,30 @@
     <div class="scan-grid rv">
       <div class="scan-card">
         <div class="aic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
-        <h3>不用等待，扫码就能用。</h3>
-        <p>不必等一场正式的采购流程——现在就可以在你的工作流里试试领阅。</p>
+        <h3>同舟小程序</h3>
+        <p>个人投资者的移动端入口：事件驱动的 AI 投研与 ETF 组合推荐，随时提问、接收关键信号提醒。</p>
         <div class="scan-qr">
           <div class="qritem"><div class="qrbox">小程序码<br>占位</div><span class="qlbl">扫码使用</span></div>
-          <div class="qritem"><div class="qrbox">群二维码<br>占位</div><span class="qlbl">扫码入群</span></div>
+          <div class="qritem"><img src="img/群二维码.png" alt="群二维码" class="qr-img"><span class="qlbl">扫码入群</span></div>
         </div>
       </div>
-      <div class="scan-video">视频展示区域</div>
-    </div>
-  </div>
-</section>
-
-<!-- UPDATES -->
-<section class="updates" id="updates">
-  <div class="wrap">
-    <h2>了解领阅的最新动态</h2>
-    <div class="posts">
-      <div class="post">
-        <span class="tag">洞察</span>
-        <h3>从信号到决策：垂域 AI 如何落地</h3>
-        <div class="date">2026年6月18日</div>
-        <p>拆解金融垂域 AI 从数据到判断的完整链路。</p>
+      <div class="scan-card">
+        <div class="aic"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M9 7V5a3 3 0 0 1 6 0v2M9 13h.01M15 13h.01"/></svg></div>
+        <h3>WorkBuddy 投研 Agent</h3>
+        <p>嵌入日常工作流的投研 Agent——投研问答、信号追踪、材料整理，随叫随到。</p>
+        <div class="scan-qr">
+          <div class="qritem"><div class="qrbox">产品引导码<br>占位</div><span class="qlbl">扫码使用</span></div>
+          <div class="qritem"><img src="img/群二维码.png" alt="群二维码" class="qr-img"><span class="qlbl">扫码入群</span></div>
+        </div>
       </div>
-      <div class="post">
-        <span class="tag">洞察</span>
-        <h3>研报摘要背后的技术</h3>
-        <div class="date">2026年5月9日</div>
-        <p>秒级摘要是如何做到既快又准的。</p>
-      </div>
-      <div class="post">
-        <span class="tag">洞察</span>
-        <h3>可追溯，如何真正实现</h3>
-        <div class="date">2026年4月21日</div>
-        <p>让每一条结论都能回到原文与数据。</p>
+      <div class="scan-card">
+        <div class="aic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="2.5"/><path d="M7 12.5h.01M11 12.5h6M6 17v2M18 17v2"/></svg></div>
+        <h3>私募龙虾盒子</h3>
+        <p>私有化投研 OPT 硬件，即插即用：端侧模型本地推理、私有数据本地存储，数据不出域。</p>
+        <div class="scan-qr">
+          <div class="qritem"><div class="qrbox">产品引导码<br>占位</div><span class="qlbl">扫码了解</span></div>
+          <div class="qritem"><img src="img/群二维码.png" alt="群二维码" class="qr-img"><span class="qlbl">扫码入群</span></div>
+        </div>
       </div>
     </div>
   </div>
