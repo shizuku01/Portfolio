@@ -156,8 +156,8 @@
   .logos .lbl{text-align:center;color:var(--ink-2);font-size:13px;margin-bottom:22px}
   .logos .lbl b{color:var(--ink);font-weight:600}
   .logostrip{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:20px 28px;opacity:.62}
-  .logostrip span{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;height:40px}
-  .logostrip .logo-img{height:40px;width:auto;display:block}
+  .logostrip span{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;height:40px;max-height:40px}
+  .logostrip .logo-img{height:40px!important;width:auto!important;max-height:40px!important;display:block}
 
   /* ---- stats band ---- */
   .statband{background:var(--alt);margin-top:54px}
@@ -541,15 +541,7 @@
 <section class="logos rv">
   <div class="wrap">
     <div class="lbl">已服务 <b>10+</b> 家头部金融/科技机构</div>
-    <div class="logostrip">
-      <span><img src="img/平安证券.svg" alt="平安证券" class="logo-img"></span>
-      <span><img src="img/东莞证券.svg" alt="东莞证券" class="logo-img"></span>
-      <span><img src="img/博源基金.svg" alt="博源基金" class="logo-img"></span>
-      <span><img src="img/招商基金.svg" alt="招商基金" class="logo-img"></span>
-      <span><img src="img/汇丰银行.svg" alt="汇丰基金" class="logo-img"></span>
-      <span><img src="img/腾讯科技.svg" alt="腾讯科技" class="logo-img"></span>
-      <span><img src="img/金证股份.svg" alt="金证股份" class="logo-img"></span>
-    </div>
+    <iframe src="logostrip.html" style="width:100%;height:60px;border:none;overflow:hidden;display:block" frameborder="0" scrolling="no"></iframe>
   </div>
 </section>
 
