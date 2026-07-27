@@ -5,15 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; }
   body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 14px 40px;
-    padding: 10px 20px;
     background: transparent;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;          /* never wrap — one row always */
+    gap: 30px;
+    white-space: nowrap;
+    transform-origin: center center;   /* scaled down by script if it can't fit */
+    padding: 0 8px;
   }
   .logo-wrap {
     display: inline-flex;
@@ -32,12 +39,30 @@
 </style>
 </head>
 <body>
-  <div class="logo-wrap"><img src="img/平安证券.png" alt="平安证券"></div>
-  <div class="logo-wrap"><img src="img/东莞证券.png" alt="东莞证券"></div>
-  <div class="logo-wrap"><img src="img/博源基金.png" alt="博源基金"></div>
-  <div class="logo-wrap"><img src="img/招商基金.png" alt="招商基金"></div>
-  <div class="logo-wrap"><img src="img/汇丰银行.png" alt="汇丰银行"></div>
-  <div class="logo-wrap"><img src="img/腾讯科技.svg" alt="腾讯科技"></div>
-  <div class="logo-wrap"><img src="img/金证股份.png" alt="金证股份"></div>
+  <div class="row">
+    <div class="logo-wrap"><img src="img/平安证券.png" alt="平安证券"></div>
+    <div class="logo-wrap"><img src="img/东莞证券2.png" alt="东莞证券"></div>
+    <div class="logo-wrap"><img src="img/博源基金.png" alt="博源基金"></div>
+    <div class="logo-wrap"><img src="img/招商基金.png" alt="招商基金"></div>
+    <div class="logo-wrap"><img src="img/汇丰银行.png" alt="汇丰银行"></div>
+    <div class="logo-wrap"><img src="img/腾讯科技.svg" alt="腾讯科技"></div>
+    <div class="logo-wrap"><img src="img/金证股份.png" alt="金证股份"></div>
+  </div>
+  <script>
+    function fit() {
+      var row = document.querySelector('.row');
+      row.style.transform = 'none';
+      var avail = document.documentElement.clientWidth;
+      var w = row.scrollWidth;
+      var s = w > avail ? avail / w : 1;
+      row.style.transform = 'scale(' + s + ')';
+    }
+    addEventListener('load', fit);
+    addEventListener('resize', fit);
+    // re-fit once images have loaded (their widths determine the row width)
+    Array.prototype.forEach.call(document.images, function (im) {
+      if (!im.complete) im.addEventListener('load', fit);
+    });
+  </script>
 </body>
 </html>
