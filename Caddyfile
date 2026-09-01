@@ -1,0 +1,21 @@
+# =============================================================================
+# CADDY CONFIGURATION - Automatic HTTPS for the portfolio
+# =============================================================================
+# Caddy automatically obtains and renews free Let's Encrypt certificates for the
+# domains below, redirects HTTP -> HTTPS, and reverse-proxies requests to the
+# portfolio container (reachable as "portfolio:3000" on the internal network).
+#
+# DNS requirement:
+#   www.openstory.fun  ->  47.88.100.87   (already set up)
+#   openstory.fun      ->  47.88.100.87   (add an A record with host "@" for the
+#                                          bare domain to work; until then Caddy
+#                                          just keeps retrying its certificate and
+#                                          www.openstory.fun works fine on its own)
+
+openstory.fun, www.openstory.fun {
+    # Gzip/zstd compression for faster page loads
+    encode gzip zstd
+
+    # Forward everything to the app container
+    reverse_proxy portfolio:3000
+}

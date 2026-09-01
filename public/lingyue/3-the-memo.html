@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>领阅科技 · 投资备忘录 | The Memo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fs:1;
+    --paper:#EBE7DC;
+    --paper-2:#E3DED0;
+    --card:#F3F0E8;
+    --ink:#1B1915;
+    --ink-2:#4E483D;
+    --ink-3:#7A7261;
+    --claret:#7C2230;
+    --claret-2:#9A3040;
+    --claret-soft:rgba(124,34,48,.08);
+    --rule:#C7C0AE;
+    --rule-2:#D6D0C0;
+    --gold:#94743A;
+    --disp:"Fraunces",Georgia,"Songti SC","STSong",serif;
+    --body:"Newsreader",Georgia,"Songti SC","STSong",serif;
+    --mono:"IBM Plex Mono",ui-monospace,Consolas,"PingFang SC",monospace;
+    --col:720px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:calc(18px * var(--fs));line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background:radial-gradient(120% 80% at 50% -10%,rgba(255,255,255,.5),transparent 60%)}
+  a{color:inherit}
+  ::selection{background:var(--claret);color:var(--paper)}
+  .mono{font-family:var(--mono)}
+  .claret{color:var(--claret)}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(235,231,220,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--ink)}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .brand{font-family:var(--disp);font-weight:600;font-size:calc(19px * var(--fs));letter-spacing:.01em;display:flex;align-items:baseline;gap:10px}
+  .brand small{font-family:var(--mono);font-size:calc(9px * var(--fs));letter-spacing:.24em;color:var(--ink-3);font-weight:400;text-transform:uppercase}
+  nav.links{display:flex;gap:22px;font-family:var(--mono);font-size:calc(12px * var(--fs));text-transform:uppercase;letter-spacing:.06em}
+  nav.links a{color:var(--ink-2);text-decoration:none;transition:.15s}
+  nav.links a:hover{color:var(--claret)}
+  .navcta{color:var(--claret)!important;border-bottom:1px solid var(--claret)}
+  .burger{display:none;background:none;border:1px solid var(--ink);font-family:var(--mono);padding:6px 10px;cursor:pointer}
+
+  /* PAGE FRAME */
+  .page{max-width:1100px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+  .col{max-width:var(--col);margin:0 auto}
+
+  /* MASTHEAD */
+  .masthead{padding:64px 0 40px;border-bottom:2px solid var(--ink)}
+  .stamp{display:inline-block;font-family:var(--mono);font-size:calc(11px * var(--fs));letter-spacing:.24em;color:var(--claret);border:1.5px solid var(--claret);padding:5px 12px;transform:rotate(-1.5deg);text-transform:uppercase}
+  .masthead h1{font-family:var(--disp);font-size:calc(clamp(40px,7vw,86px) * var(--fs));font-weight:600;line-height:.98;letter-spacing:-.02em;margin:22px 0 10px;font-variation-settings:"opsz" 144}
+  .masthead .sub{font-family:var(--disp);font-style:italic;font-size:calc(clamp(19px,2.4vw,26px) * var(--fs));color:var(--claret);font-weight:400}
+  .memo-meta{margin-top:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .memo-meta div{background:var(--paper);padding:12px 16px}
+  .memo-meta .k{font-family:var(--mono);font-size:calc(9.5px * var(--fs));letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .memo-meta .v{font-family:var(--mono);font-size:calc(12.5px * var(--fs));color:var(--ink);margin-top:5px}
+
+  /* SECTION */
+  section{padding:64px 0}
+  .sec-mark{max-width:var(--col);margin:0 auto 24px;display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--rule);padding-bottom:12px}
+  .sec-mark .rn{font-family:var(--mono);font-size:calc(12px * var(--fs));color:var(--claret);letter-spacing:.1em}
+  .sec-mark h2{font-family:var(--disp);font-size:calc(clamp(24px,3vw,34px) * var(--fs));font-weight:600;letter-spacing:-.01em;line-height:1.1}
+  .lede{max-width:var(--col);margin:0 auto}
+  .lede p{margin-bottom:20px}
+  .lede p.drop::first-letter{font-family:var(--disp);font-weight:600;float:left;font-size:calc(76px * var(--fs));line-height:.72;padding:8px 12px 0 0;color:var(--claret);font-variation-settings:"opsz" 144}
+  .lede em{font-style:italic}
+  .lede strong{font-weight:600;color:var(--ink);background:linear-gradient(transparent 62%,var(--claret-soft) 0)}
+
+  /* PULLQUOTE */
+  .pull{max-width:var(--col);margin:36px auto;padding:6px 0 6px 30px;border-left:3px solid var(--claret)}
+  .pull p{font-family:var(--disp);font-style:italic;font-size:calc(clamp(20px,2.6vw,28px) * var(--fs));line-height:1.35;color:var(--ink);font-weight:500}
+  .pull cite{display:block;font-family:var(--mono);font-style:normal;font-size:calc(12px * var(--fs));color:var(--ink-3);margin-top:14px;letter-spacing:.04em}
+
+  /* EQUATION */
+  .eq{max-width:var(--col);margin:30px auto;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink)}
+  .eq div{padding:22px 24px}
+  .eq .old{border-right:1px solid var(--ink)}
+  .eq .k{font-family:var(--mono);font-size:calc(10.5px * var(--fs));letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .eq .f{font-family:var(--disp);font-size:calc(clamp(17px,2vw,22px) * var(--fs));font-weight:500;line-height:1.4}
+  .eq .old .f{color:var(--ink-3)}
+  .eq .new .f b{color:var(--claret);font-weight:600}
+
+  /* CASE FILE (signature) — four-month timeline */
+  .casefile{max-width:860px;margin:34px auto 0;background:var(--card);border:1px solid var(--ink);box-shadow:6px 8px 0 rgba(27,25,21,.08)}
+  .casefile .cfh{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--ink);font-family:var(--mono);font-size:calc(11px * var(--fs));letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+  .casefile .cfh .no{color:var(--claret)}
+  .month{display:grid;grid-template-columns:120px 1fr 150px;gap:0;border-bottom:1px dashed var(--rule)}
+  .month:last-of-type{border-bottom:none}
+  .month .mdate{padding:18px 22px;font-family:var(--mono);font-size:calc(12px * var(--fs));color:var(--claret);border-right:1px dashed var(--rule)}
+  .month .mbody{padding:18px 22px}
+  .month .mbody .said{font-family:var(--disp);font-size:calc(18px * var(--fs));font-weight:500;font-style:italic}
+  .month .mbody .role{font-family:var(--mono);font-size:calc(10.5px * var(--fs));color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
+  .month .mnote{padding:18px 22px;font-family:var(--mono);font-size:calc(12px * var(--fs));color:var(--ink-3);border-left:1px dashed var(--rule);display:flex;align-items:center}
+  .cf-foot{padding:20px 24px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .cf-foot .verdict{font-family:var(--disp);font-style:italic;font-size:calc(17px * var(--fs))}
+  .redact{background:var(--ink);color:var(--ink);padding:0 10px;border-radius:1px;user-select:none;font-family:var(--mono);letter-spacing:.1em}
+  .redact.claret{background:var(--claret);color:var(--claret)}
+
+  /* PRECEDENT cards */
+  .prec{max-width:var(--col);margin:24px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .pcard{border:1px solid var(--rule);background:var(--card);padding:22px 24px}
+  .pcard .st{font-family:var(--mono);font-size:calc(11px * var(--fs));color:var(--claret);letter-spacing:.06em}
+  .pcard h4{font-family:var(--disp);font-size:calc(21px * var(--fs));font-weight:600;margin:8px 0 4px}
+  .pcard .aum{font-family:var(--mono);font-size:calc(12px * var(--fs));color:var(--ink-3)}
+  .pcard p{font-size:calc(15px * var(--fs));color:var(--ink-2);margin-top:12px;line-height:1.55}
+  .prec-quote{max-width:var(--col);margin:20px auto 0;font-family:var(--disp);font-style:italic;font-size:calc(17px * var(--fs));color:var(--ink-2);text-align:center}
+
+  /* COPILOTS as memo list */
+  .sol{max-width:var(--col);margin:26px auto 0}
+  .sol .item{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:22px 0;border-top:1px solid var(--rule)}
+  .sol .item .lbl{font-family:var(--mono);font-size:calc(12px * var(--fs));color:var(--claret);letter-spacing:.04em}
+  .sol .item .lbl b{display:block;font-family:var(--disp);font-size:calc(20px * var(--fs));color:var(--ink);font-weight:600;margin-top:6px;letter-spacing:0}
+  .sol .item ul{list-style:none}
+  .sol .item li{font-size:calc(16px * var(--fs));color:var(--ink-2);padding-left:20px;position:relative;margin-bottom:8px;line-height:1.5}
+  .sol .item li::before{content:"—";position:absolute;left:0;color:var(--claret)}
+  .sol .item li b{color:var(--ink);font-weight:600}
+
+  /* FIGURES / metrics inline */
+  .figs{max-width:var(--col);margin:26px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .figs div{padding:22px 16px;border-right:1px solid var(--rule);text-align:center}
+  .figs div:last-child{border-right:none}
+  .figs .n{font-family:var(--disp);font-size:calc(32px * var(--fs));font-weight:600;color:var(--claret);line-height:1}
+  .figs .c{font-family:var(--mono);font-size:calc(10.5px * var(--fs));color:var(--ink-3);margin-top:9px;line-height:1.4}
+
+  /* PRICING TABLE (memo style) */
+  .ptable{max-width:900px;margin:26px auto 0;border-collapse:collapse;width:100%;font-size:calc(15px * var(--fs))}
+  .ptable th,.ptable td{border:1px solid var(--rule);padding:13px 16px;text-align:left;vertical-align:top}
+  .ptable thead th{font-family:var(--mono);font-size:calc(11px * var(--fs));letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);background:var(--paper-2);font-weight:400}
+  .ptable td.seg{font-family:var(--disp);font-weight:600;font-size:calc(16px * var(--fs))}
+  .ptable td .sm{font-family:var(--mono);font-size:calc(11px * var(--fs));color:var(--ink-3);display:block;margin-top:3px}
+  .ptable td.arr{font-family:var(--disp);font-weight:600;color:var(--claret);font-size:calc(17px * var(--fs));white-space:nowrap}
+  .ptable td.roi{font-family:var(--mono);color:var(--gold);font-weight:500}
+
+  /* TEAM */
+  .team{max-width:960px;margin:26px auto 0;column-count:3;column-gap:26px}
+  .team .m{break-inside:avoid;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+  .team .m h4{font-family:var(--disp);font-size:calc(18px * var(--fs));font-weight:600;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .team .m h4 span{font-family:var(--mono);font-size:calc(9.5px * var(--fs));color:var(--claret);text-transform:uppercase;letter-spacing:.04em;text-align:right;flex:none;max-width:96px}
+  .team .m p{font-size:calc(13.5px * var(--fs));color:var(--ink-2);margin-top:8px;line-height:1.5}
+
+  /* SIGN-OFF / CTA */
+  .signoff{padding:80px 0 30px;border-top:2px solid var(--ink)}
+  .signoff .col{text-align:left}
+  .signoff .ask{font-family:var(--disp);font-size:calc(clamp(28px,4vw,44px) * var(--fs));font-weight:600;line-height:1.1;letter-spacing:-.015em}
+  .signoff .ask em{font-style:italic;color:var(--claret)}
+  .signoff p{margin-top:18px;color:var(--ink-2)}
+  .use{max-width:var(--col);margin:26px auto 0;display:flex;gap:0;border:1px solid var(--ink)}
+  .use div{flex:1;padding:16px 18px;border-right:1px solid var(--rule)}
+  .use div:last-child{border-right:none}
+  .use .n{font-family:var(--disp);font-size:calc(22px * var(--fs));font-weight:600;color:var(--claret)}
+  .use .c{font-family:var(--mono);font-size:calc(10.5px * var(--fs));color:var(--ink-3);margin-top:6px}
+  .sig{max-width:var(--col);margin:34px auto 0;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+  .sig .btn{font-family:var(--mono);font-size:calc(13px * var(--fs));text-transform:uppercase;letter-spacing:.06em;text-decoration:none;color:var(--paper);background:var(--claret);padding:14px 26px;display:inline-block;transition:.15s}
+  .sig .btn:hover{background:var(--claret-2)}
+  .sig .who{font-family:var(--disp);font-style:italic;font-size:calc(18px * var(--fs));color:var(--ink-2)}
+  .sig .who b{display:block;font-style:normal;font-family:var(--mono);font-size:calc(11px * var(--fs));color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+
+  footer{border-top:1px solid var(--ink);margin-top:40px;padding:24px 32px;font-family:var(--mono);font-size:calc(11px * var(--fs));color:var(--ink-3);text-align:center;line-height:1.7}
+
+  .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .team{column-count:2}
+  }
+  @media(max-width:760px){
+    nav.links{display:none}.burger{display:block}
+    .memo-meta{grid-template-columns:1fr 1fr}
+    .eq{grid-template-columns:1fr}.eq .old{border-right:none;border-bottom:1px solid var(--ink)}
+    .month{grid-template-columns:1fr}.month .mdate,.month .mnote{border:none;border-bottom:1px dashed var(--rule)}
+    .prec{grid-template-columns:1fr}
+    .sol .item{grid-template-columns:1fr;gap:10px}
+    .figs{grid-template-columns:1fr 1fr}
+    .team{column-count:1}
+    .ptable{font-size:calc(13px * var(--fs))}.ptable th,.ptable td{padding:9px 10px}
+    .use{flex-wrap:wrap}.use div{flex:1 1 40%}
+    .casefile{box-shadow:none}
+  }
+  /* PHONE */
+  @media(max-width:560px){
+    body{font-size:calc(17px * var(--fs))}
+    .page{padding-left:18px;padding-right:18px}
+    .nav-inner{padding-left:18px;padding-right:18px}
+    .masthead{padding:44px 0 30px}
+    .masthead h1{font-size:calc(clamp(34px,12vw,46px) * var(--fs))}
+    .masthead .sub{font-size:calc(18px * var(--fs))}
+    section{padding:48px 0}
+    .signoff{padding-top:56px}
+    .lede p.drop::first-letter{font-size:calc(58px * var(--fs));padding:6px 10px 0 0}
+    .pull{padding-left:20px}
+    .ptable{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+    .ptable td .sm,.ptable td.seg span{white-space:normal}
+    .casefile{box-shadow:none}
+    .use div{flex:1 1 100%;border-right:none;border-bottom:1px solid var(--rule)}
+    .use div:last-child{border-bottom:none}
+    .sig{align-items:flex-start}
+    footer{padding-left:18px;padding-right:18px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">领阅科技 <small>Textmind</small></a>
+    <nav class="links">
+      <a href="#thesis">论点</a>
+      <a href="#loss">判断漏损</a>
+      <a href="#solution">解法</a>
+      <a href="#economics">生意</a>
+      <a href="#team">团队</a>
+      <a class="navcta" href="#ask">融资</a>
+    </nav>
+    <button class="burger" id="burger">≡</button>
+  </div>
+</header>
+
+<a id="top"></a>
+<div class="page">
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <span class="stamp">保密 · Confidential · For Discussion</span>
+    <h1>投资备忘录</h1>
+    <div class="sub">打造专业投资者的投研 OPT——让每一次投研投入，沉淀为长期的认知资产。</div>
+    <div class="memo-meta">
+      <div><div class="k">致 · To</div><div class="v">潜在投资人 / LP</div></div>
+      <div><div class="k">来自 · From</div><div class="v">广州领阅科技</div></div>
+      <div><div class="k">主题 · Re</div><div class="v">投研 OPT · 小龙虾</div></div>
+      <div><div class="k">日期 · Date</div><div class="v">2026 / 06 / 17</div></div>
+    </div>
+  </div>
+
+  <!-- THESIS -->
+  <section id="thesis">
+    <div class="lede rv">
+      <p class="drop">过去十年，基金行业的增长公式是 <strong>规模 = 渠道 × 行情 × 人头</strong>。监管去通道、降杠杆，规模红利结束；alpha 分化加剧，业绩成了唯一的硬通货。堆人、堆数据的投研模式，正在失效。</p>
+      <p>未来十年的生存公式变成了 <strong>alpha = 认知半径（广度） × 判断质量（深度）</strong>。而现有投研模式在这两个维度上都在漏——我们称之为「判断漏损」。这份备忘录讲的，就是我们如何把它堵上。</p>
+    </div>
+    <div class="eq rv">
+      <div class="old"><div class="k">过去 10 年 · 增长公式</div><div class="f">规模 = 渠道 × 行情 × 人头</div></div>
+      <div class="new"><div class="k">未来 10 年 · 生存公式</div><div class="f">alpha = <b>认知半径</b> × <b>判断质量</b></div></div>
+    </div>
+  </section>
+
+  <!-- LOSS -->
+  <section id="loss">
+    <div class="sec-mark rv"><span class="rn">§ I</span><h2>判断漏损：一只票，吃掉整年的 alpha</h2></div>
+    <div class="lede rv">
+      <p>第一层漏损是<strong>认知半径不够大</strong>——个人判断的「漏」。AI 已经帮研究员摘要 12 份公告、速读 8 篇研报、生成 30 场纪要，信息侧做满了。可它没识别出第 7 场路演第 23 分钟那条会击穿「假设 B」的信号。判断侧，完全空白。</p>
+    </div>
+    <div class="pull rv">
+      <p>「真正决定我赚不赚钱的那 3–5 条信号，70% 在『被读到』和『起作用』之间漏失了。」</p>
+      <cite>—— 某 30 亿主观私募 · TMT 研究员</cite>
+    </div>
+    <div class="lede rv">
+      <p>第二层漏损是<strong>判断质量没合上</strong>——团队判断的「散」。信息其实都在，只是从没有人把它们拼在一起看过。这是一份真实的复盘案卷：</p>
+    </div>
+
+    <!-- SIGNATURE: case file -->
+    <div class="casefile rv">
+      <div class="cfh"><span>案卷 · CASE FILE：某 40 亿主观基金 · 医药持仓</span><span class="no">RE: 集采信号漏损</span></div>
+      <div class="month"><div class="mdate">6 月 · 研究员</div><div class="mbody"><div class="said">「集采降价幅度可能超预期。」</div><div class="role">已写入调研纪要</div></div><div class="mnote">我尽职了</div></div>
+      <div class="month"><div class="mdate">7 月 · 基金经理</div><div class="mbody"><div class="said">「已和研究员沟通，暂时观察。」</div><div class="role">写入备忘录</div></div><div class="mnote">我对接过了</div></div>
+      <div class="month"><div class="mdate">8 月 · 风控</div><div class="mbody"><div class="said">「波动率上升，但未触阈值。」</div><div class="role">写入日报</div></div><div class="mnote">规则没触发</div></div>
+      <div class="month"><div class="mdate">9 月 · 复盘</div><div class="mbody"><div class="said">「研究员提到集采风险，记录。」</div><div class="role">复盘会纪要</div></div><div class="mnote">我开了复盘会</div></div>
+      <div class="cf-foot">
+        <span class="verdict">损失 · P&amp;L 影响：<span class="redact claret">██████</span>（待授权披露）</span>
+        <span style="font-family:var(--mono);font-size:calc(12px * var(--fs));color:var(--claret)">结论：这不是能力问题，是判断质量问题。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECEDENT -->
+  <section id="precedent">
+    <div class="sec-mark rv"><span class="rn">§ II</span><h2>先例：头号玩家已把「投研助手」当壁垒</h2></div>
+    <div class="lede rv"><p>投研助手是 AI 在投资侧最深的应用层，海外头部基金均已下场。这不是一个需要教育的市场——它已经被 Citadel 验证过。</p></div>
+    <div class="prec rv">
+      <div class="pcard"><div class="st">已上线 · 2025.12 公开</div><h4>Citadel</h4><div class="aum">管理规模 $71B · 全球顶级对冲基金</div><p>Citadel AI Assistant：按 PM 持仓个性化定制研究、研究员/PM 双视图、内部全员部署。</p></div>
+      <div class="pcard"><div class="st">在投入 · 2025–2026</div><h4>Point72</h4><div class="aum">管理规模 $35B · 顶级 L/S 对冲</div><p>大规模招聘 AI Research Engineer 构建 agentic systems，直接对标 Citadel，深度嵌入投研工作流。</p></div>
+    </div>
+    <div class="prec-quote rv">「This is a tool to accelerate research, not replace judgment.」<br><span style="font-family:var(--mono);font-style:normal;font-size:calc(12px * var(--fs));color:var(--ink-3)">—— Umesh Subramanian, CTO · Citadel</span></div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution">
+    <div class="sec-mark rv"><span class="rn">§ III</span><h2>解法：带完整「研·投·控」思维链的投研 OPT</h2></div>
+    <div class="lede rv"><p>我们把专家的推理链路，构建成一张可追踪的思维链图谱——从信号到决策，以不足真人千分之一的成本，交付高质量、可回溯、可沉淀的投资策略与观点。它以三个 Copilot 交付，硬件即插即用，数据不出域。</p></div>
+    <div class="sol rv">
+      <div class="item"><div class="lbl">模块 A<b>研究员 Copilot</b></div><ul>
+        <li><b>判断框架结构化</b>：分析框架自动沉淀为可追踪判断网络</li>
+        <li><b>关键信号追踪</b>：信号→假设实时映射，主动推送冲击</li>
+        <li><b>跨标的洞察迁移</b> · <b>推理链版本管理</b>：判断留痕，反向归因</li>
+      </ul></div>
+      <div class="item"><div class="lbl">模块 B<b>基金经理 Copilot</b></div><ul>
+        <li><b>多研究员判断聚合</b>：分歧与置信度统一视图</li>
+        <li><b>偏好驱动呈现</b>：按 PM 风格定制压缩</li>
+        <li><b>持仓 vs 判断对照</b>：识别「看空仍重仓」等三类偏离</li>
+      </ul></div>
+      <div class="item"><div class="lbl">模块 C<b>风控管理 Copilot</b></div><ul>
+        <li><b>组合级风险归因</b>：全链路追溯到信号源</li>
+        <li><b>关键风险主动预警</b>：认知告警，不是阈值告警</li>
+        <li><b>决策复盘自动化</b>：复盘从几天缩到几分钟</li>
+      </ul></div>
+    </div>
+    <div class="figs rv">
+      <div><div class="n">&lt;2%</div><div class="c">关键事实错误率<br>基线 10–15%</div></div>
+      <div><div class="n">100%</div><div class="c">结论可溯源<br>至原始信号</div></div>
+      <div><div class="n">↓90%</div><div class="c">冷启动<br>数据需求</div></div>
+      <div><div class="n">&lt;3s</div><div class="c">P95 延迟<br>百人级并发</div></div>
+    </div>
+  </section>
+
+  <!-- ECONOMICS -->
+  <section id="economics">
+    <div class="sec-mark rv"><span class="rn">§ IV</span><h2>生意：中游的核心采购位，客户自己算得清账</h2></div>
+    <div class="lede rv"><p>市场存量清晰：2026 年 3 月末，证券基金在管 <strong>22.72 万亿元</strong>，管理人 7,500+ 家。我们做的是产业链中游的「判断催化层」——集成上游数据、加工成判断，做合作而非替代。定价按 AUM 分层，客户的 ROI 逻辑简单直接：</p></div>
+    <table class="ptable rv">
+      <thead><tr><th>客户层级</th><th>年订阅 ARR</th><th>覆盖</th><th>推理用量</th><th>ROI 测算</th></tr></thead>
+      <tbody>
+        <tr><td class="seg">小型基金<span class="sm">10 亿以下 · 5,000+ 家</span></td><td class="arr">¥20–30 万</td><td>研究员 Copilot · ≤5 席（云 SaaS）</td><td class="mono" style="font-size:calc(12px * var(--fs))">30 万次/年<br>¥5,000/万次</td><td class="roi">4人×30%×80万<br>≈ 省 100 万 · 5×</td></tr>
+        <tr><td class="seg">中型基金<span class="sm">10–50 亿 · 1,700+ 家</span></td><td class="arr">¥100–180 万</td><td>研究员+PM+风控 · ≤30 席（私有化可选）</td><td class="mono" style="font-size:calc(12px * var(--fs))">200 万次/年<br>¥4,000/万次</td><td class="roi">15人×30%×100万<br>≈ 省 450 万 · 3.7×</td></tr>
+        <tr><td class="seg">头部基金<span class="sm">100 亿+ · 85+ 家</span></td><td class="arr">¥250–400 万</td><td>全功能 · 不限席位 · 私有微调</td><td class="mono" style="font-size:calc(12px * var(--fs))">800 万次/年<br>¥3,000/万次</td><td class="roi">60人×30%×130万<br>≈ 省 2,300 万 · 8×</td></tr>
+      </tbody>
+    </table>
+    <div class="figs rv" style="margin-top:24px">
+      <div><div class="n">¥50万</div><div class="c">2026·12<br>PMF + 标杆</div></div>
+      <div><div class="n">¥3,800万</div><div class="c">2027·12<br>规模化</div></div>
+      <div><div class="n">¥7,200万</div><div class="c">2028·12<br>平台化</div></div>
+      <div><div class="n">80%+</div><div class="c">续费率<br>目标</div></div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="sec-mark rv"><span class="rn">§ V</span><h2>团队：懂投资的人 × 懂模型的人</h2></div>
+    <div class="lede rv"><p>30+ 年 AI、数据库与量化投资积累，500+ 顶会/期刊论文，6W+ 引用，50+ 头部机构合作项目。12 名全职（研发占 75%）+ 39 名兼职。</p></div>
+    <div class="team rv">
+      <div class="m"><h4>沈慕白<span>创始人</span></h4><p>某国际知名高校金融科技系助理教授。时空数据挖掘与金融文本分析，近 3 年 CCF-A 类 20+ 篇；曾在多家科技与金融数据公司 任访问研究员。</p></div>
+      <div class="m"><h4>陈立言<span>联创 AI+战略</span></h4><p>某国际知名高校协理副校长、AI 学域主任。国际顶级学会会士、某高校讲席教授，曾任某科技公司研究院副院长主管 5 个实验室。</p></div>
+      <div class="m"><h4>罗清源<span>联创 DB+AI</span></h4><p>某国际知名高校数据科学与分析系正教授、某高校讲席教授。研究 DB+AI 融合与高维数据建模，撰写合著 160+ 篇论文。</p></div>
+      <div class="m"><h4>周明轩<span>联创 主观投资</span></h4><p>某私募基金管理公司董事长。2001 年起就职某券商投资咨询部、某投资机构、某私募基金管理公司，地方私募基金业协会负责人。</p></div>
+      <div class="m"><h4>顾承泽<span>量化投资总监</span></h4><p>曾任某海外对冲基金策略分析员、某头部公募基金投资经理，中低频多因子多策略，15+ 年跨市场经验。</p></div>
+      <div class="m"><h4>Alan Wu<span>联创 系统架构</span></h4><p>某研究型大学微电子硕士。曾任某海外半导体公司 高级 IC 设计师与 FAE Manager，两项美国专利，后任某大型科技公司高级架构师。</p></div>
+      <div class="m"><h4>苏晚晴<span>联创 产品设计</span></h4><p>某综合性大学本硕。10+ 年投研/投顾产品设计与研发，曾任职国内多家知名金融与互联网公司。</p></div>
+      <div class="m"><h4>林知远<span>联创 产品运营</span></h4><p>曾任某互联网券商运营总监；某科技券商从 0 搭增长团队，单季度带动 21 亿 AUM 增长、获客成本降 80%；某大型互联网公司驱动自选股 MAU 翻倍。</p></div>
+      <div class="m"><h4>何子谦<span>系统开发负责人</span></h4><p>某工科院校软工，7 年 AI 架构、4 年团队管理。曾任某科技公司云计算任务系统负责人，从 0 到 1 支撑千倍增长。</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- SIGN-OFF -->
+<section class="signoff" id="ask">
+  <div class="page">
+    <div class="col">
+      <div class="ask rv">本轮融资 <em>¥2,000 万</em>，<br>把中游的判断催化层做成行业标配。</div>
+      <p class="rv">我们诚邀你预约一场演示——用贵司的真实场景，跑一遍从信号到决策的完整判断链。</p>
+    </div>
+    <div class="use rv">
+      <div><div class="n">¥1,200万</div><div class="c">算力设备采购</div></div>
+      <div><div class="n">¥600万</div><div class="c">人员工资</div></div>
+      <div><div class="n">¥150万</div><div class="c">数据采购</div></div>
+      <div><div class="n">¥50万</div><div class="c">差旅 / 招待</div></div>
+    </div>
+    <div class="sig rv">
+      <div class="who">此致，<b>广州领阅科技有限公司</b></div>
+      <a class="btn" href="mailto:hello@example.com">预约演示 · hello@example.com</a>
+    </div>
+  </div>
+</section>
+<footer>© 2026 领阅科技 TextMind · ICP 备案号占位 · 本页为「The Memo」编辑方向设计稿。案例损失额与部分数据经打码，待客户授权后披露。</footer>
+
+<script>
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  document.getElementById('burger').addEventListener('click',()=>{
+    const l=document.querySelector('nav.links');
+    l.style.cssText='display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--paper);border-bottom:1px solid var(--ink);padding:18px 32px;gap:16px;align-items:flex-start';
+  });
+</script>
+<script src="dev-mode.js"></script>
+<script src="dev-blocks.js"></script>
+</body>
+</html>

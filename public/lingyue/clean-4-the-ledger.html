@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>领阅科技 · The Ledger（精简）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fs:1;
+    --bg:#F4F3F0;--bg-2:#EDECE7;--paper:#FBFBF9;--ink:#111110;--ink-2:#454541;--ink-3:#8A8981;
+    --red:#E23124;--red-deep:#B71F14;--hair:#D3D2CB;
+    --sans:"Archivo",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    --narrow:"Archivo Narrow","Archivo",system-ui,"PingFang SC",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;--maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:calc(15px * var(--fs));line-height:1.55;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1,"lnum" 1}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--red);color:#fff}
+  .num{font-variant-numeric:tabular-nums lining-nums}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+  .lbl{font-family:var(--mono);font-size:calc(10.5px * var(--fs));letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+  .lbl.red{color:var(--red)}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(244,243,240,.94);backdrop-filter:blur(6px);border-bottom:2px solid var(--ink)}
+  .nav{max-width:var(--maxw);margin:0 auto;padding:0 30px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:baseline;gap:10px;font-weight:800;font-size:calc(19px * var(--fs));letter-spacing:-.02em}
+  .brand i{width:13px;height:13px;background:var(--red);display:inline-block;align-self:center}
+  nav a{font-family:var(--mono);font-size:calc(12px * var(--fs));text-transform:uppercase;color:var(--ink-2);margin-left:24px}
+  nav a:hover{color:var(--red)}
+  .cta{color:#fff!important;background:var(--red);padding:9px 15px;margin-left:24px}
+  .burger{display:none;background:none;border:2px solid var(--ink);font-family:var(--mono);padding:6px 10px;cursor:pointer}
+
+  .hero{border-bottom:2px solid var(--ink);padding:60px 0 0}
+  .hero .tagrow{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--hair);padding-bottom:14px;margin-bottom:30px}
+  .hero h1{font-family:var(--narrow);font-weight:700;font-size:calc(clamp(38px,6vw,76px) * var(--fs));line-height:.98;letter-spacing:-.02em;max-width:16ch;text-transform:uppercase}
+  .hero h1 .r{color:var(--red)}
+  .hero p{margin-top:22px;max-width:52ch;font-size:calc(16px * var(--fs));color:var(--ink-2);line-height:1.6}
+  .hrow{display:flex;gap:12px;margin:28px 0 40px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:calc(13px * var(--fs));text-transform:uppercase;padding:13px 22px;border:2px solid var(--ink);transition:.12s}
+  .btn:hover{background:var(--ink);color:var(--bg)}
+  .btn-red{background:var(--red);color:#fff;border-color:var(--red)}
+  .btn-red:hover{background:var(--red-deep);color:#fff}
+  .figrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;border-top:2px solid var(--ink)}
+  .figcell{padding:24px;border-right:1px solid var(--hair)}
+  .figcell:last-child{border-right:none}
+  .figcell.lead{background:var(--ink);color:var(--paper)}
+  .figcell.lead .lbl{color:#aaa}
+  .figcell .lbl{margin-bottom:12px}
+  .figcell .big{font-family:var(--narrow);font-weight:700;font-size:calc(clamp(34px,5vw,60px) * var(--fs));line-height:.9;letter-spacing:-.02em}
+  .figcell .big.red{color:var(--red)}
+  .figcell .sub{margin-top:10px;font-size:calc(12.5px * var(--fs));color:var(--ink-2)}
+  .figcell.lead .sub{color:#bbb}
+
+  section{border-bottom:2px solid var(--ink)}
+  .sh{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--hair)}
+  .sh .sn{padding:24px 30px;border-right:1px solid var(--hair)}
+  .sh .sn .no{font-family:var(--mono);font-size:calc(12px * var(--fs));color:var(--red)}
+  .sh .sn .en{font-family:var(--mono);font-size:calc(10px * var(--fs));color:var(--ink-3);margin-top:8px;letter-spacing:.1em;text-transform:uppercase}
+  .sh .st{padding:24px 30px;max-width:1030px}
+  .sh .st h2{font-family:var(--narrow);font-weight:700;font-size:calc(clamp(24px,3.2vw,40px) * var(--fs));line-height:1.04;letter-spacing:-.015em;text-transform:uppercase}
+  .sh .st p{margin-top:12px;font-size:calc(15px * var(--fs));color:var(--ink-2);max-width:60ch}
+  .body{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+
+  .huge{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;padding:40px 0}
+  .huge .n{font-family:var(--narrow);font-weight:700;font-size:calc(clamp(90px,18vw,220px) * var(--fs));line-height:.82;letter-spacing:-.04em;color:var(--red)}
+  .huge .t{font-family:var(--narrow);font-weight:700;font-size:calc(clamp(22px,3vw,34px) * var(--fs));line-height:1.05;text-transform:uppercase;letter-spacing:-.01em;max-width:16ch}
+  .huge .t span{display:block;font-family:var(--sans);font-weight:400;font-size:calc(15px * var(--fs));text-transform:none;color:var(--ink-2);margin-top:14px;letter-spacing:0;line-height:1.55}
+
+  .prod{display:grid;grid-template-columns:repeat(3,1fr)}
+  .pc{padding:30px;border-right:1px solid var(--hair)}
+  .pc:last-child{border-right:none}
+  .pc .top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:12px}
+  .pc .top h3{font-family:var(--narrow);font-weight:700;font-size:calc(22px * var(--fs));text-transform:uppercase}
+  .pc .top .id{font-family:var(--mono);font-size:calc(12px * var(--fs));color:var(--red)}
+  .pc p{margin-top:16px;font-size:calc(13.5px * var(--fs));color:var(--ink-2);line-height:1.6}
+
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr)}
+  .m{padding:34px 24px 34px 30px;border-right:1px solid var(--hair)}
+  .m:last-child{border-right:none}
+  .m .v{font-family:var(--narrow);font-weight:700;font-size:calc(clamp(34px,4.6vw,54px) * var(--fs));letter-spacing:-.02em;line-height:1;color:var(--red)}
+  .m .c{font-family:var(--mono);font-size:calc(11px * var(--fs));color:var(--ink-2);margin-top:14px;line-height:1.5;text-transform:uppercase;letter-spacing:.02em}
+
+  .cta-blk{padding:96px 30px;text-align:center;background:var(--paper)}
+  .cta-blk h2{font-family:var(--narrow);font-weight:700;font-size:calc(clamp(28px,4.4vw,52px) * var(--fs));line-height:1;text-transform:uppercase;letter-spacing:-.02em;max-width:16ch;margin:0 auto 20px}
+  .cta-blk h2 .r{color:var(--red)}
+  .cta-blk .hrow{justify-content:center;margin:0}
+
+  footer{background:var(--ink);color:#8f8e88;font-family:var(--mono);font-size:calc(11px * var(--fs));padding:26px 30px;letter-spacing:.02em}
+  .foot{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+  .rv.in{opacity:1;transform:none}
+  @media(max-width:1000px){
+    nav{display:none}.burger{display:block}
+    .figrid{grid-template-columns:1fr 1fr}.figcell{border-bottom:1px solid var(--hair)}
+    .sh{grid-template-columns:1fr}.sh .sn{border-right:none;border-bottom:1px solid var(--hair)}
+    .prod,.metrics{grid-template-columns:1fr}.pc,.m{border-right:none;border-bottom:1px solid var(--hair)}
+    .huge{grid-template-columns:1fr;gap:16px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top"><i></i>领阅 · TextMind</a>
+    <nav><a href="#problem">痛点</a><a href="#product">能力</a><a href="#trust">为何可信</a><a class="cta" href="#contact">预约演示</a></nav>
+    <button class="burger" id="burger">≡</button>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <div class="tagrow"><span class="lbl red">金融垂域 AI · 投研 OPT</span><span class="lbl num">截至 2026 · 03</span></div>
+    <h1>专家级判断，<span class="r">可交付</span>。</h1>
+    <p>领阅为证券、基金与财富管理机构打造金融垂域 AI——从信号到决策，可追溯、可沉淀、可自进化。</p>
+    <div class="hrow"><a class="btn btn-red" href="#contact">预约演示 →</a><a class="btn" href="#product">查看能力</a></div>
+  </div>
+  <div class="wrap" style="padding-bottom:0">
+    <div class="figrid rv">
+      <div class="figcell lead"><div class="lbl">市场存量 · AUM</div><div class="big num">22.72<span style="font-size:.3em;color:#aaa"> 万亿</span></div><div class="sub">证券基金在管 · 7,500+ 家管理人</div></div>
+      <div class="figcell"><div class="lbl">关键事实错误率</div><div class="big red num">&lt;2%</div><div class="sub">基线 10–15%</div></div>
+      <div class="figcell"><div class="lbl">结论可溯源</div><div class="big num">100%</div><div class="sub">至原始信号</div></div>
+      <div class="figcell"><div class="lbl">研 · 投 · 控</div><div class="big num">3</div><div class="sub">Copilot 覆盖全链路</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="sh rv"><div class="sn"><div class="no">01</div><div class="en">The Loss</div></div>
+    <div class="st"><h2>决定盈亏的 3–5 条信号，<br>漏在「被读到」和「起作用」之间</h2><p>堆人、堆数据的投研模式正在失效。AI 把信息侧做满了，判断侧却几乎空白——领阅补上的正是这段。</p></div></div>
+  <div class="body"><div class="huge rv"><div class="n num">70%</div><div class="t">的关键信号<br>就此漏失<span>真正决定盈亏的那几条，从没有人把它们拼在一起看过。</span></div></div></div>
+</section>
+
+<section id="product">
+  <div class="sh rv"><div class="sn"><div class="no">02</div><div class="en">Capability</div></div>
+    <div class="st"><h2>一个垂域底座，<br>三个 Copilot</h2><p>带完整「研·投·控」思维链，硬件即插即用、数据不出域。</p></div></div>
+  <div class="prod rv">
+    <div class="pc"><div class="top"><h3>研究员</h3><span class="id">研 · A</span></div><p>分析框架沉淀为可追踪判断网络；关键信号实时映射到持仓假设，主动推送冲击，支持反向归因。</p></div>
+    <div class="pc"><div class="top"><h3>基金经理</h3><span class="id">投 · B</span></div><p>团队判断、分歧与置信度聚合为统一视图；识别「看空仍重仓」等三类偏离。</p></div>
+    <div class="pc"><div class="top"><h3>风控</h3><span class="id">控 · C</span></div><p>风险全链路追溯到信号源；认知告警，不是阈值告警；复盘从几天到几分钟。</p></div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="sh rv"><div class="sn"><div class="no">03</div><div class="en">Why Trustworthy</div></div>
+    <div class="st"><h2>每个结论都有量</h2><p>每个推理节点嵌入可信度评估，逐层校验；低可信自动触发补证据——金融场景敢用 AI 的前提。</p></div></div>
+  <div class="metrics rv">
+    <div class="m"><div class="v num">&lt;2%</div><div class="c">关键事实错误率 · 基线 10–15%</div></div>
+    <div class="m"><div class="v num">100%</div><div class="c">结论可溯源</div></div>
+    <div class="m"><div class="v num">↓90%</div><div class="c">冷启动数据需求</div></div>
+    <div class="m"><div class="v num">&lt;3s</div><div class="c">P95 · 百人级并发</div></div>
+  </div>
+</section>
+
+<div class="cta-blk" id="contact">
+  <h2>让 AI 以专家的标准，<br><span class="r">进入你的每一条业务线。</span></h2>
+  <div class="hrow"><a class="btn btn-red" href="mailto:hello@example.com">预约演示 →</a></div>
+</div>
+
+<footer><div class="foot"><span>广州领阅科技 · TEXTMIND · 2026</span><span>hello@example.com</span></div></footer>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  document.getElementById('burger').addEventListener('click',()=>{const n=document.querySelector('nav');n.style.cssText='display:flex;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:var(--bg);border-bottom:2px solid var(--ink);padding:16px 30px;gap:14px;align-items:flex-start'});
+</script>
+<script src="dev-mode.js"></script>
+<script src="dev-blocks.js"></script>
+</body>
+</html>

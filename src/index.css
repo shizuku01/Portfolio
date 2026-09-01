@@ -1,0 +1,1468 @@
+/* =============================================================================
+   LATTE'S PORTFOLIO - FREEFORM REDESIGN
+   =============================================================================
+   Same content as the other versions, reorganized: Gallery + Projects merge
+   into one filterable /work hub, Home stays a short landing page, Blog is
+   renamed Journal. Typeface and accent color match the current redesign
+   (Bricolage Grotesque + Hanken Grotesk, slate-teal accent) - only the
+   structure is different here.
+*/
+
+/* =============================================================================
+   RESET AND BASE STYLES
+   ============================================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accent color as HSL components - matches the current redesign's accent */
+:root {
+  --accent-h: 186;
+  --accent-s: 19%;
+  --accent-l: 74%;
+  --accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --accent-hover: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) + 12%));
+  --accent-dim: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) - 12%));
+}
+
+body {
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: #EDEAE4;
+  background-color: #14120F;
+}
+
+/* Display font for every heading - loaded in public/index.html */
+h1, h2, h3, h4 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+}
+
+/* =============================================================================
+   LAYOUT UTILITIES
+   ============================================================================= */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.home-page,
+.work-page,
+.journal-page,
+.project-detail-page {
+  min-height: 100vh;
+  background: #14120F;
+}
+
+section {
+  padding: 80px 0;
+}
+
+/* Shared small accent-colored eyebrow label */
+.eyebrow {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Solid accent pill button - hero CTA and the contact submit */
+.btn-accent {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #14120F;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.85rem 1.75rem;
+  border: none;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-accent:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.link-underline {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #EDEAE4;
+  text-decoration: none;
+  border-bottom: 1px solid #322D27;
+  padding-bottom: 2px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  width: fit-content;
+}
+
+.link-underline:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Eyebrow + serif h2, left-aligned - sits above Featured on Home */
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-heading h2 {
+  font-size: 2.4rem;
+  color: #EDEAE4;
+  text-align: left;
+  margin: 0;
+}
+
+/* Page-level header (eyebrow + serif h1 + intro paragraph) - Work, Journal */
+.page-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: 640px;
+  margin-bottom: 2.5rem;
+}
+
+.page-intro h1 {
+  margin: 0;
+  font-size: 3.2rem;
+  color: #EDEAE4;
+  line-height: 1.05;
+}
+
+.page-intro p {
+  margin: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #A9A29A;
+}
+
+/* =============================================================================
+   NAV - sticky full-bleed bar
+   ============================================================================= */
+
+/* No border/line at the bottom edge at all - the header's own background
+   dissolves into a gradient over its last ~30%, so scrolled content just
+   fades into view underneath instead of being cut off by a hard (or
+   soft-edged) line. */
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: linear-gradient(
+    to bottom,
+    #14120F 0%,
+    #14120F 70%,
+    rgba(20, 18, 15, 0) 100%
+  );
+  padding-bottom: 20px;
+  margin-bottom: -20px;
+}
+
+.page-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.35rem 20px;
+}
+
+.page-brand {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.page-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.page-nav a {
+  color: #A9A29A;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: color 0.3s ease;
+}
+
+.page-nav a:hover {
+  color: var(--accent);
+}
+
+.page-nav a.active {
+  color: #EDEAE4;
+}
+
+.page-nav-icon {
+  display: flex;
+  color: #A9A29A;
+  transition: color 0.3s ease;
+}
+
+.page-nav-icon:hover {
+  color: var(--accent);
+}
+
+/* =============================================================================
+   HERO - full viewport
+   ============================================================================= */
+
+.hero-v2 {
+  position: relative;
+  min-height: calc(100vh - 78px);
+  display: flex;
+  align-items: center;
+  padding: 60px 0 80px;
+  overflow: hidden;
+}
+
+.hero-v2-glow {
+  position: absolute;
+  top: -160px;
+  right: -10%;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.16) 0%, hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0) 70%);
+  z-index: 0;
+}
+
+/* Sliding, black-and-white strip of artwork behind the hero copy */
+.hero-v2-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: calc((100vh - 78px) * 0.6);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-v2-band-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  height: 100%;
+  animation: hero-band-scroll 34s linear infinite;
+}
+
+.hero-v2-band-track img {
+  height: 100%;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  filter: grayscale(100%) brightness(0.7);
+}
+
+@keyframes hero-band-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.hero-v2-band-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: calc((100vh - 78px) * 0.6);
+  background: linear-gradient(180deg, rgba(20, 18, 15, 0.55) 0%, rgba(20, 18, 15, 0.88) 100%);
+  z-index: 1;
+}
+
+.hero-v2-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-v2-copy {
+  flex: 1.15;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.hero-v2-copy h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 4.2rem;
+  line-height: 1.04;
+  letter-spacing: -1px;
+  color: #EDEAE4;
+}
+
+.hero-v2-copy h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.hero-v2-bio {
+  margin: 0;
+  max-width: 440px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #A9A29A;
+}
+
+.hero-v2-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.hero-v2-twitter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #322D27;
+  color: #EDEAE4;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-v2-twitter:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.hero-v2-portrait {
+  flex-shrink: 0;
+}
+
+.hero-v2-portrait-photo {
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* =============================================================================
+   FEATURED - Home's small curated pull of art + case studies
+   ============================================================================= */
+
+.featured {
+  background: #14120F;
+  position: relative;
+  z-index: 2;
+}
+
+/* Same horizontal bounds as .featured-grid (not .container), so the
+   heading's left AND right edges line up exactly with the first and last
+   cards below it. */
+.featured-heading-row {
+  padding: 0 48px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  /* Full-bleed: runs edge to edge instead of being boxed into the 1200px
+     .container, which is what keeps each card close to its original size
+     instead of shrinking to fit 6 into that narrower column. */
+  padding: 0 48px;
+}
+
+.featured-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-4px);
+}
+
+.featured-card-thumb {
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #262220 0%, #14120F 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.featured-card-thumb-placeholder {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 3rem;
+  color: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.5);
+}
+
+.featured-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.featured-card-tag {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.featured-card-info h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #EDEAE4;
+}
+
+.featured-see-all {
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
+}
+
+/* =============================================================================
+   CONTACT
+   ============================================================================= */
+
+.contact-v2 {
+  background: #1A1713;
+  border-top: 1px solid #262220;
+  border-bottom: 1px solid #262220;
+  padding: 88px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-v2-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 3.25rem;
+}
+
+.contact-v2-header h2 {
+  margin: 0;
+  font-size: 2.6rem;
+  color: #EDEAE4;
+}
+
+.contact-v2-header p {
+  margin: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #A9A29A;
+}
+
+.contact-v2-body {
+  display: flex;
+  gap: 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.contact-v2-info {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.contact-v2-info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.contact-v2-info-label {
+  font-size: 0.7rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #726C63;
+}
+
+.contact-v2-info-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.contact-v2-info-social a {
+  color: #EDEAE4;
+  text-decoration: none;
+  border-bottom: 1px solid #322D27;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.contact-v2-info-social a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.contact-v2-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-v2-form input,
+.contact-v2-form textarea {
+  padding: 0.85rem 1.1rem;
+  border: 1px solid #322D27;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #201D19;
+  color: #EDEAE4;
+  transition: border-color 0.3s ease;
+}
+
+.contact-v2-form input::placeholder,
+.contact-v2-form textarea::placeholder {
+  color: #726C63;
+}
+
+.contact-v2-form input:focus,
+.contact-v2-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.contact-v2-form textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-success {
+  color: #059669;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.form-error {
+  color: #dc2626;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* =============================================================================
+   WORK PAGE - merged illustration + case studies, filterable
+   ============================================================================= */
+
+.work-v2 {
+  padding: 3.25rem 0 6rem;
+}
+
+/* Two-column layout: a slim sticky sidebar of filters on the left, sections
+   in the wider column on the right. */
+.work-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 3.5rem;
+}
+
+.work-sidebar {
+  flex: 0 0 150px;
+  position: sticky;
+  top: 100px; /* clears the sticky nav with some breathing room */
+}
+
+.work-main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Plain text list, no button chrome (background/border) at all - just a
+   color change on hover/active. Zero top padding so "All" lines up exactly
+   with the section heading's text over in .work-main. */
+.work-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.work-filter {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #726C63;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.work-filter:hover {
+  color: #EDEAE4;
+}
+
+.work-filter.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.work-section {
+  margin-bottom: 4.5rem;
+}
+
+.work-section:last-child {
+  margin-bottom: 0;
+}
+
+.work-section-title {
+  font-size: 1.6rem;
+  color: #EDEAE4;
+  margin-bottom: 1.75rem;
+}
+
+/* Illustration grid - uniform panels, straight edges, hover-reveal caption.
+   Case studies (above) share this same card style via .work-projects-grid. */
+.gallery-v2-grid {
+  display: grid;
+  /* Experimenting with 3 per row instead of 4 - larger tiles, fewer per
+     line. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 380px;
+  gap: 1.1rem;
+  /* No `dense` here deliberately: at 3 columns, with this particular item
+     count and 2 landscape (span-2) pieces, dense's gap-backfilling actually
+     shifts the remainder into a lonely last row instead of avoiding one -
+     plain sparse flow leaves a harmless mid-grid gap instead and ends on a
+     pair. Re-check with a browser sim (see chat) if the artwork count or
+     mix of landscape pieces changes. */
+}
+
+/* Case studies use the same card (.gallery-v2-card) but auto-fit instead of
+   a fixed column count - there are usually only a handful of them, and a
+   fixed 4-up grid would strand a remainder alone in its own row the way it
+   did for illustrations. auto-fit just lets the last row's card(s) stretch
+   to fill the space instead. */
+.work-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-auto-rows: 300px;
+  gap: 1.1rem;
+}
+
+.gallery-v2-card-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #262220 0%, #14120F 100%);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2.5rem;
+  color: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.5);
+}
+
+.gallery-v2-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #201D19;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.gallery-v2-card-landscape {
+  grid-column: span 2;
+}
+
+.gallery-v2-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.gallery-v2-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.15rem;
+  padding: 1rem 1.1rem 0.85rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 18, 15, 0) 0%,
+    rgba(20, 18, 15, 0.15) 45%,
+    rgba(20, 18, 15, 0.92) 100%
+  );
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.gallery-v2-card:hover .gallery-v2-card-overlay,
+.gallery-v2-card:focus-visible .gallery-v2-card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-v2-card-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #EDEAE4;
+  text-align: left;
+}
+
+.gallery-v2-card-year {
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-align: left;
+}
+
+/* =============================================================================
+   PROJECT DETAIL PAGE (/work/:id)
+   ============================================================================= */
+
+.project-detail-page .project-detail {
+  padding: 3.25rem 0 5rem;
+}
+
+.project-detail .container {
+  max-width: 740px;
+}
+
+.project-back-link {
+  display: inline-block;
+  color: #A9A29A;
+  text-decoration: none;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  transition: color 0.3s ease;
+}
+
+.project-back-link:hover {
+  color: var(--accent);
+}
+
+.project-detail-hero {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #322D27;
+  margin-bottom: 2rem;
+}
+
+.project-detail-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-detail-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-detail-heading h1 {
+  font-size: 2.6rem;
+  color: #EDEAE4;
+  line-height: 1.1;
+}
+
+.project-year {
+  flex-shrink: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.project-detail-embed {
+  margin-bottom: 3rem;
+}
+
+.project-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  padding: 1.25rem 0;
+  margin-bottom: 2rem;
+  border-top: 1px solid #322D27;
+  border-bottom: 1px solid #322D27;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.project-detail-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: #A9A29A;
+}
+
+.project-detail-meta-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.project-detail-summary {
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #A9A29A;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+}
+
+.project-detail-section {
+  margin-bottom: 2.75rem;
+}
+
+.project-detail-section-date {
+  display: block;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.project-detail-section h2 {
+  font-size: 1.6rem;
+  color: #EDEAE4;
+  margin-bottom: 0.9rem;
+}
+
+.project-detail-section p {
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #A9A29A;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 0.85rem;
+}
+
+.project-detail-section p:last-of-type {
+  margin-bottom: 0;
+}
+
+.project-detail-figure {
+  margin: 1.5rem 0 0;
+}
+
+.project-detail-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #322D27;
+  display: block;
+}
+
+.project-detail-figure figcaption {
+  margin-top: 0.65rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: #726C63;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .project-detail-heading h1 {
+    font-size: 2rem;
+  }
+}
+
+/* =============================================================================
+   JOURNAL - a single running timeline
+   ============================================================================= */
+
+.journal-v2 {
+  padding: 3.25rem 0 6rem;
+}
+
+/* Decorative rippling line down the right edge - see SpiralLine.js. Fixed to
+   the viewport (not the page), so it's always visible, independent of scroll
+   position. The path is redrawn every frame in JS (not a CSS animation) -
+   the waves genuinely travel along the line rather than a fixed shape
+   sliding past a window. The journal timeline is left-aligned at 720px
+   inside its container (not centered), so there's clear space to its right
+   on basically any desktop width - hidden only below 1100px, where the
+   layout is tight enough that it isn't worth the risk. */
+.spiral-line {
+  position: fixed;
+  top: 0;
+  right: 70px;
+  width: 100px;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 5;
+  pointer-events: none;
+  color: var(--accent);
+  opacity: 0.65;
+}
+
+.spiral-line-svg {
+  display: block;
+  /* Soft bloom around the whole line, on top of the gradient's own bright
+     point - reads as the line genuinely emitting light rather than just
+     being drawn with a lighter color. */
+  filter: drop-shadow(0 0 7px hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.55));
+}
+
+@media (max-width: 1100px) {
+  .spiral-line {
+    display: none;
+  }
+}
+
+.blog-empty {
+  text-align: center;
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #726C63;
+  font-size: 1.05rem;
+  padding: 3rem 1rem;
+  border: 1px dashed #322D27;
+  border-radius: 12px;
+  max-width: 720px;
+}
+
+.devlog-timeline {
+  max-width: 720px;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.devlog-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent) 0%, hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.15) 100%);
+}
+
+.devlog-entry {
+  position: relative;
+  background: #201D19;
+  border: 1px solid #322D27;
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.devlog-entry:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.1);
+  border-color: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.35);
+}
+
+.devlog-entry::before {
+  content: '';
+  position: absolute;
+  left: -2.55rem;
+  top: 2rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid #14120F;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.devlog-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.devlog-date {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.devlog-game {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #EDEAE4;
+  background: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.12);
+  border: 1px solid hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.3);
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+}
+
+.devlog-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.6rem;
+  color: #EDEAE4;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.devlog-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: block;
+  border: 1px solid #322D27;
+}
+
+.devlog-body p {
+  color: #A9A29A;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.85rem;
+}
+
+.devlog-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .devlog-timeline {
+    padding-left: 1.25rem;
+  }
+
+  .devlog-entry {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .devlog-entry::before {
+    left: -1.8rem;
+  }
+}
+
+/* =============================================================================
+   GAME / SITE EMBED (Unity Development, Web Design case studies)
+   ============================================================================= */
+
+.game-embed {
+  max-width: 960px;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.game-header h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.3rem;
+  color: #EDEAE4;
+}
+
+.game-fullscreen-btn {
+  flex-shrink: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #14120F;
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.game-fullscreen-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.game-frame-wrap {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border: 1px solid #322D27;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.game-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.game-note {
+  margin-top: 0.75rem;
+  text-align: center;
+  color: #726C63;
+  font-size: 0.85rem;
+}
+
+.game-placeholder {
+  border: 1px dashed #322D27;
+  border-radius: 10px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: #726C63;
+  line-height: 1.7;
+}
+
+.game-placeholder-title {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.game-placeholder code {
+  background: #201D19;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  color: #EDEAE4;
+  font-size: 0.85em;
+}
+
+/* =============================================================================
+   FOOTER
+   ============================================================================= */
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.75rem 20px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: #726C63;
+  border-top: 1px solid #262220;
+}
+
+.site-footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-footer-links a {
+  color: #726C63;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-footer-links a:hover {
+  color: var(--accent);
+}
+
+/* =============================================================================
+   ARTWORK MODAL - full image popup
+   ============================================================================= */
+
+.artwork-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 20px;
+}
+
+.artwork-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.artwork-modal.open .modal-content {
+  transform: scale(1);
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 3rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.modal-close:hover {
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.modal-info {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #EDEAE4;
+}
+
+.modal-info h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.modal-info p {
+  font-size: 1rem;
+  color: #726C63;
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+
+@media (max-width: 1024px) {
+  .hero-v2-inner {
+    gap: 2.5rem;
+  }
+
+  .hero-v2-copy h1 {
+    font-size: 3.8rem;
+  }
+
+  .hero-v2-portrait-photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .featured-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .gallery-v2-grid {
+    grid-auto-rows: 300px;
+  }
+
+  .contact-v2-body {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0;
+  }
+
+  /* Sidebar doesn't work at this width - stack it above the content as a
+     plain horizontal row instead. */
+  .work-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .work-sidebar {
+    flex: none;
+    position: static;
+    width: 100%;
+  }
+
+  .work-filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .work-filter {
+    padding: 0.5rem 1.1rem;
+    border: 1px solid #322D27;
+    border-radius: 999px;
+  }
+
+  .work-filter.active {
+    border-color: var(--accent);
+  }
+
+  .hero-v2-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-v2-portrait {
+    align-self: center;
+  }
+
+  .hero-v2-band {
+    display: none;
+  }
+
+  .hero-v2-copy h1 {
+    font-size: 3rem;
+  }
+
+  .page-intro h1 {
+    font-size: 2.5rem;
+  }
+
+  .featured-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Straight to a single column here (skipping a 2-column tier) - with an
+     odd number of same-size tiles, 2 columns is exactly the layout that
+     strands the last one alone in its own row. */
+  .gallery-v2-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+
+  .gallery-v2-card-landscape {
+    grid-column: 1 / -1;
+  }
+
+  .contact-v2-body {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .contact-v2-info {
+    flex: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .featured-grid {
+    padding: 0 15px;
+  }
+
+  .featured-heading-row {
+    padding: 0 15px;
+  }
+
+  .hero-v2-copy h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-v2-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+}

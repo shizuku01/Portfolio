@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>领阅科技 · Statement（极简）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fs:1;
+    --paper:#FFFFFF;
+    --ink:#0A0A0A;
+    --ink-2:#565656;
+    --ink-3:#9A9A9A;
+    --line:#E6E6E6;
+    --accent:#0A0A0A;
+    --disp:"Syne",system-ui,"PingFang SC","Microsoft YaHei",sans-serif;
+    --body:"Inter",system-ui,"PingFang SC","Microsoft YaHei",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:calc(16px * var(--fs));line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--ink);color:var(--paper)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+  .eyebrow{font-family:var(--mono);font-size:calc(12px * var(--fs));letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--ink)}
+  .nav{max-width:var(--maxw);margin:0 auto;padding:0 40px;height:70px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--disp);font-weight:800;font-size:calc(19px * var(--fs));letter-spacing:-.02em;text-transform:uppercase}
+  nav a{font-family:var(--mono);font-size:calc(12.5px * var(--fs));text-transform:uppercase;letter-spacing:.04em;color:var(--ink-2);margin-left:28px}
+  nav a:hover{color:var(--ink)}
+  .cta{color:var(--paper)!important;background:var(--ink);font-family:var(--mono);padding:11px 18px;margin-left:28px;transition:.15s}
+  .cta:hover{background:#333}
+  .burger{display:none;background:none;border:1px solid var(--ink);padding:8px 12px;cursor:pointer;font-family:var(--mono)}
+
+  /* HERO — the thesis at scale */
+  .hero{padding:96px 0 80px}
+  .hero .eyebrow{margin-bottom:30px;display:block}
+  .hero h1{font-family:var(--disp);font-weight:800;font-size:calc(clamp(52px,11vw,150px) * var(--fs));line-height:.92;letter-spacing:-.045em;text-transform:none;margin-bottom:40px}
+  .hero h1 .u{display:inline-block;border-bottom:6px solid var(--ink);line-height:.86}
+  .hero-foot{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-top:1px solid var(--ink);padding-top:26px}
+  .hero-foot p{font-size:calc(18px * var(--fs));color:var(--ink-2);max-width:46ch;line-height:1.55}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:calc(13.5px * var(--fs));text-transform:uppercase;letter-spacing:.03em;padding:14px 24px;transition:.15s;border:1px solid var(--ink);white-space:nowrap}
+  .btn-fill{background:var(--ink);color:var(--paper)}
+  .btn-fill:hover{background:#333}
+  .btn-ghost{background:none;color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .chain{margin-top:56px;font-family:var(--mono);font-size:calc(13px * var(--fs));color:var(--ink-3);display:flex;flex-wrap:wrap;align-items:center}
+  .chain .s{color:var(--ink-2)}
+  .chain .hot{color:var(--ink);font-weight:500;border-bottom:2px solid var(--ink)}
+  .chain .arw{padding:0 14px}
+
+  section{padding:110px 0;border-top:1px solid var(--ink)}
+  .eyebrow.blk{display:block;margin-bottom:20px}
+  h2{font-family:var(--disp);font-weight:700;font-size:calc(clamp(32px,5vw,64px) * var(--fs));line-height:1;letter-spacing:-.035em;max-width:16ch}
+  .sub{font-size:calc(17.5px * var(--fs));color:var(--ink-2);margin-top:24px;max-width:54ch;line-height:1.58}
+
+  /* PROBLEM — giant number */
+  .stat-wrap{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;margin-top:8px}
+  .big-stat{font-family:var(--disp);font-weight:800;font-size:calc(clamp(90px,20vw,280px) * var(--fs));line-height:.82;letter-spacing:-.05em}
+  .big-stat small{font-size:.18em;letter-spacing:-.01em;display:block;font-weight:700}
+
+  /* CAPABILITY — big numbered rows */
+  .rows{margin-top:20px}
+  .r{display:grid;grid-template-columns:1fr;gap:6px;padding:40px 0;border-top:1px solid var(--line)}
+  .r:first-child{border-top:none}
+  .r .top{display:flex;align-items:baseline;gap:20px}
+  .r .n{font-family:var(--disp);font-weight:800;font-size:calc(clamp(30px,4vw,52px) * var(--fs));letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .r h3{font-family:var(--disp);font-weight:700;font-size:calc(clamp(22px,2.6vw,30px) * var(--fs));letter-spacing:-.02em}
+  .r p{color:var(--ink-2);margin-top:6px;max-width:70ch;font-size:calc(15.5px * var(--fs));padding-left:0}
+
+  .metrics{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+  .m{padding:34px 24px 34px 0;border-right:1px solid var(--line)}
+  .m:last-child{border-right:none}
+  .m .v{font-family:var(--disp);font-weight:800;font-size:calc(clamp(38px,5vw,60px) * var(--fs));letter-spacing:-.03em;line-height:1}
+  .m .c{font-family:var(--mono);font-size:calc(11.5px * var(--fs));color:var(--ink-2);margin-top:14px;line-height:1.5;text-transform:uppercase;letter-spacing:.03em}
+
+  .cta-blk{padding:130px 0}
+  .cta-blk h2{max-width:18ch}
+  .cta-blk .row{margin-top:36px}
+
+  footer{border-top:1px solid var(--ink);padding:44px 0}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:calc(12.5px * var(--fs));color:var(--ink-3);text-transform:uppercase;letter-spacing:.03em}
+
+  .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+  @media(max-width:760px){
+    nav{display:none}.burger{display:block}
+    .hero-foot{grid-template-columns:1fr;gap:22px}
+    .stat-wrap{grid-template-columns:1fr;gap:20px}
+    .metrics{grid-template-columns:1fr 1fr}
+    .m{border-right:none;border-bottom:1px solid var(--line)}
+    section{padding:78px 0}
+    .chain .arw{padding:0 8px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">领阅 TextMind</a>
+    <nav>
+      <a href="#problem">痛点</a>
+      <a href="#product">能力</a>
+      <a href="#trust">为何可信</a>
+      <a class="cta" href="#contact">预约演示</a>
+    </nav>
+    <button class="burger" id="burger">MENU</button>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero" style="border-top:none">
+  <div class="wrap">
+    <span class="eyebrow">金融垂域 AI · 投研 OPT</span>
+    <h1>专家级判断，<br>可<span class="u">交付</span>。</h1>
+    <div class="hero-foot">
+      <p>领阅为证券、基金与财富管理机构打造金融垂域 AI——从信号到决策，可追溯、可沉淀、可自进化。</p>
+      <div class="row">
+        <a class="btn btn-fill" href="#contact">预约演示</a>
+        <a class="btn btn-ghost" href="#product">查看能力</a>
+      </div>
+    </div>
+    <div class="chain rv">
+      <span class="s">信号</span><span class="arw">→</span>
+      <span class="s">假设</span><span class="arw">→</span>
+      <span class="hot">冲击 · 认知告警</span><span class="arw">→</span>
+      <span class="s">决策 · 逐层归因</span>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <span class="eyebrow blk">痛点 · 判断漏损</span>
+    <div class="stat-wrap rv">
+      <div class="big-stat">70%<small>的关键信号漏失</small></div>
+      <div>
+        <h2>决定盈亏的 3–5 条信号，漏在「被读到」和「起作用」之间。</h2>
+        <p class="sub">堆人、堆数据的投研模式正在失效。AI 把信息侧做满了，判断侧却几乎空白。领阅补上的正是这段。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="product">
+  <div class="wrap">
+    <span class="eyebrow blk">能力 · 研 · 投 · 控</span>
+    <h2>一个垂域底座，覆盖全链路。</h2>
+    <div class="rows rv">
+      <div class="r"><div class="top"><span class="n">研</span><h3>研究员 Copilot</h3></div><p>分析框架自动沉淀为可追踪的判断网络；关键信号实时映射到持仓假设，主动推送冲击，判断演化全程留痕、支持反向归因。</p></div>
+      <div class="r"><div class="top"><span class="n">投</span><h3>基金经理 Copilot</h3></div><p>全团队判断、分歧与置信度聚合为统一视图；按判断风格定制呈现；实时识别「看空仍重仓 / 看多未建仓」等偏离。</p></div>
+      <div class="r"><div class="top"><span class="n">控</span><h3>风控 Copilot</h3></div><p>组合风险全链路追溯到信号源；基于判断链冲击的事前预警——认知告警，不是阈值告警；决策复盘从几天缩到几分钟。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <span class="eyebrow blk">为何可信 · Trust</span>
+    <h2>每个结论都带证据锚点，幻觉可检测、可拦截。</h2>
+    <p class="sub">在投研、服务、验证每个推理节点嵌入可信度评估，逐层校验；低可信自动触发补证据——这是金融场景敢用 AI 的前提。</p>
+    <div class="metrics rv">
+      <div class="m"><div class="v">&lt;2%</div><div class="c">关键事实错误率<br>基线 10–15%</div></div>
+      <div class="m"><div class="v">100%</div><div class="c">结论可溯源</div></div>
+      <div class="m"><div class="v">↓90%</div><div class="c">冷启动数据需求</div></div>
+      <div class="m"><div class="v">&lt;3s</div><div class="c">P95 · 百人级并发</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-blk" id="contact">
+  <div class="wrap">
+    <span class="eyebrow blk">Let's talk</span>
+    <h2>让 AI 以专家的标准，进入你的每一条业务线。</h2>
+    <div class="row"><a class="btn btn-fill" href="mailto:hello@example.com">预约演示 →</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><div class="foot">
+    <span>领阅科技 TextMind</span>
+    <span>金融垂域 AI · hello@example.com</span>
+  </div></div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  document.getElementById('burger').addEventListener('click',()=>{const n=document.querySelector('nav');n.style.cssText='display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--ink);padding:18px 40px;gap:10px;align-items:flex-start'});
+</script>
+<script src="dev-mode.js"></script>
+<script src="dev-blocks.js"></script>
+</body>
+</html>
