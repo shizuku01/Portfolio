@@ -88,6 +88,17 @@ function ProjectDetail() {
                   {section.caption && <figcaption>{section.caption}</figcaption>}
                 </figure>
               )}
+
+              {section.images && section.images.length > 0 && (
+                <div className="project-detail-figure-group">
+                  {section.images.map((img) => (
+                    <figure className="project-detail-figure" key={img.src}>
+                      <img src={img.src} alt={img.alt || section.heading} loading="lazy" />
+                      {img.caption && <figcaption>{img.caption}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

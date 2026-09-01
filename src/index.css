@@ -924,6 +924,17 @@ section {
   margin: 1.5rem 0 0;
 }
 
+.project-detail-figure-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 0;
+}
+
+.project-detail-figure-group .project-detail-figure {
+  margin: 0;
+}
+
 .project-detail-figure img {
   width: 100%;
   height: auto;

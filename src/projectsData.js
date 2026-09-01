@@ -35,9 +35,13 @@
 //     detail.embed     optional - embeds a live static site/prototype at the
 //                       top of the page via SitePreview, see SitePreview.js
 //     detail.sections  array of { heading, body: [paragraph, ...], date?,
-//                       image?, imageAlt?, caption? } — rendered in order
-//                       down the page. `date` (optional) renders as a small
-//                       label above the heading, for devlog-style entries.
+//                       image?, imageAlt?, caption?, images? } — rendered in
+//                       order down the page. `date` (optional) renders as a
+//                       small label above the heading, for devlog-style
+//                       entries. Use `image`/`imageAlt`/`caption` for a
+//                       single photo, or `images: [{ src, alt?, caption? }]`
+//                       when a section needs more than one (e.g. several
+//                       product mockups side by side).
 //
 // The last entry below is a placeholder EXAMPLE — replace it with a real
 // project, or add more. After editing, redeploy:
@@ -70,6 +74,12 @@ export const projects = [
         { label: 'Team', value: 'Feliks Karapetyan, Kevyn S. Campos, Kyra Calderhead' },
         { label: 'Course', value: 'UC Davis, DES 001 Studio — Fall 2024' },
       ],
+      embed: {
+        title: 'Full Presentation (PDF)',
+        src: '/documents/finbin-presentation.pdf',
+        height: 780,
+        ready: true,
+      },
       sections: [
         {
           heading: 'The Brief',
@@ -167,16 +177,32 @@ export const projects = [
           body: [
             'Designed a co-branded Cheetos bag, keeping the monotone Elysium treatment but letting the product’s original colors show through so the collab still reads as Cheetos on shelf. Did the same exercise for a Coca-Cola can, keeping the brand red and layering in a cross-hatch pattern that echoes the star shape in the Elysium mark.',
           ],
-          image: '/images/project-elysium-cheetos.jpg',
-          imageAlt: 'Co-branded Elysium x Cheetos Flamin’ Hot packaging mockup',
+          images: [
+            {
+              src: '/images/project-elysium-cheetos.jpg',
+              alt: 'Co-branded Elysium x Cheetos Flamin’ Hot packaging mockup',
+            },
+            {
+              src: '/images/project-elysium-coke.jpg',
+              alt: 'Co-branded Elysium x Coca-Cola can mockup',
+            },
+          ],
         },
         {
           heading: 'Wearables',
           body: [
             'Redesigned the Vans Torrey jacket and a matching backpack as festival merch — split the jacket into black and white halves to carry over the identity’s negative-space language while keeping Vans’ classic silhouette, and built the backpack’s pattern from the logo’s vinyl-disc shapes.',
           ],
-          image: '/images/project-elysium-jacket.jpg',
-          imageAlt: 'Co-branded Elysium x Vans jacket, front and back',
+          images: [
+            {
+              src: '/images/project-elysium-jacket.jpg',
+              alt: 'Co-branded Elysium x Vans jacket, front and back',
+            },
+            {
+              src: '/images/project-elysium-backpack.jpg',
+              alt: 'Co-branded Elysium x Vans backpack mockup',
+            },
+          ],
         },
       ],
     },
